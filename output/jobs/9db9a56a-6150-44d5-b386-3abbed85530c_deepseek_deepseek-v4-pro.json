@@ -1,0 +1,426 @@
+{
+  "created_at": "2026-06-13_17-01-12",
+  "status": "done",
+  "model": "deepseek/deepseek-v4-pro",
+  "total_requests": 6,
+  "total_offers": 8,
+  "users": [
+    {
+      "id": 1,
+      "user_request": "I need very low latency for remote surgery.",
+      "expected_intent": "URLLC"
+    },
+    {
+      "id": 2,
+      "user_request": "I want high speed video streaming.",
+      "expected_intent": "eMBB"
+    },
+    {
+      "id": 3,
+      "user_request": "I have many IoT sensors with low power.",
+      "expected_intent": "mMTC"
+    },
+    {
+      "id": 4,
+      "user_request": "I need reliable communication for autonomous driving.",
+      "expected_intent": "URLLC"
+    },
+    {
+      "id": 5,
+      "user_request": "I want fast internet for watching 4K videos.",
+      "expected_intent": "eMBB"
+    },
+    {
+      "id": 6,
+      "user_request": "I need to connect thousands of smart meters.",
+      "expected_intent": "mMTC"
+    }
+  ],
+  "offers": [
+    {
+      "offer_id": 1,
+      "eMBB": {
+        "cost": 57.0711514695576,
+        "latency": 0.06010851869954554,
+        "throughput": 406.91846669045646,
+        "energy": 0.42156576313699956
+      },
+      "URLLC": {
+        "cost": 47.317504353230476,
+        "latency": 0.01637492533298625,
+        "throughput": 447.32432204223375,
+        "energy": 12.996423424020842
+      },
+      "mMTC": {
+        "cost": 9.950730773530177,
+        "latency": 0.10845310412320287,
+        "throughput": 443.3386571186324,
+        "energy": 1.0155980795981234
+      }
+    },
+    {
+      "offer_id": 2,
+      "eMBB": {
+        "cost": 40.60869500830344,
+        "latency": 0.06010851869954554,
+        "throughput": 406.91846669045646,
+        "energy": 29.67931575921764
+      },
+      "URLLC": {
+        "cost": 76.91059231554037,
+        "latency": 0.01637492533298625,
+        "throughput": 447.32432204223375,
+        "energy": 2.386479874610714
+      },
+      "mMTC": {
+        "cost": 13.032164960852596,
+        "latency": 0.13169902183533747,
+        "throughput": 365.2187594424133,
+        "energy": 1.0155980795981234
+      }
+    },
+    {
+      "offer_id": 3,
+      "eMBB": {
+        "cost": 76.76564668905357,
+        "latency": 0.05578816055391839,
+        "throughput": 437.82929217968893,
+        "energy": 34.61163138095414
+      },
+      "URLLC": {
+        "cost": 65.78414862363095,
+        "latency": 0.037848936683908,
+        "throughput": 198.0250445976417,
+        "energy": 2.386479874610714
+      },
+      "mMTC": {
+        "cost": 8.644960630773733,
+        "latency": 0.13591732807420945,
+        "throughput": 353.9072685579045,
+        "energy": 1.0155980795981234
+      }
+    },
+    {
+      "offer_id": 4,
+      "eMBB": {
+        "cost": 19.313644671084848,
+        "latency": 0.1303137919479123,
+        "throughput": 191.975650297775,
+        "energy": 1.4812297156113097
+      },
+      "URLLC": {
+        "cost": 47.317504353230476,
+        "latency": 0.01637492533298625,
+        "throughput": 447.32432204223375,
+        "energy": 12.996423424020842
+      },
+      "mMTC": {
+        "cost": 5.329239617973508,
+        "latency": 0.1737145276908518,
+        "throughput": 277.0673009946305,
+        "energy": 1.0155980795981234
+      }
+    },
+    {
+      "offer_id": 5,
+      "eMBB": {
+        "cost": 48.24990110899764,
+        "latency": 0.03620433275723559,
+        "throughput": 670.4885830229094,
+        "energy": 34.61163138095414
+      },
+      "URLLC": {
+        "cost": 61.246138051519715,
+        "latency": 0.037848936683908,
+        "throughput": 198.0250445976417,
+        "energy": 2.386479874610714
+      },
+      "mMTC": {
+        "cost": 15.185451432721903,
+        "latency": 0.13169902183533747,
+        "throughput": 365.2187594424133,
+        "energy": 1.0155980795981234
+      }
+    },
+    {
+      "offer_id": 6,
+      "eMBB": {
+        "cost": 30.510227250885606,
+        "latency": 0.0308096371730001,
+        "throughput": 786.5488435712384,
+        "energy": 24.951744590503957
+      },
+      "URLLC": {
+        "cost": 75.43346188883015,
+        "latency": 0.056897546025780635,
+        "throughput": 134.48612946915372,
+        "energy": 66.23811036574591
+      },
+      "mMTC": {
+        "cost": 10.938558088184587,
+        "latency": 0.12547032552028123,
+        "throughput": 383.3118539268924,
+        "energy": 1.0155980795981234
+      }
+    },
+    {
+      "offer_id": 7,
+      "eMBB": {
+        "cost": 40.69619326362013,
+        "latency": 0.026554505651130433,
+        "throughput": 911.3631927994094,
+        "energy": 0.42156576313699956
+      },
+      "URLLC": {
+        "cost": 48.3139814597743,
+        "latency": 1.7204975104015257,
+        "throughput": 17.378813040810915,
+        "energy": 2.386479874610714
+      },
+      "mMTC": {
+        "cost": 7.0137926203072,
+        "latency": 0.2212002370830142,
+        "throughput": 217.7504416340084,
+        "energy": 29.233905054338717
+      }
+    },
+    {
+      "offer_id": 9,
+      "eMBB": {
+        "cost": 17.789578903103063,
+        "latency": 0.1112610005778799,
+        "throughput": 223.46934143173965,
+        "energy": 0.6791993369253957
+      },
+      "URLLC": {
+        "cost": 44.56868323497909,
+        "latency": 0.037848936683908,
+        "throughput": 198.0250445976417,
+        "energy": 2.386479874610714
+      },
+      "mMTC": {
+        "cost": 11.237112383350505,
+        "latency": 0.618279958543074,
+        "throughput": 78.39193864644145,
+        "energy": 1.0155980795981234
+      }
+    }
+  ],
+  "llm_selection": {
+    "analyzed_selection": {
+      "analyzed_users": [],
+      "error": "RetryError[<Future at 0x7fc29d9cc650 state=finished raised HTTPError>]"
+    },
+    "llm_selection": {
+      "assignments": [],
+      "error": "RetryError[<Future at 0x7fc29c809b90 state=finished raised HTTPError>]"
+    },
+    "logs": [
+      "background request received",
+      "intent analyzer error: RetryError[<Future at 0x7fc29d9cc650 state=finished raised HTTPError>]",
+      "offer selection error: RetryError[<Future at 0x7fc29c809b90 state=finished raised HTTPError>]"
+    ],
+    "offers": [
+      {
+        "URLLC": {
+          "cost": 47.317504353230476,
+          "energy": 12.996423424020842,
+          "latency": 0.01637492533298625,
+          "throughput": 447.32432204223375
+        },
+        "eMBB": {
+          "cost": 57.0711514695576,
+          "energy": 0.42156576313699956,
+          "latency": 0.06010851869954554,
+          "throughput": 406.91846669045646
+        },
+        "mMTC": {
+          "cost": 9.950730773530177,
+          "energy": 1.0155980795981234,
+          "latency": 0.10845310412320287,
+          "throughput": 443.3386571186324
+        },
+        "offer_id": 1
+      },
+      {
+        "URLLC": {
+          "cost": 76.91059231554037,
+          "energy": 2.386479874610714,
+          "latency": 0.01637492533298625,
+          "throughput": 447.32432204223375
+        },
+        "eMBB": {
+          "cost": 40.60869500830344,
+          "energy": 29.67931575921764,
+          "latency": 0.06010851869954554,
+          "throughput": 406.91846669045646
+        },
+        "mMTC": {
+          "cost": 13.032164960852596,
+          "energy": 1.0155980795981234,
+          "latency": 0.13169902183533747,
+          "throughput": 365.2187594424133
+        },
+        "offer_id": 2
+      },
+      {
+        "URLLC": {
+          "cost": 65.78414862363095,
+          "energy": 2.386479874610714,
+          "latency": 0.037848936683908,
+          "throughput": 198.0250445976417
+        },
+        "eMBB": {
+          "cost": 76.76564668905357,
+          "energy": 34.61163138095414,
+          "latency": 0.05578816055391839,
+          "throughput": 437.82929217968893
+        },
+        "mMTC": {
+          "cost": 8.644960630773733,
+          "energy": 1.0155980795981234,
+          "latency": 0.13591732807420945,
+          "throughput": 353.9072685579045
+        },
+        "offer_id": 3
+      },
+      {
+        "URLLC": {
+          "cost": 47.317504353230476,
+          "energy": 12.996423424020842,
+          "latency": 0.01637492533298625,
+          "throughput": 447.32432204223375
+        },
+        "eMBB": {
+          "cost": 19.313644671084848,
+          "energy": 1.4812297156113097,
+          "latency": 0.1303137919479123,
+          "throughput": 191.975650297775
+        },
+        "mMTC": {
+          "cost": 5.329239617973508,
+          "energy": 1.0155980795981234,
+          "latency": 0.1737145276908518,
+          "throughput": 277.0673009946305
+        },
+        "offer_id": 4
+      },
+      {
+        "URLLC": {
+          "cost": 61.246138051519715,
+          "energy": 2.386479874610714,
+          "latency": 0.037848936683908,
+          "throughput": 198.0250445976417
+        },
+        "eMBB": {
+          "cost": 48.24990110899764,
+          "energy": 34.61163138095414,
+          "latency": 0.03620433275723559,
+          "throughput": 670.4885830229094
+        },
+        "mMTC": {
+          "cost": 15.185451432721903,
+          "energy": 1.0155980795981234,
+          "latency": 0.13169902183533747,
+          "throughput": 365.2187594424133
+        },
+        "offer_id": 5
+      },
+      {
+        "URLLC": {
+          "cost": 75.43346188883015,
+          "energy": 66.23811036574591,
+          "latency": 0.056897546025780635,
+          "throughput": 134.48612946915372
+        },
+        "eMBB": {
+          "cost": 30.510227250885606,
+          "energy": 24.951744590503957,
+          "latency": 0.0308096371730001,
+          "throughput": 786.5488435712384
+        },
+        "mMTC": {
+          "cost": 10.938558088184587,
+          "energy": 1.0155980795981234,
+          "latency": 0.12547032552028123,
+          "throughput": 383.3118539268924
+        },
+        "offer_id": 6
+      },
+      {
+        "URLLC": {
+          "cost": 48.3139814597743,
+          "energy": 2.386479874610714,
+          "latency": 1.7204975104015257,
+          "throughput": 17.378813040810915
+        },
+        "eMBB": {
+          "cost": 40.69619326362013,
+          "energy": 0.42156576313699956,
+          "latency": 0.026554505651130433,
+          "throughput": 911.3631927994094
+        },
+        "mMTC": {
+          "cost": 7.0137926203072,
+          "energy": 29.233905054338717,
+          "latency": 0.2212002370830142,
+          "throughput": 217.7504416340084
+        },
+        "offer_id": 7
+      },
+      {
+        "URLLC": {
+          "cost": 44.56868323497909,
+          "energy": 2.386479874610714,
+          "latency": 0.037848936683908,
+          "throughput": 198.0250445976417
+        },
+        "eMBB": {
+          "cost": 17.789578903103063,
+          "energy": 0.6791993369253957,
+          "latency": 0.1112610005778799,
+          "throughput": 223.46934143173965
+        },
+        "mMTC": {
+          "cost": 11.237112383350505,
+          "energy": 1.0155980795981234,
+          "latency": 0.618279958543074,
+          "throughput": 78.39193864644145
+        },
+        "offer_id": 9
+      }
+    ],
+    "users": [
+      {
+        "expected_intent": "URLLC",
+        "id": 1,
+        "user_request": "I need very low latency for remote surgery."
+      },
+      {
+        "expected_intent": "eMBB",
+        "id": 2,
+        "user_request": "I want high speed video streaming."
+      },
+      {
+        "expected_intent": "mMTC",
+        "id": 3,
+        "user_request": "I have many IoT sensors with low power."
+      },
+      {
+        "expected_intent": "URLLC",
+        "id": 4,
+        "user_request": "I need reliable communication for autonomous driving."
+      },
+      {
+        "expected_intent": "eMBB",
+        "id": 5,
+        "user_request": "I want fast internet for watching 4K videos."
+      },
+      {
+        "expected_intent": "mMTC",
+        "id": 6,
+        "user_request": "I need to connect thousands of smart meters."
+      }
+    ]
+  }
+}

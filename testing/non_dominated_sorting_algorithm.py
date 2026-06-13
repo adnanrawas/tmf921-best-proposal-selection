@@ -2,7 +2,8 @@ import pygad
 import json
 import numpy as np
 from pathlib import Path
-FIXED_IMCS = 28 # mcs 28 
+# FIXED_IMCS = 28 # mcs 28 
+FIXED_IMCS = 18 # mcs 18
 MCS_TABLE_PATH = Path("./mcs_table_pdsch_38_214_table1.json")
 with open(MCS_TABLE_PATH, "r", encoding="utf-8") as f:
     _mcs = json.load(f)
@@ -30,21 +31,21 @@ LATENCY_PRIORITY = {
 }
 
 #############################################################################################
-#arrival rate calculation 
-
 PACKET_BITS = 1500 * 8
+
+#arrival rate calculation 
 
 def bitrate_to_arrival_rate(bps, activity_factor=1.0, packet_bits=PACKET_BITS):
     return (bps * activity_factor) / packet_bits
 
-def low_congestion_arrival_rates():
+def Rural_macro():
     return {
         # TS 22.261 V20.6.0
         # Table 7.1-1, page 94
         # Scenario: Rural macro
         # Experienced data rate (DL) = 50 Mbit/s
         # Activity factor = 20%
-        "eMBB": bitrate_to_arrival_rate(50e6, activity_factor=0.20),
+        "eMBB": bitrate_to_arrival_rate(50e6, activity_factor=0.2),
 
         # TS 22.261 V20.6.0
         # Table 7.2.3.2-1, page 96
@@ -60,23 +61,14 @@ def low_congestion_arrival_rates():
         "mMTC": bitrate_to_arrival_rate(1e6),
     }
 
-### i should make copliant with 3gpp and use the actual values from the paper, but for testing purposes i will use random values within the ranges mentioned in the paper, i will adjust them later based on the actual system capacity and requirements, also i should consider different scenarios of congestion levels and user requirements to test the algorithm under different conditions, this is just an example structure for the scenarios, we can adjust it based on the actual system capacity and requirements.
 SCENARIOS = {
-    "low_congestion": {
-        "arrival_rates": low_congestion_arrival_rates(),
-        "fixed_imcs": FIXED_IMCS,
-    },
-    "moderate_congestion": {
-        "arrival_rates": {},
-        "fixed_imcs": FIXED_IMCS,
-    },
-    "high_congestion": {
-        "arrival_rates": {},
+    "Rural_macro": {
+        "arrival_rates": Rural_macro(),
         "fixed_imcs": FIXED_IMCS,
     },
 }
 
-SCENARIO_NAME = "low_congestion"
+SCENARIO_NAME = "Rural_macro"
 SCENARIO = SCENARIOS[SCENARIO_NAME]
 arrival_rates = SCENARIO["arrival_rates"]
 FIXED_IMCS = SCENARIO["fixed_imcs"]
@@ -198,6 +190,9 @@ def compute_latency(candidate, slice_name, imcs_map):
         return float("inf")
     Latency = (1 / service_rate) + 1 / (service_rate * (1 - rho + 1e-6))
     Latency_ms = converting_latency_to_milliseconds(Latency)
+    # service_time = 1.0 / service_rate                   
+    # queue_delay = rho / (service_rate * (1.0 - rho + 1e-6))
+    # Latency_ms  = service_time + queue_delay
     return LATENCY_PRIORITY[slice_name] * Latency_ms
 
 

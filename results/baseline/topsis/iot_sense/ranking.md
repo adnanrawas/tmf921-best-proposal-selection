@@ -1,6 +1,6 @@
 # TOPSIS Ranking - IoT-Sense (mMTC)
 
-- source_json: `/app/results/storage/baseline/nsga2_low_congestion.json`
+- source_json: `/app/results/storage/baseline/nsga2_Rural_macro_18mcs.json`
 - throughput_min: 20.0
 - latency_max: 10.0
 - cost_max: 50.0
@@ -10,7 +10,8 @@
 - fallback_to_all_offers: False
 
  rank  offer_id  topsis_score  throughput  latency      cost    energy  feasible
-    1         4      0.699273  312.088437 0.154050 10.385556  5.785675      True
-    2         2      0.579799  278.869124 0.172433  1.928151 37.548477      True
-    3         1      0.463730  430.241775 0.111695 18.048296 27.036874      True
-    4         3      0.399634   60.930885 0.794350  8.978549 19.783154      True
+    1         6      0.956671  212.296059 0.226634  9.483674  4.374375      True
+    2         7      0.745019  101.990745 0.472961 10.035403  1.154811      True
+    3         8      0.706163  101.990745 0.472961 13.790217  1.154811      True
+    4         5      0.388345  101.990745 0.472961  8.697267 67.888881      True
+    5         2      0.219691  192.021213 0.250627 20.577538 84.878702      True
