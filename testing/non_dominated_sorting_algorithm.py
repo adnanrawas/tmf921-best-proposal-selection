@@ -2,8 +2,8 @@ import pygad
 import json
 import numpy as np
 from pathlib import Path
-# FIXED_IMCS = 28 # mcs 28 
-FIXED_IMCS = 18 # mcs 18
+FIXED_IMCS = 28 # mcs 28 
+# FIXED_IMCS = 18 # mcs 18
 MCS_TABLE_PATH = Path("./mcs_table_pdsch_38_214_table1.json")
 with open(MCS_TABLE_PATH, "r", encoding="utf-8") as f:
     _mcs = json.load(f)
@@ -224,21 +224,6 @@ def compute_energy(candidate, slice_name):
 
     #############################################################################################
 
-# def aggregate_kpis(candidate, alpha):
-#     throughput = {s: compute_throughput(candidate, s) for s in SLICE_NAMES}
-#     latency_ms = {s: compute_latency(candidate, s) for s in SLICE_NAMES}
-#     cost_eur = {s: compute_cost(candidate, s, alpha) for s in SLICE_NAMES}
-#     energy = {s: compute_energy(candidate, s) for s in SLICE_NAMES}
-#     return {
-#         "throughput": throughput,
-#         "latency_ms": latency_ms,
-#         "cost_eur": cost_eur,
-#         "energy": energy,
-#         "throughput_total": sum(throughput.values()),
-#         "latency_total_ms": sum(latency_ms.values()),
-#         "cost_total_eur": sum(cost_eur.values()),
-#         "energy_total": sum(energy.values()),
-#     }
 def aggregate_kpis(candidate, alpha):
     imcs_map = get_imcs_map()
     throughput = {s: compute_throughput(candidate, s, imcs_map) for s in SLICE_NAMES}
@@ -299,9 +284,24 @@ gene_space = [
     {"low": 0.0, "high": 100.0}, {"low": 0.0, "high": 15.0}, {"low": 0, "high": 100}, {"low": 0.0, "high": 15.0},
 ]
 
+# ga_instance = pygad.GA(
+#     num_generations=80,
+#     sol_per_pop=60,#60
+#     num_parents_mating=10,
+#     num_genes=12,
+#     gene_space=gene_space,
+#     # gene_constraint=gene_constraint,
+#     fitness_func=fitness_func,
+#     parent_selection_type="nsga2",
+#     mutation_percent_genes=30,
+#     crossover_probability=0.9,
+#     # save_solutions=True,
+#     # save_best_solutions=True,
+# )
+
 ga_instance = pygad.GA(
-    num_generations=80,
-    sol_per_pop=60,#60
+    num_generations=320,
+    sol_per_pop=240,#60
     num_parents_mating=10,
     num_genes=12,
     gene_space=gene_space,
@@ -313,6 +313,7 @@ ga_instance = pygad.GA(
     # save_solutions=True,
     # save_best_solutions=True,
 )
+
 def run_optimizer():
     global kappa_run
     rng_run = np.random.default_rng()   # or np.random.default_rng(seed)

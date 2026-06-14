@@ -23,14 +23,13 @@ AGENT_URL = "http://agent:9000/select-best-offer"
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT",120))  # default = 120
 #it can change depends on the model used 
 MODEL_NAME = os.getenv("MODEL_NAME", "nvidia/llama-3.1-nemotron-70b-instruct") 
-NSGA2_FILE = Path("/app/results/storage/baseline/nsga2_Rural_macro_18mcs.json")
+NSGA2_FILE = Path("/app/results/storage/baseline/nsga2_rural_macro_18_mcs.json")
 TOPSIS_RESULTS_DIR = NSGA2_FILE.parent / "topsis"
 
 #client will call /optimizer_nsag2/offers endpoint 
 #first function is called by the client and then agent start############################################################       
 @app.route("/optimizer_nsag2/offers", methods=["POST"])
 def optimizer_offers():
-    
     body = request.get_json(silent=True) #taking the user request from the body of the body request  
 
     if isinstance(body, list):
@@ -279,6 +278,7 @@ def get_metrics():
 #         # # Get the JSON response from the agent container
 #         agent_result = agent_response.json()
 #         return jsonify({
+
 #             "status": "success",
 #              "user_request":user_request,
 #              "offers": offers,

@@ -62,44 +62,6 @@ def health():
     return jsonify({"status": "agent running"}), 200
 
 
-# def fetch_topsis_baseline():
-#     response = requests.post(
-#         MASTER_TOPSIS_URL,
-#         json={"save": True},
-#         timeout=LLM_TIMEOUT,
-#     )
-#     response.raise_for_status()
-#     return response.json()
-
-
-# @app.post("/select-best-offer/topsis-baseline")
-# def trigger_topsis_baseline():
-#     try:
-#         return jsonify(fetch_topsis_baseline()), 200
-#     except Exception as exc:
-#         app.logger.exception("trigger_topsis_baseline failed")
-#         return jsonify({
-#             "status": "failed",
-#             "error": str(exc)
-#         }), 500
-
-
-# def topsis_baseline_node(state: AgentState):
-#     try:
-#         topsis_baseline = fetch_topsis_baseline()
-#         return {
-#             "topsis_baseline": topsis_baseline,
-#             "logs": ["topsis baseline fetched"]
-#         }
-#     except Exception as exc:
-#         return {
-#             "topsis_baseline": {
-#                 "status": "failed",
-#                 "error": str(exc)
-#             },
-#             "logs": [f"topsis baseline error: {exc}"]
-#         }
-
 
 # start background job 
 @app.post("/select-best-offer/start")
@@ -391,7 +353,7 @@ def build_graph():
     return graph.compile()    
 
 
-graph_app = build_graph()
+# graph_app = build_graph()
 
 #sycronous version of the agent loop
 # @app.route("/select-best-offer", methods=["POST"]) #async version 
