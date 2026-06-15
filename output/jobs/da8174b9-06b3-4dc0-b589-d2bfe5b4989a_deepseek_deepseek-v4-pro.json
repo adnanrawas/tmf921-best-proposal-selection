@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "model": "deepseek/deepseek-v4-pro",
+  "error": "500 Server Error: INTERNAL SERVER ERROR for url: http://agent:9000/select-best-offer/jobs/93aff892-7122-4603-b38f-f20c77c2d8d2"
+}

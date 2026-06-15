@@ -247,7 +247,8 @@ def aggregate_kpis(candidate, alpha):
 def satisfies_constraints(candidate, kpis):
     if not within_global_limits(candidate, B_max, C_max, P_max, S_max):
         return False
-
+    if candidate["URLLC"]["bandwidth"] > candidate["eMBB"]["bandwidth"]:
+        return False
     phase = PHASE_CONSTRAINTS["PA"]
     for s in SLICE_NAMES:
         if kpis["throughput"][s] < phase[s]["throughput_min"]:
@@ -275,13 +276,13 @@ def fitness_func(ga_instance, solution, solution_idx):
 
 gene_space = [
     # eMBB
-    {"low": 0.0, "high": B_max}, {"low": 0.0, "high": 100.0}, {"low": 0, "high": 100}, {"low": 0.0, "high": 100.0},
+    {"low": 0.0, "high": B_max}, {"low": 0.0, "high": 100.0}, {"low": 15, "high": 100}, {"low": 0.0, "high": 100.0},
 
     # URLLC
-    {"low": 0.0, "high": B_max}, {"low": 0.0, "high": 100.0}, {"low": 0, "high": 100}, {"low": 0.0, "high": 100.0},
+    {"low": 0.0, "high": B_max}, {"low": 0.0, "high": 100.0}, {"low": 15, "high": 100}, {"low": 0.0, "high": 100.0},
 
     # mMTC
-    {"low": 0.0, "high": 100.0}, {"low": 0.0, "high": 15.0}, {"low": 0, "high": 100}, {"low": 0.0, "high": 15.0},
+    {"low": 0.0, "high": 100.0}, {"low": 0.0, "high": 15.0}, {"low":  15, "high": 100}, {"low": 0.0, "high": 15.0},
 ]
 
 # ga_instance = pygad.GA(
