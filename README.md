@@ -82,6 +82,10 @@ Run the TOPSIS-based ranking service from the host terminal:
 curl -sS -X POST "http://localhost:9000/topsis/save-jsons" \
   -H "Content-Type: application/json" \
   -d '{}'
+
+curl -sS -X POST "http://localhost:9000/vikor/save-jsons" \
+  -H "Content-Type: application/json" \
+  -d '{}'
 ```
 ## Scenario 1 – DU Resource Allocation
 ![Scenario 1](images/seanario1.jpg)
