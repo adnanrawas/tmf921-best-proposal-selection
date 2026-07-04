@@ -1,0 +1,543 @@
+{
+  "source_json": "/app/results/storage/baseline/nsga2_rural_macro_18_mcs.json",
+  "output_dir": "/app/results/storage/baseline/vikor",
+  "run_id": "2026-07-04_14-47-52_773077",
+  "run_output_dir": "/app/results/storage/baseline/vikor/runs/2026-07-04_14-47-52_773077",
+  "summary": [
+    {
+      "use_case": "Media-Flex",
+      "slice": "eMBB",
+      "feasible_only_mode": true,
+      "top1_offer_id": 13,
+      "top1_q": 0.04072923262393673,
+      "weights": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+      ],
+      "strategy_coefficient": 0.5
+    },
+    {
+      "use_case": "Factory-Ops",
+      "slice": "URLLC",
+      "feasible_only_mode": true,
+      "top1_offer_id": 14,
+      "top1_q": 0.0,
+      "weights": [
+        0.2,
+        0.5,
+        0.2,
+        0.1
+      ],
+      "strategy_coefficient": 0.5
+    },
+    {
+      "use_case": "IoT-Sense",
+      "slice": "mMTC",
+      "feasible_only_mode": true,
+      "top1_offer_id": 19,
+      "top1_q": 0.0,
+      "weights": [
+        0.2,
+        0.2,
+        0.3,
+        0.3
+      ],
+      "strategy_coefficient": 0.5
+    }
+  ],
+  "results": [
+    {
+      "use_case": "Media-Flex",
+      "slice": "eMBB",
+      "constraints": {
+        "throughput_min": 60.0,
+        "latency_max": 10.0,
+        "cost_max": 200.0,
+        "energy_max": 100.0
+      },
+      "fallback_to_all_offers": false,
+      "ranking": [
+        {
+          "rank": 1,
+          "offer_id": 13,
+          "vikor_q": 0.04072923262393673,
+          "vikor_s": 0.16073814009701043,
+          "vikor_r": 0.1234033991317868,
+          "throughput": 281.7064789097922,
+          "latency": 0.0867627903447602,
+          "cost": 3.0797288150002,
+          "energy": 15.116882062526038,
+          "feasible": true
+        },
+        {
+          "rank": 2,
+          "offer_id": 11,
+          "vikor_q": 0.04479300410336422,
+          "vikor_s": 0.22696565914520095,
+          "vikor_r": 0.09000590978192417,
+          "throughput": 298.6195910082197,
+          "latency": 0.08176208152849417,
+          "cost": 33.52131345185608,
+          "energy": 47.93040858636511,
+          "feasible": true
+        },
+        {
+          "rank": 3,
+          "offer_id": 15,
+          "vikor_q": 0.05234593432199881,
+          "vikor_s": 0.20613851175258482,
+          "vikor_r": 0.10774994409595887,
+          "throughput": 293.90579558044453,
+          "latency": 0.08309690697536866,
+          "cost": 47.63268681750786,
+          "energy": 18.70956782769342,
+          "feasible": true
+        },
+        {
+          "rank": 4,
+          "offer_id": 4,
+          "vikor_q": 0.05281550224607729,
+          "vikor_s": 0.20004721697118266,
+          "vikor_r": 0.11151321190232166,
+          "throughput": 293.90579558044453,
+          "latency": 0.08309690697536866,
+          "cost": 49.23872350565354,
+          "energy": 15.116882062526038,
+          "feasible": true
+        },
+        {
+          "rank": 5,
+          "offer_id": 18,
+          "vikor_q": 0.0924203845945769,
+          "vikor_s": 0.1639874614950465,
+          "vikor_r": 0.1639874614950465,
+          "throughput": 309.92687657638953,
+          "latency": 0.07872852131337135,
+          "cost": 71.63297615127695,
+          "energy": 15.116882062526038,
+          "feasible": true
+        },
+        {
+          "rank": 6,
+          "offer_id": 1,
+          "vikor_q": 0.09262603431724853,
+          "vikor_s": 0.22104566095457395,
+          "vikor_r": 0.13251165588571295,
+          "throughput": 293.90579558044453,
+          "latency": 0.08309690697536866,
+          "cost": 58.200156272749865,
+          "energy": 15.116882062526038,
+          "feasible": true
+        },
+        {
+          "rank": 7,
+          "offer_id": 19,
+          "vikor_q": 0.12977104125105665,
+          "vikor_s": 0.24063814833876235,
+          "vikor_r": 0.15210414326990138,
+          "throughput": 293.90579558044453,
+          "latency": 0.08309690697536866,
+          "cost": 66.5615738412354,
+          "energy": 15.116882062526038,
+          "feasible": true
+        },
+        {
+          "rank": 8,
+          "offer_id": 14,
+          "vikor_q": 0.24495905475782676,
+          "vikor_s": 0.4100088469256329,
+          "vikor_r": 0.1526240865331067,
+          "throughput": 281.7064789097922,
+          "latency": 0.0867627903447602,
+          "cost": 66.78346821586642,
+          "energy": 51.57396205132139,
+          "feasible": true
+        },
+        {
+          "rank": 9,
+          "offer_id": 22,
+          "vikor_q": 0.8453509758251982,
+          "vikor_s": 0.6863784501358501,
+          "vikor_r": 0.49166398435848635,
+          "throughput": 197.49113125204383,
+          "latency": 0.12476518212736656,
+          "cost": 1.6486186437870476,
+          "energy": 15.116882062526038,
+          "feasible": true
+        },
+        {
+          "rank": 10,
+          "offer_id": 2,
+          "vikor_q": 1.0,
+          "vikor_s": 0.8999999999999997,
+          "vikor_r": 0.5,
+          "throughput": 195.58481685540988,
+          "latency": 0.1260148496610899,
+          "cost": 87.00192171885647,
+          "energy": 15.116882062526038,
+          "feasible": true
+        }
+      ],
+      "weights": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+      ],
+      "strategy_coefficient": 0.5,
+      "compromise_solution": [
+        [
+          5.0,
+          0.04072923262393673
+        ],
+        [
+          4.0,
+          0.04479300410336422
+        ],
+        [
+          7.0,
+          0.05234593432199881
+        ],
+        [
+          3.0,
+          0.05281550224607729
+        ],
+        [
+          8.0,
+          0.0924203845945769
+        ],
+        [
+          1.0,
+          0.09262603431724853
+        ],
+        [
+          9.0,
+          0.12977104125105665
+        ]
+      ]
+    },
+    {
+      "use_case": "Factory-Ops",
+      "slice": "URLLC",
+      "constraints": {
+        "throughput_min": 5.0,
+        "latency_max": 2.0,
+        "cost_max": 200.0,
+        "energy_max": 100.0
+      },
+      "fallback_to_all_offers": false,
+      "ranking": [
+        {
+          "rank": 1,
+          "offer_id": 14,
+          "vikor_q": 0.0,
+          "vikor_s": 0.014055667105362425,
+          "vikor_r": 0.00785221640475388,
+          "throughput": 143.42931614015026,
+          "latency": 0.052080019732382785,
+          "cost": 6.544173178470993,
+          "energy": 16.36719931995284,
+          "feasible": true
+        },
+        {
+          "rank": 2,
+          "offer_id": 15,
+          "vikor_q": 0.02692288928287378,
+          "vikor_s": 0.03448342086532507,
+          "vikor_r": 0.023552123870763844,
+          "throughput": 143.42931614015026,
+          "latency": 0.052080019732382785,
+          "cost": 18.19092303863628,
+          "energy": 15.014289607740784,
+          "feasible": true
+        },
+        {
+          "rank": 3,
+          "offer_id": 13,
+          "vikor_q": 0.04343652310277815,
+          "vikor_s": 0.04511617177402475,
+          "vikor_r": 0.034184874779463525,
+          "throughput": 143.42931614015026,
+          "latency": 0.052080019732382785,
+          "cost": 6.544173178470993,
+          "energy": 29.81696901502434,
+          "feasible": true
+        },
+        {
+          "rank": 4,
+          "offer_id": 11,
+          "vikor_q": 0.102107452236748,
+          "vikor_s": 0.10145050288662791,
+          "vikor_r": 0.062150395067354286,
+          "throughput": 131.61489533284976,
+          "latency": 0.05695413224956432,
+          "cost": 37.27813623980105,
+          "energy": 15.014289607740784,
+          "feasible": true
+        },
+        {
+          "rank": 5,
+          "offer_id": 4,
+          "vikor_q": 0.1580508606011926,
+          "vikor_s": 0.13789941776478698,
+          "vikor_r": 0.09794466749075449,
+          "throughput": 148.14993540924422,
+          "latency": 0.05035832300831258,
+          "cost": 26.302178219565196,
+          "energy": 57.42613174178354,
+          "feasible": true
+        },
+        {
+          "rank": 6,
+          "offer_id": 18,
+          "vikor_q": 0.18547373112673998,
+          "vikor_s": 0.1365706795556858,
+          "vikor_r": 0.12563938256112459,
+          "throughput": 143.42931614015026,
+          "latency": 0.052080019732382785,
+          "cost": 68.67404602155116,
+          "energy": 15.014289607740784,
+          "feasible": true
+        },
+        {
+          "rank": 7,
+          "offer_id": 2,
+          "vikor_q": 0.19454454537975985,
+          "vikor_s": 0.1917942915927182,
+          "vikor_r": 0.10537096788586194,
+          "throughput": 148.14993540924422,
+          "latency": 0.05035832300831258,
+          "cost": 58.651121673827305,
+          "energy": 52.43717801665246,
+          "feasible": true
+        },
+        {
+          "rank": 8,
+          "offer_id": 22,
+          "vikor_q": 0.21204309435594243,
+          "vikor_s": 0.21909310179313352,
+          "vikor_r": 0.10816180479857228,
+          "throughput": 143.42931614015026,
+          "latency": 0.052080019732382785,
+          "cost": 60.03121714212611,
+          "energy": 58.31612851392344,
+          "feasible": true
+        },
+        {
+          "rank": 9,
+          "offer_id": 1,
+          "vikor_q": 0.3109562459140397,
+          "vikor_s": 0.22953677749459284,
+          "vikor_r": 0.2,
+          "throughput": 148.14993540924422,
+          "latency": 0.05035832300831258,
+          "cost": 105.44608048902865,
+          "energy": 27.804257416526976,
+          "feasible": true
+        },
+        {
+          "rank": 10,
+          "offer_id": 19,
+          "vikor_q": 1.0,
+          "vikor_s": 0.9449179443477735,
+          "vikor_r": 0.4999999999999998,
+          "throughput": 27.913328933752602,
+          "latency": 0.32993800172304294,
+          "cost": 84.9212745777211,
+          "energy": 52.43717801665246,
+          "feasible": true
+        }
+      ],
+      "weights": [
+        0.2,
+        0.5,
+        0.2,
+        0.1
+      ],
+      "strategy_coefficient": 0.5,
+      "compromise_solution": [
+        [
+          6.0,
+          0.0
+        ],
+        [
+          7.0,
+          0.02692288928287378
+        ],
+        [
+          5.0,
+          0.04343652310277815
+        ],
+        [
+          4.0,
+          0.102107452236748
+        ]
+      ]
+    },
+    {
+      "use_case": "IoT-Sense",
+      "slice": "mMTC",
+      "constraints": {
+        "throughput_min": 20.0,
+        "latency_max": 10.0,
+        "cost_max": 50.0,
+        "energy_max": 100.0
+      },
+      "fallback_to_all_offers": false,
+      "ranking": [
+        {
+          "rank": 1,
+          "offer_id": 19,
+          "vikor_q": 0.0,
+          "vikor_s": 0.009838863423112526,
+          "vikor_r": 0.009838863423112526,
+          "throughput": 212.89028033320832,
+          "latency": 0.22600018124463997,
+          "cost": 5.19848752844647,
+          "energy": 16.22788120796647,
+          "feasible": true
+        },
+        {
+          "rank": 2,
+          "offer_id": 18,
+          "vikor_q": 0.02316264973768975,
+          "vikor_s": 0.03793485094735472,
+          "vikor_r": 0.013552135766464725,
+          "throughput": 200.89045536571965,
+          "latency": 0.23953373710305526,
+          "cost": 5.5936396555548225,
+          "energy": 16.575210322653753,
+          "feasible": true
+        },
+        {
+          "rank": 3,
+          "offer_id": 4,
+          "vikor_q": 0.23677513754675156,
+          "vikor_s": 0.18962749945906748,
+          "vikor_r": 0.08499105595513247,
+          "throughput": 139.04848828154303,
+          "latency": 0.3464534437195824,
+          "cost": 8.794849051207434,
+          "energy": 15.015514000036235,
+          "feasible": true
+        },
+        {
+          "rank": 4,
+          "offer_id": 2,
+          "vikor_q": 0.27630596603898705,
+          "vikor_s": 0.12894397910196126,
+          "vikor_r": 0.12894397910196126,
+          "throughput": 212.89028033320832,
+          "latency": 0.22600018124463997,
+          "cost": 10.654698888837075,
+          "energy": 15.015514000036235,
+          "feasible": true
+        },
+        {
+          "rank": 5,
+          "offer_id": 1,
+          "vikor_q": 0.48700396227043463,
+          "vikor_s": 0.2208120632655693,
+          "vikor_r": 0.21940643531798054,
+          "throughput": 211.82376631747502,
+          "latency": 0.2271407772887934,
+          "cost": 14.482580459828354,
+          "energy": 15.015514000036235,
+          "feasible": true
+        },
+        {
+          "rank": 6,
+          "offer_id": 22,
+          "vikor_q": 0.6468008932849629,
+          "vikor_s": 0.5446727712208697,
+          "vikor_r": 0.2,
+          "throughput": 35.79900594998231,
+          "latency": 1.360083839796755,
+          "cost": 11.320256248258637,
+          "energy": 15.015514000036235,
+          "feasible": true
+        },
+        {
+          "rank": 7,
+          "offer_id": 11,
+          "vikor_q": 0.6980837590432777,
+          "vikor_s": 0.6306213381776311,
+          "vikor_r": 0.2,
+          "throughput": 35.79900594998231,
+          "latency": 1.360083839796755,
+          "cost": 11.395767909000746,
+          "energy": 25.3863987100657,
+          "feasible": true
+        },
+        {
+          "rank": 8,
+          "offer_id": 14,
+          "vikor_q": 0.7598452009925165,
+          "vikor_s": 0.445331738590242,
+          "vikor_r": 0.3,
+          "throughput": 114.60451712893148,
+          "latency": 0.42067482145248397,
+          "cost": 17.89286395080619,
+          "energy": 15.015514000036235,
+          "feasible": true
+        },
+        {
+          "rank": 9,
+          "offer_id": 15,
+          "vikor_q": 0.8383490433445326,
+          "vikor_s": 0.5769018575955616,
+          "vikor_r": 0.3,
+          "throughput": 100.43354223644845,
+          "latency": 0.4803309898674049,
+          "cost": 9.643439384163807,
+          "energy": 51.982198741759206,
+          "feasible": true
+        },
+        {
+          "rank": 10,
+          "offer_id": 13,
+          "vikor_q": 0.8820556332056231,
+          "vikor_s": 0.8478240821296754,
+          "vikor_r": 0.23155425695620455,
+          "throughput": 35.79900594998231,
+          "latency": 1.360083839796755,
+          "cost": 14.996610528452695,
+          "energy": 41.664775487820364,
+          "feasible": true
+        }
+      ],
+      "weights": [
+        0.2,
+        0.2,
+        0.3,
+        0.3
+      ],
+      "strategy_coefficient": 0.5,
+      "compromise_solution": [
+        [
+          9.0,
+          0.0
+        ],
+        [
+          8.0,
+          0.02316264973768975
+        ]
+      ]
+    }
+  ],
+  "weights": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "criterion_type": [
+    "max",
+    "min",
+    "min",
+    "min"
+  ],
+  "strategy_coefficient": 0.5
+}

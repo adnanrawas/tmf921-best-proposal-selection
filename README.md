@@ -77,7 +77,7 @@ The following figures show preliminary NSGA-II results based on global resource 
 <!-- - PowerPoint presentation: [NSGA-II_Baseline.pptx](slides/NSGA-II_Baseline.pptx) -->
 
 ## Multi-Criteria Decision Service
-Run the TOPSIS-based ranking service from the host terminal:
+Run the TOPSIS-based ranking and VIKOR service from the host terminal:
 ```bash
 curl -sS -X POST "http://localhost:9000/topsis/save-jsons" \
   -H "Content-Type: application/json" \
