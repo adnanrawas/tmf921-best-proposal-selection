@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "model": "deepseek/deepseek-v4-pro",
+  "error": "name 'graph_app' is not defined"
+}

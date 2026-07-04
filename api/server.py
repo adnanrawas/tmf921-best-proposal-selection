@@ -10,7 +10,17 @@ from non_dominated_sorting_algorithm import  run_optimizer
 import traceback
 from pathlib import Path
 # Import the TOPSIS helpers used to rank and persist baseline results.
-from algo_mcdm.topsis import DEFAULT_USE_CASES, rank_use_cases, save_rankings
+from algo_mcdm.topsis import (
+    DEFAULT_USE_CASES as TOPSIS_DEFAULT_USE_CASES,
+    rank_use_cases as rank_topsis_use_cases,
+    save_rankings as save_topsis_rankings,
+)
+
+from algo_mcdm.vikor import (
+    DEFAULT_USE_CASES as VIKOR_DEFAULT_USE_CASES,
+    rank_use_cases as rank_vikor_use_cases,
+    save_rankings as save_vikor_rankings,
+)
 import os
 import time
 #naming the output folder
@@ -25,7 +35,7 @@ LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT",120))  # default = 120
 MODEL_NAME = os.getenv("MODEL_NAME", "nvidia/llama-3.1-nemotron-70b-instruct") 
 NSGA2_FILE = Path("/app/results/storage/baseline/nsga2_rural_macro_28_mcs.json")
 TOPSIS_RESULTS_DIR = NSGA2_FILE.parent / "topsis"
-
+VIKOR_RESULTS_DIR = NSGA2_FILE.parent / "vikor"
 #client will call /optimizer_nsag2/offers endpoint 
 #first function is called by the client and then agent start############################################################       
 @app.route("/optimizer_nsag2/offers", methods=["POST"])
@@ -309,7 +319,23 @@ def get_topsis_rankings(save_results=True):
 
     return rankings
 #####################################################################################################################
-#####################################################################################################################
+def get_vikor_rankings(save_results=True):
+    data = load_offers_from_file()
+    rankings = rank_vikor_use_cases(
+        data=data,
+        use_cases=VIKOR_DEFAULT_USE_CASES,
+        strategy_coefficient=0.5,
+    )
+
+    if save_results:
+        return save_vikor_rankings(
+            rankings,
+            output_dir=VIKOR_RESULTS_DIR,
+            source_json=NSGA2_FILE,
+        )
+
+    return rankings
+###################################################################################################################
 @app.route("/ranking/topsis", methods=["GET", "POST"])
 def ranking_topsis():
     try:
@@ -343,7 +369,44 @@ def ranking_topsis():
             "status": "failed",
             "error": str(exc)
         }), 500
-#####################################################################################################################
+##################################################################################################################################################################################
+
+@app.route("/ranking/vikor", methods=["GET", "POST"])
+def ranking_vikor():
+    try:
+        body = request.get_json(silent=True) if request.method == "POST" else None
+        save_arg = request.args.get("save")
+        save_results = True
+
+        if isinstance(body, dict) and "save" in body:
+            save_value = body["save"]
+            if isinstance(save_value, str):
+                save_results = save_value.strip().lower() not in {"0", "false", "no"}
+            else:
+                save_results = bool(save_value)
+        elif save_arg is not None:
+            save_results = save_arg.strip().lower() not in {"0", "false", "no"}
+
+        payload = get_vikor_rankings(save_results=save_results)
+        return jsonify({
+            "status": "success",
+            "saved": save_results,
+            **payload,
+        }), 200
+    except FileNotFoundError:
+        return jsonify({
+            "status": "failed",
+            "error": f"NSGA-II result file not found: {NSGA2_FILE}"
+        }), 404
+    except Exception as exc:
+        app.logger.exception("ranking_vikor failed")
+        return jsonify({
+            "status": "failed",
+            "error": str(exc)
+        }), 500
+
+
+################################################################################################################################################################################
 
 # prepering the offer to be sent to the agent 
 def compact_offer(offer):

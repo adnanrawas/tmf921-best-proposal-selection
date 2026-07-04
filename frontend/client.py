@@ -51,38 +51,38 @@ user_requests = [
 # print(response.text)
 # response.raise_for_status()
 
-submit_response = requests.post(
-    "http://master:5000/optimizer_nsag2/offers",
-    json=user_requests,
-    timeout=30,
-)
+# submit_response = requests.post(
+#     "http://master:5000/optimizer_nsag2/offers",
+#     json=user_requests,
+#     timeout=30,
+# )
 
-print("SUBMIT STATUS:", submit_response.status_code)
-print("SUBMIT BODY:", submit_response.text)
-submit_response.raise_for_status()
+# print("SUBMIT STATUS:", submit_response.status_code)
+# print("SUBMIT BODY:", submit_response.text)
+# submit_response.raise_for_status()
 
-job = submit_response.json()
-job_id = job["job_id"]
+# job = submit_response.json()
+# job_id = job["job_id"]
 
 # Step 2: poll until result is ready
-while True:
-    status_response = requests.get(
-        f"http://master:5000/optimizer_nsag2/offers/{job_id}",
-        timeout=TIMEOUT_client_server,
-    )
-    status_response.raise_for_status()
-    data = status_response.json()
+# while True:
+#     status_response = requests.get(
+#         f"http://master:5000/optimizer_nsag2/offers/{job_id}",
+#         timeout=TIMEOUT_client_server,
+#     )
+#     status_response.raise_for_status()
+#     data = status_response.json()
 
-    print("JOB STATUS:", data.get("status"))
+#     print("JOB STATUS:", data.get("status"))
 
-    if data.get("status") == "done":
-        print("FINAL RESULT:")
-        print(data)
-        break
+#     if data.get("status") == "done":
+#         print("FINAL RESULT:")
+#         print(data)
+#         break
 
-    if data.get("status") == "failed":
-        print("FAILED RESULT:")
-        print(data)
-        raise RuntimeError(data.get("error"))
+#     if data.get("status") == "failed":
+#         print("FAILED RESULT:")
+#         print(data)
+#         raise RuntimeError(data.get("error"))
 
-    time.sleep(POLL_INTERVAL_cleint)
+#     time.sleep(POLL_INTERVAL_cleint)

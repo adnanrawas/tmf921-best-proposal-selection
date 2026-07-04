@@ -56,7 +56,24 @@ def topsis_save_jsons():
     except Exception as exc:
         app.logger.exception("topsis_save_jsons failed")
         return jsonify({"status": "failed", "error": str(exc)}), 500
-#######################################################################################################        
+######################################### Vikor ############################################################
+MASTER_VIKOR_URL = os.getenv("MASTER_VIKOR_URL", "http://master:5000/ranking/vikor")
+@app.post("/vikor/save-jsons")
+def vikor_save_jsons():
+    try:
+        resp = requests.post(
+            MASTER_VIKOR_URL,
+            json={"save": True},
+            timeout=LLM_TIMEOUT,
+        )
+        resp.raise_for_status()
+        return jsonify(resp.json()), 200
+    except Exception as exc:
+        app.logger.exception("vikor_save_jsons failed")
+        return jsonify({"status": "failed", "error": str(exc)}), 500
+
+############################################################################################################
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "agent running"}), 200
