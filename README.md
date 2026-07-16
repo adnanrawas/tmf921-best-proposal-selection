@@ -9,6 +9,12 @@ integrated into the SMO to support human-in-the-loop decision-making.
 
 ![Architecture](images/architectureV2.gif)
 
+### Multi-Agent Consensus Workflow
+
+The following workflow illustrates the multi-agent ranking, consensus, negotiation, and slice Proposal recommendation .
+
+![Multi-Agent Consensus Workflow](images/multi_agent_consensus_workflow.gif)
+
 ## 📂 Project Structure
 
 ```text
