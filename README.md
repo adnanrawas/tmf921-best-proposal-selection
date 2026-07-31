@@ -99,6 +99,7 @@ curl -sS -X POST "http://localhost:9000/vikor/save-jsons" \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
+<!--
 ## Scenario 1 – DU Resource Allocation
 ![Scenario 1](images/seanario1.jpg)
 ### The evaluation of the agent's results is performed using the following
@@ -109,3 +110,4 @@ resource allocation and RAN performance KPIs:
 - Physical Resource Block (PRB) Usage
 - OR.CellU.ActDeactMacCeScellDeact (SCell activation/deactivation counter)
 - MCS(Modulation and Coding Scheme Key)
+-->
