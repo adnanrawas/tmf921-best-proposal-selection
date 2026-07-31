@@ -19,7 +19,7 @@ The following workflow illustrates the multi-agent ranking, consensus, negotiati
 
 The following sequence diagram illustrates the interactions and message flow between the agents during the consensus process.
 
-![Multi-Agent Consensus Sequence Diagram](images/multi_agent_consensus_workflow_sequance.gif)
+![Multi-Agent Consensus Sequence Diagram](images/final_high_level_sequence_diagram.png)
 
 ## 📂 Project Structure
 
