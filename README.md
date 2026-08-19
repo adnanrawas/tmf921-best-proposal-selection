@@ -99,6 +99,26 @@ curl -sS -X POST "http://localhost:9000/vikor/save-jsons" \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
+## Experiments and Baselines
+
+The following experiments compare deterministic ranking methods, reasoning-based selection, multi-agent consensus, and counterproposal-based negotiation.
+
+| ID | Input | Decision method | Initial proposal | Counterproposal |
+|---|---|---|---|---|
+| B1 | Feasible offers | SAW | Yes | No |
+| B2 | Feasible offers | TOPSIS | Yes | No |
+| B3 | Feasible offers | VIKOR | Yes | No |
+| A1 | Raw feasible offers (no rankings) | Multi-agent consensus | Yes | No |
+| A2 | TOPSIS + VIKOR rankings | One reasoning agent | Yes | No |
+| A3 | TOPSIS + VIKOR rankings | Multi-agent consensus | Yes | No |
+| Full system | TOPSIS + VIKOR rankings | Multi-agent consensus | Yes | Yes |
+
+### Comparison Goals
+
+- A1 vs A3: effect of providing TOPSIS and VIKOR rankings to consensus agents.
+- A2 vs A3: effect of multi-agent consensus compared with one reasoning agent.
+- B1–B3 vs A3: comparison with deterministic ranking baselines.
+- A3 vs Full system: effect of counterproposals on the final selection.
 <!--
 ## Scenario 1 – DU Resource Allocation
 ![Scenario 1](images/seanario1.jpg)
