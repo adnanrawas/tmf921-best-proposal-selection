@@ -120,6 +120,56 @@ The following experiments compare deterministic ranking methods, reasoning-based
 - B1–B3 vs A3: comparison with deterministic ranking baselines.
 - A3 vs Full system: effect of counterproposals on the final selection.
 ## Planned Evaluation Metrics
+
+### 1. Intent Satisfaction Score
+
+The primary evaluation metric compares the achieved KPI values of a
+selected offer with the KPI bounds and importance weights specified in
+the user intent (Yau & Yin, 2011).
+
+### Throughput Satisfaction
+
+$$
+s_T =
+\begin{cases}
+0, & T_{\text{offer}} < T_{\min} \\
+\dfrac{T_{\text{offer}} - T_{\min}}
+{T_{\text{upper}} - T_{\min}}, &
+T_{\min} \leq T_{\text{offer}} \leq T_{\text{upper}} \\
+1, & T_{\text{offer}} > T_{\text{upper}}
+\end{cases}
+$$
+
+### Latency, Cost, and Energy Satisfaction
+
+$$
+s_X =
+\begin{cases}
+1, & X_{\text{offer}} < X_{\text{lower}} \\
+\dfrac{X_{\text{upper}} - X_{\text{offer}}}
+{X_{\text{upper}} - X_{\text{lower}}}, &
+X_{\text{lower}} \leq X_{\text{offer}} \leq X_{\text{upper}} \\
+0, & X_{\text{offer}} > X_{\text{upper}}
+\end{cases}
+\quad \text{where } X \in \{L, C, E\}
+$$
+
+### Overall Intent Satisfaction Score
+
+$$
+ISS(\text{offer}) =
+\frac{
+w_Ts_T + w_Ls_L + w_Cs_C + w_Es_E
+}{
+w_T + w_L + w_C + w_E
+}
+$$
+
+The score ranges from 0 to 1. A higher score indicates that the selected
+offer better fulfils the intent owner's KPI requirements and priorities.
+
+### 2. Secondary Weighted Offer Utility
+
 The weighted-utility concept is adapted from the iMnet framework
 (Priya & Malhotra, 2022).
 
@@ -128,17 +178,21 @@ U(\text{offer}) = w_T T + w_L \frac{1}{L} + w_C \frac{1}{C} + w_E \frac{1}{E}
 $$
 
 Where:
-
 - \(T\): throughput; higher is better.
 - \(L\): latency; lower is better.
 - \(C\): cost; lower is better.
 - \(E\): energy; lower is better.
 - \(w_T, w_L, w_C, w_E\): intent KPI weights.
 
-
 This utility function aggregates throughput, latency, cost, and energy using intent-defined weights to quantify the overall multi-criteria performance of a selected resource-allocation offer.
 
 ## References
+
+Yau, S. S., & Yin, Y. (2011). QoS-based service ranking and selection
+for service-based systems. In *Proceedings of the 2011 IEEE International
+Conference on Services Computing (SCC)* (pp. 56–63). IEEE.
+https://doi.org/10.1109/SCC.2011.114
+
 Priya, B., & Malhotra, J. (2022). *iMnet: Intelligent RAT selection
 framework for 5G-enabled IoMT network*. *Wireless Personal
 Communications, 129*(2), 911–932.
