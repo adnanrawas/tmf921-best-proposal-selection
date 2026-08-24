@@ -123,13 +123,13 @@ The following experiments compare deterministic ranking methods, reasoning-based
 The weighted-utility concept is adapted from the iMnet framework
 (Priya & Malhotra, 2022).
 
-\[
+$$
 U(\text{offer}) =
 w_T T
 + w_L \frac{1}{L}
 + w_C \frac{1}{C}
 + w_E \frac{1}{E}
-\]
+$$
 
 Where:
 
