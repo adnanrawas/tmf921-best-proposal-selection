@@ -119,6 +119,34 @@ The following experiments compare deterministic ranking methods, reasoning-based
 - A2 vs A3: effect of multi-agent consensus compared with one reasoning agent.
 - B1–B3 vs A3: comparison with deterministic ranking baselines.
 - A3 vs Full system: effect of counterproposals on the final selection.
+## Planned Evaluation Metrics
+The weighted-utility concept is adapted from the iMnet framework
+(Priya & Malhotra, 2022).
+
+\[
+U(\text{offer}) =
+w_T T
++ w_L \frac{1}{L}
++ w_C \frac{1}{C}
++ w_E \frac{1}{E}
+\]
+
+Where:
+
+- \(T\): throughput; higher is better.
+- \(L\): latency; lower is better.
+- \(C\): cost; lower is better.
+- \(E\): energy; lower is better.
+- \(w_T, w_L, w_C, w_E\): intent KPI weights.
+
+
+This utility function aggregates throughput, latency, cost, and energy using intent-defined weights to quantify the overall multi-criteria performance of a selected resource-allocation offer.
+
+## References
+Priya, B., & Malhotra, J. (2022). *iMnet: Intelligent RAT selection
+framework for 5G-enabled IoMT network*. *Wireless Personal
+Communications, 129*(2), 911–932.
+https://doi.org/10.1007/s11277-022-10163-9
 <!--
 ## Scenario 1 – DU Resource Allocation
 ![Scenario 1](images/seanario1.jpg)
