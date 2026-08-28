@@ -370,7 +370,7 @@ def build_graph():
     return graph.compile()    
 
 
-# graph_app = build_graph()
+graph_app = build_graph()
 
 #sycronous version of the agent loop
 # @app.route("/select-best-offer", methods=["POST"]) #async version 
