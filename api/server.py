@@ -32,10 +32,20 @@ JOBS_DIR.mkdir(parents=True, exist_ok=True)
 AGENT_URL = "http://agent:9000/select-best-offer"
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT",120))  # default = 120
 #it can change depends on the model used 
+#env  mcs 28
+NSGA2_FILENAME = "nsga2_rural_macro_28_mcs.json"
+TOPSIS_FILENAME = "topsis_rural_macro_28_mcs.json"
+VIKOR_FILENAME = "vikor_rural_macro_28_mcs.json"
 MODEL_NAME = os.getenv("MODEL_NAME", "nvidia/llama-3.1-nemotron-70b-instruct") 
-NSGA2_FILE = Path("/app/results/storage/baseline/nsga2_rural_macro_18_mcs.json")
+NSGA2_FILE = Path("/app/results/storage/baseline/") / NSGA2_FILENAME
+########################################################################servise endpoints for the results of the ranking algorithms
+#result directory
 TOPSIS_RESULTS_DIR = NSGA2_FILE.parent / "topsis"
 VIKOR_RESULTS_DIR = NSGA2_FILE.parent / "vikor"
+#result files
+TOPSIS_RESULT_FILE = TOPSIS_RESULTS_DIR / TOPSIS_FILENAME
+VIKOR_RESULT_FILE = VIKOR_RESULTS_DIR / VIKOR_FILENAME
+#########################################################################
 #client will call /optimizer_nsag2/offers endpoint 
 #first function is called by the client and then agent start############################################################       
 @app.route("/optimizer_nsag2/offers", methods=["POST"])
@@ -311,19 +321,36 @@ def load_offers_from_file():
 
 ######################################################################################################################
 def get_topsis_rankings(save_results=True):
+       # First, use the existing saved TOPSIS result.
+    if TOPSIS_RESULT_FILE.is_file():
+        return json.loads(
+            TOPSIS_RESULT_FILE.read_text(encoding="utf-8")
+        )
     data = load_offers_from_file()
-    rankings = rank_use_cases(data=data, use_cases=DEFAULT_USE_CASES, weights=[1, 1, 1, 1])
-
+    rankings = rank_topsis_use_cases(
+    data=data, 
+    use_cases=TOPSIS_DEFAULT_USE_CASES, 
+    weights=[1, 1, 1, 1])
     if save_results:
-        return save_rankings(rankings, output_dir=TOPSIS_RESULTS_DIR, source_json=NSGA2_FILE)
+        return save_topsis_rankings(
+            rankings, 
+            output_dir=TOPSIS_RESULTS_DIR, 
+            source_json=NSGA2_FILE
+            )
 
     return rankings
 #####################################################################################################################
 def get_vikor_rankings(save_results=True):
+    #checking the file if it exists then load the result from the file instead of running the ranking algorithm to save time during development and testing
+    if VIKOR_RESULT_FILE.is_file():
+        return json.loads(
+            VIKOR_RESULT_FILE.read_text(encoding="utf-8")
+        )
     data = load_offers_from_file()
     rankings = rank_vikor_use_cases(
         data=data,
         use_cases=VIKOR_DEFAULT_USE_CASES,
+        weights=[1, 1, 1, 1],
         strategy_coefficient=0.5,
     )
 
@@ -335,13 +362,13 @@ def get_vikor_rankings(save_results=True):
         )
 
     return rankings
-###################################################################################################################
-@app.route("/ranking/topsis", methods=["GET", "POST"])
+##############################################ranking/topsis#####################################################################
+@app.route("/ranking/topsis", methods=["GET", "POST"]) # topsis ranking endpoint it will be used be the agent node to ranke slice 
 def ranking_topsis():
     try:
         body = request.get_json(silent=True) if request.method == "POST" else None
         save_arg = request.args.get("save")
-        save_results = True
+        save_results = False
 
         if isinstance(body, dict) and "save" in body:
             save_value = body["save"]
@@ -369,14 +396,14 @@ def ranking_topsis():
             "status": "failed",
             "error": str(exc)
         }), 500
-##################################################################################################################################################################################
+########################################################ranking/topsis##########################################################################################################################
 
 @app.route("/ranking/vikor", methods=["GET", "POST"])
 def ranking_vikor():
     try:
         body = request.get_json(silent=True) if request.method == "POST" else None
         save_arg = request.args.get("save")
-        save_results = True
+        save_results = False
 
         if isinstance(body, dict) and "save" in body:
             save_value = body["save"]

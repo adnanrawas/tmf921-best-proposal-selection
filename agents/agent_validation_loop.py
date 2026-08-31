@@ -78,8 +78,6 @@ def vikor_save_jsons():
 def health():
     return jsonify({"status": "agent running"}), 200
 
-
-
 # start background job 
 @app.post("/select-best-offer/start")
 def start_agent():
@@ -99,16 +97,13 @@ def run_agent_job(agent_job_id, body):
             "agent_job_id": agent_job_id,
             "status": "running"
         })
-
         users = body.get("users", [])
         offers = body.get("offers", [])
-
         state = {
             "users": users,
             "offers": offers,
             "logs": ["background request received"]
         }
-
         final_state = graph_app.invoke(state)
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         save_agent_job(agent_job_id, {
@@ -117,14 +112,12 @@ def run_agent_job(agent_job_id, body):
             "timestamp": timestamp,
             "result": final_state
         })
-
     except Exception as exc:
         save_agent_job(agent_job_id, {
             "agent_job_id": agent_job_id,
             "status": "failed",
             "error": str(exc)
         })
-
 @app.get("/select-best-offer/jobs/<agent_job_id>")
 def get_agent_job(agent_job_id):
     return jsonify(load_agent_job(agent_job_id))

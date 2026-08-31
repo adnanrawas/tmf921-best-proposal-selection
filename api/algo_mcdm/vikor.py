@@ -38,7 +38,7 @@ DEFAULT_USE_CASES = [
 ]
 
 CRITERION_TYPE = ["max", "min", "min", "min"]
-
+VIKOR_RESULT_FILENAME = "vikor_rural_macro_28_mcs.json" # name of the output file for VIKOR results
 
 def _safe_name(value: str) -> str:
     return "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in value)
@@ -264,10 +264,8 @@ def save_rankings(rankings, output_dir, source_json=None):
         "strategy_coefficient": rankings["strategy_coefficient"],
     }
 
-
-    (output_dir / "vikor_result.json").write_text(
+    (output_dir / VIKOR_RESULT_FILENAME).write_text(
         json.dumps(payload, indent=2),
         encoding="utf-8",
     )
-
     return payload

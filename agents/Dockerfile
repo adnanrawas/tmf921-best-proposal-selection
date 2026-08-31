@@ -10,6 +10,6 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # CMD ["python", "simple.py"]
 
-CMD ["python", "agent_validation_loop.py"]
-
+# CMD ["python", "agent_validation_loop.py"]
+CMD ["python", "consensus_a3.py"]
 

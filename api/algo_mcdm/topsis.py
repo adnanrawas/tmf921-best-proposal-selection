@@ -37,8 +37,9 @@ DEFAULT_USE_CASES = [
 
     },
 ]
-
 CRITERION_TYPE = ["max", "min", "min", "min"]
+TOPSIS_FILENAME = "topsis_rural_macro_28_mcs.json" #` name of the output file for TOPSIS results`
+
 
 def _safe_name(value: str) -> str:
     return "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in value)
@@ -221,6 +222,7 @@ def save_rankings(rankings, output_dir, source_json=None):
         "weights": rankings["weights"],
         "criterion_type": rankings["criterion_type"],
     }
-    (output_dir / "topsis_result.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
-
+    (output_dir / TOPSIS_FILENAME).write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    
+     
     return payload
