@@ -178,8 +178,8 @@ def load_rankings_node(state: A3State) -> A3State:
     print(state_update, flush=True)
     return state_update
 #########################################################################################
-def topsis_observer_node(state: A3State) -> A3State:
-    """Run TOPSIS as a tool and interpret its result."""
+# def topsis_observer_node(state: A3State) -> A3State:
+    # """Run TOPSIS as a tool and interpret its result."""
 
     # GET the user intent and feasible offers from state.
     # GET the saved TOPSIS ranking for each slice from state.
@@ -227,8 +227,57 @@ def topsis_observer_node(state: A3State) -> A3State:
 
     # RETURN messages, TOPSIS rankings, and observer outputs.
 
-    pass
+    # pass
 
+
+##############################################################
+
+##############################################################
+def topsis_observer_node(state: A3State) -> A3State:
+    """Interpret the existing TOPSIS rankings."""
+    topsis_response = state.get("topsis_rankings")
+    if not isinstance(topsis_response, dict):
+        raise RuntimeError(
+            "TOPSIS rankings are missing from state"
+        )
+    topsis_results = topsis_response.get("results")
+    if not isinstance(topsis_results, list):
+        raise RuntimeError(
+            "TOPSIS response does not contain a results list"
+        )
+    system_prompt = """
+        You are the TOPSIS observer in a multi-agent offer-selection system.
+        Identify the top-ranked offer in the supplied algorithm output
+        Rules:
+        - Do not recalculate TOPSIS.
+        - Do not change any rank or TOPSIS score.
+        - Do not invent offers.
+        - Recommend only an offer contained in the supplied ranking.
+        - Return valid JSON only, without Markdown.
+        """
+           # Third variable: the input message containing the ranking data.
+    user_prompt = json.dumps(
+        {
+            "source": "TOPSIS algorithm output",
+            "ranking_results": topsis_results,
+            "task": (
+                "Identify the top-ranked offer for every slice "
+                "and explain its ranking using the supplied evidence."
+            ),
+        },
+        indent=2,
+    )
+    request_messages = [
+    {"role": "system", "content": system_prompt},
+    {"role": "user", "content": user_prompt}]
+
+    request_data = {
+    "model": MODEL_NAME,
+    "messages": request_messages,
+    "response_format": {"type": "json_object"},
+    "stream": False,
+     }
+    result = call_llm(request_data)
 def vikor_observer_node(state: A3State):
     # Interpret the VIKOR ranking against the user intent.
     pass
@@ -257,7 +306,39 @@ def calculate_validation_metrics():
     # calculate how well the selected offer matches the user requirements and priorities.
     # return a dict of metrics to be used in the validation node for feedback and improvement.
     pass
+#####################################################################################################
 
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(min=1, max=5),
+    reraise=True,
+)
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(min=1, max=5),
+    reraise=True,
+)
+def call_llm(data: dict[str, object]) -> dict[str, object]:
+    """Call the LLM and return its parsed JSON answer."""
+    response = requests.post(
+        MASTER_URL,
+        json=data,
+        timeout=LLM_TIMEOUT,
+    )
+
+    response.raise_for_status()
+    raw_result = response.json()
+
+    content = (
+        raw_result.get("choices", [{}])[0]
+        .get("message", {})
+        .get("content", "{}")
+    )
+
+    return json.loads(content)
+
+   
+##################################################################################################
 
 # def validator_node(state: AgentState):
 #     # validate the selected offers based on the calculated metrics and provide feedback for improvement.
@@ -266,16 +347,17 @@ def calculate_validation_metrics():
 
 def build_graph():
 
-    graph = StateGraph(A3State)
+    graph = StateGraph(A3State)graph.add_edge(START, "load_rankings")
     graph.add_node("load_rankings", load_rankings_node)
+    graph.add_node("topsis_observer", topsis_observer_node)
     graph.add_edge(START, "load_rankings")
-    graph.add_edge("load_rankings", END)
+    graph.add_edge("load_rankings", "topsis_observer")
+    graph.add_edge("topsis_observer", END)
     # graph.add_node("intent_analyzer_node", intent_analyzer_node)
-    # # graph.add_node("topsis_baseline_node", topsis_baseline_node)
+    # graph.add_node("topsis_baseline_node", topsis_baseline_node)
     # graph.add_node("offer_selection_node", offer_selection_node)
-
     # graph.add_edge(START, "intent_analyzer_node")
-    # # graph.add_edge("intent_analyzer_node", "topsis_baseline_node")
+    # graph.add_edge("intent_analyzer_node", "topsis_baseline_node")
     # graph.add_edge("intent_analyzer_node", "offer_selection_node")
     # graph.add_edge("offer_selection_node", END)
 
