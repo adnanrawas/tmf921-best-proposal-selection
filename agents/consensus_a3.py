@@ -18,10 +18,11 @@ from langgraph.graph import END, START, StateGraph
 from tenacity import retry, stop_after_attempt, wait_exponential
 from langchain_core.messages import AIMessage,AnyMessage,HumanMessage,SystemMessage
 from langgraph.graph.message import add_messages
-
+from helpers.observer_helpers import build_observer_system_prompt,build_observer_user_prompt,build_llm_request
 
 class A3State(TypedDict, total=False):
     intent: dict
+    current_round: int
     feasible_offers: list[dict[str, object]]
     topsis_rankings: dict[str, object]
     vikor_rankings: dict[str, object]
@@ -33,7 +34,6 @@ class A3State(TypedDict, total=False):
     validation_results: dict[str, dict] #to be discovered and implemented i should add the metris that i have 
     consensus_results: dict[str, dict[str, object]]
     preference_metrics: dict[str,dict[str, object]] #to be implimaented afterr the consensus and validation i should add the metrics that i have to match in the user preferences
-
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -61,61 +61,30 @@ def fetch_vikor_rankings() -> dict[str, object]:
             params={"save": "true"},
             timeout=LLM_TIMEOUT,
         )
-
         response.raise_for_status()
         payload = response.json()
-
     except requests.exceptions.Timeout as exc:
         raise RuntimeError(
             "VIKOR service timed out"
         ) from exc
-
     except requests.exceptions.ConnectionError as exc:
         raise RuntimeError(
             "Could not connect to VIKOR service"
         ) from exc
-
     except requests.exceptions.HTTPError as exc:
         raise RuntimeError(
             f"VIKOR returned an HTTP error: {exc}"
         ) from exc
-
     except ValueError as exc:
         raise RuntimeError(
             "VIKOR returned invalid JSON"
         ) from exc
-
     if not isinstance(payload, dict):
         raise RuntimeError(
             "VIKOR response must be a JSON object"
         )
-
     return payload
 #########################################################################################################
-# def rank_feasible_offers_node(state: A3State) -> A3State:
-#     """Retrieve feasible offers and rank them using MCDA services."""
-#     intent = state.get("intent")
-#     feasible_offers = fetch_feasible_offers(intent)
-#     saw_rankings = fetch_saw_rankings(
-#         intent,
-#         feasible_offers,
-#     )
-#     topsis_rankings = fetch_topsis_rankings(
-#         intent,
-#         feasible_offers,
-#     )
-#     vikor_rankings = fetch_vikor_rankings(
-#         intent,
-#         feasible_offers,
-#     )
-#     return {
-#         "intent": intent,
-#         "feasible_offers": feasible_offers,
-#         "saw_rankings": saw_rankings,
-#         "topsis_rankings": topsis_rankings,
-#         "vikor_rankings": vikor_rankings,
-#     }
-
 ############################################ fetch_ranking##############################################
 def fetch_topsis_rankings() -> dict[str, object]:
     try:
@@ -124,30 +93,24 @@ def fetch_topsis_rankings() -> dict[str, object]:
             params={"save": "true"},
             timeout=LLM_TIMEOUT,
         )
-
         response.raise_for_status()
         payload = response.json()
-
     except requests.exceptions.Timeout as exc:
         raise RuntimeError(
             "TOPSIS service timed out"
         ) from exc
-
     except requests.exceptions.ConnectionError as exc:
         raise RuntimeError(
             "Could not connect to TOPSIS service"
         ) from exc
-
     except requests.exceptions.HTTPError as exc:
         raise RuntimeError(
             f"TOPSIS returned an HTTP error: {exc}"
         ) from exc
-
     except ValueError as exc:
         raise RuntimeError(
             "TOPSIS returned invalid JSON"
         ) from exc
-
     if not isinstance(payload, dict):
         raise RuntimeError(
             "TOPSIS response must be a JSON object"
@@ -178,64 +141,8 @@ def load_rankings_node(state: A3State) -> A3State:
      }    
     # print(state_update, flush=True)
     return state_update
-##########################################system and user prompt#################################
-def build_observer_system_prompt( #system prompt  
-    algorithm: str, 
-    ranking_rule: str,
-    score_values: str,
-) -> str:
-    return f"""
-You are the {algorithm} observer in a multi-agent offer-selection system.
-Identify the top-ranked offer in the supplied algorithm output.
 
-{ranking_rule}
-Treat the supplied rank as authoritative.
-
-Rules:
-- Do not recalculate {algorithm}.
-- Do not change any rank or {score_values}.
-- Do not invent offers.
-- Recommend only an offer contained in the supplied ranking.
-- Return valid JSON only, without Markdown.
-"""
-def build_observer_user_prompt(
-    algorithm: str,
-    ranking_results: list[dict[str, object]],
-) -> str:
-    return json.dumps(
-        {
-            "source": f"{algorithm} algorithm output",
-            "ranking_results": ranking_results,
-            "task": (
-                "Identify the top-ranked offer for every slice "
-                "and explain its ranking using the supplied evidence."
-            ),
-        },
-        indent=2,
-    )
- #########llm request and response handling########################################
-def build_llm_request(
-    system_prompt: str,
-    user_prompt: str,
-) -> dict[str, object]:
-    return {
-        "model": MODEL_NAME,
-        "messages": [
-            {
-                "role": "system",
-                "content": system_prompt,
-            },
-            {
-                "role": "user",
-                "content": user_prompt,
-            },
-        ],
-        "response_format": {
-            "type": "json_object",
-        },
-        "stream": False,
-    }
-#########################################################################################
+# #########################################################################################
 # def topsis_observer_node(state: A3State) -> A3State:
     # """Run TOPSIS as a tool and interpret its result."""
 
@@ -290,6 +197,7 @@ def build_llm_request(
 ##############################################################
 def topsis_observer_node(state: A3State) -> A3State:
     """Interpret the existing TOPSIS rankings."""
+    round_number = state.get("current_round", 0) #getting the current round number from the state, defaulting to 0 if not present
     topsis_response = state.get("topsis_rankings")
     if not isinstance(topsis_response, dict):
         raise RuntimeError(
@@ -300,8 +208,7 @@ def topsis_observer_node(state: A3State) -> A3State:
         raise RuntimeError(
             "TOPSIS response does not contain a results list"
         )
-
-    prompt = build_observer_system_prompt(
+    system_prompt = build_observer_system_prompt(
     algorithm="TOPSIS",
     ranking_rule=(
     "In TOPSIS, a higher score represents a better result."),
@@ -312,7 +219,8 @@ def topsis_observer_node(state: A3State) -> A3State:
     ranking_results=topsis_results)
     request_data = build_llm_request(
     system_prompt,
-    user_prompt)
+    user_prompt,
+    MODEL_NAME)
 
     result = call_llm(request_data)
     return {
@@ -320,7 +228,7 @@ def topsis_observer_node(state: A3State) -> A3State:
                 {
                     "observer": "topsis_observer",
                     "algorithm": "TOPSIS",
-                    "round": 0,
+                    "round": round_number, # i should update the round number for each observer output to reflect the current round of evaluation
                     "response": result,
                 }
             ]
@@ -329,16 +237,14 @@ def topsis_observer_node(state: A3State) -> A3State:
 #vikor observer node
 def vikor_observer_node(state: A3State) -> A3State:
     """Interpret the existing VIKOR rankings."""
-
+    round_number = state.get("current_round", 0) 
     vikor_response = state.get("vikor_rankings")
 
     if not isinstance(vikor_response, dict):
         raise RuntimeError(
             "VIKOR rankings are missing from state"
         )
-
     vikor_results = vikor_response.get("results")
-
     if not isinstance(vikor_results, list):
         raise RuntimeError(
             "VIKOR response does not contain a results list")
@@ -355,55 +261,44 @@ def vikor_observer_node(state: A3State) -> A3State:
 
     request_data = build_llm_request(
     system_prompt,
-    user_prompt)
+    user_prompt,
+    MODEL_NAME)
 
     result = call_llm(request_data)
+
     return {
         "vikor_observer_outputs": [
             {
                 "observer": "vikor_observer",
                 "algorithm": "VIKOR",
-                "round": 0,
+                "round": round_number,
                 "response": result,
             }
         ]
     }
 #######################################################################
-def vikor_observer_node(state: A3State):
-    # Interpret the VIKOR ranking against the user intent.
-    pass
-
-
 def validate_observations_node(state: A3State):
     # Verify that observer claims match the algorithm evidence.
     pass
-
 
 def consensus_node(state: A3State):
     # Apply the consensus rule and recommend an offer.
     pass
 
-
 def save_record_node(state: A3State):
     # Save the evidence, messages, validation, and final result.
     pass
-
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "agent running"}), 200
-
-
 def calculate_validation_metrics():
     # calculate how well the selected offer matches the user requirements and priorities.
     # return a dict of metrics to be used in the validation node for feedback and improvement.
     pass
+# def validator_node(state: AgentState):
+# validate the selected offers based on the calculated metrics and provide feedback for improvement.
+# pass
 #####################################################################################################
-
-@retry(
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(min=1, max=5),
-    reraise=True,
-)
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(min=1, max=5),
@@ -416,7 +311,6 @@ def call_llm(data: dict[str, object]) -> dict[str, object]:
         json=data,
         timeout=LLM_TIMEOUT,
     )
-
     response.raise_for_status()
     raw_result = response.json()
 
@@ -425,38 +319,19 @@ def call_llm(data: dict[str, object]) -> dict[str, object]:
         .get("message", {})
         .get("content", "{}")
     )
-
     return json.loads(content)
-
-   
 ##################################################################################################
-
-# def validator_node(state: AgentState):
-#     # validate the selected offers based on the calculated metrics and provide feedback for improvement.
-#     pass
-
-
 def build_graph():
-
     graph = StateGraph(A3State)
-    graph.add_edge(START, "load_rankings")
     graph.add_node("load_rankings", load_rankings_node)
     graph.add_node("topsis_observer", topsis_observer_node)
+    graph.add_node("vikor_observer", vikor_observer_node)
     graph.add_edge(START, "load_rankings")
     graph.add_edge("load_rankings", "topsis_observer")
-    graph.add_edge("topsis_observer", END)
-    # graph.add_node("intent_analyzer_node", intent_analyzer_node)
-    # graph.add_node("topsis_baseline_node", topsis_baseline_node)
-    # graph.add_node("offer_selection_node", offer_selection_node)
-    # graph.add_edge(START, "intent_analyzer_node")
-    # graph.add_edge("intent_analyzer_node", "topsis_baseline_node")
-    # graph.add_edge("intent_analyzer_node", "offer_selection_node")
-    # graph.add_edge("offer_selection_node", END)
-
+    graph.add_edge("topsis_observer", "vikor_observer")# i should check how to make it parallel and not sequential for the observers to run at the same time and not wait for each other
+    graph.add_edge("vikor_observer", END)
     return graph.compile()    
-
 graph_app = build_graph()
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=9000)
 #                
