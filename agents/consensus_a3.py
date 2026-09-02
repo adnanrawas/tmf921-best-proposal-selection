@@ -27,7 +27,9 @@ class A3State(TypedDict, total=False):
     vikor_rankings: dict[str, object]
     # saw_rankings: dict[str, list[dict]] # to be implemented
     messages: Annotated[list[AnyMessage], add_messages]
-    observer_outputs: Annotated[list[dict[str, object]], add]
+    topsis_observer_outputs: Annotated[list[dict[str, object]], add]
+    vikor_observer_outputs: Annotated[list[dict[str, object]], add]
+    observer_outputs: dict[str, list[dict[str, object]]]
     validation_results: dict[str, dict] #to be discovered and implemented i should add the metris that i have 
     consensus_results: dict[str, dict[str, object]]
     preference_metrics: dict[str,dict[str, object]] #to be implimaented afterr the consensus and validation i should add the metrics that i have to match in the user preferences
@@ -51,7 +53,6 @@ LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", 120))
 ######################################################################################################
 MASTER_TOPSIS_URL = os.getenv("MASTER_TOPSIS_URL", "http://master:5000/ranking/topsis")
 MASTER_VIKOR_URL = os.getenv("MASTER_VIKOR_URL", "http://master:5000/ranking/vikor")
-
 ########################################getting VIKOR rankings from the service##########################################################
 def fetch_vikor_rankings() -> dict[str, object]:
     try:
@@ -175,8 +176,65 @@ def load_rankings_node(state: A3State) -> A3State:
     "topsis_rankings": topsis_rankings,
     "vikor_rankings": vikor_rankings,
      }    
-    print(state_update, flush=True)
+    # print(state_update, flush=True)
     return state_update
+##########################################system and user prompt#################################
+def build_observer_system_prompt( #system prompt  
+    algorithm: str, 
+    ranking_rule: str,
+    score_values: str,
+) -> str:
+    return f"""
+You are the {algorithm} observer in a multi-agent offer-selection system.
+Identify the top-ranked offer in the supplied algorithm output.
+
+{ranking_rule}
+Treat the supplied rank as authoritative.
+
+Rules:
+- Do not recalculate {algorithm}.
+- Do not change any rank or {score_values}.
+- Do not invent offers.
+- Recommend only an offer contained in the supplied ranking.
+- Return valid JSON only, without Markdown.
+"""
+def build_observer_user_prompt(
+    algorithm: str,
+    ranking_results: list[dict[str, object]],
+) -> str:
+    return json.dumps(
+        {
+            "source": f"{algorithm} algorithm output",
+            "ranking_results": ranking_results,
+            "task": (
+                "Identify the top-ranked offer for every slice "
+                "and explain its ranking using the supplied evidence."
+            ),
+        },
+        indent=2,
+    )
+ #########llm request and response handling########################################
+def build_llm_request(
+    system_prompt: str,
+    user_prompt: str,
+) -> dict[str, object]:
+    return {
+        "model": MODEL_NAME,
+        "messages": [
+            {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
+                "role": "user",
+                "content": user_prompt,
+            },
+        ],
+        "response_format": {
+            "type": "json_object",
+        },
+        "stream": False,
+    }
 #########################################################################################
 # def topsis_observer_node(state: A3State) -> A3State:
     # """Run TOPSIS as a tool and interpret its result."""
@@ -228,10 +286,7 @@ def load_rankings_node(state: A3State) -> A3State:
     # RETURN messages, TOPSIS rankings, and observer outputs.
 
     # pass
-
-
 ##############################################################
-
 ##############################################################
 def topsis_observer_node(state: A3State) -> A3State:
     """Interpret the existing TOPSIS rankings."""
@@ -245,39 +300,75 @@ def topsis_observer_node(state: A3State) -> A3State:
         raise RuntimeError(
             "TOPSIS response does not contain a results list"
         )
-    system_prompt = """
-        You are the TOPSIS observer in a multi-agent offer-selection system.
-        Identify the top-ranked offer in the supplied algorithm output
-        Rules:
-        - Do not recalculate TOPSIS.
-        - Do not change any rank or TOPSIS score.
-        - Do not invent offers.
-        - Recommend only an offer contained in the supplied ranking.
-        - Return valid JSON only, without Markdown.
-        """
-           # Third variable: the input message containing the ranking data.
-    user_prompt = json.dumps(
-        {
-            "source": "TOPSIS algorithm output",
-            "ranking_results": topsis_results,
-            "task": (
-                "Identify the top-ranked offer for every slice "
-                "and explain its ranking using the supplied evidence."
-            ),
-        },
-        indent=2,
-    )
-    request_messages = [
-    {"role": "system", "content": system_prompt},
-    {"role": "user", "content": user_prompt}]
 
-    request_data = {
-    "model": MODEL_NAME,
-    "messages": request_messages,
-    "response_format": {"type": "json_object"},
-    "stream": False,
-     }
+    prompt = build_observer_system_prompt(
+    algorithm="TOPSIS",
+    ranking_rule=(
+    "In TOPSIS, a higher score represents a better result."),
+    score_values="TOPSIS score")
+
+    user_prompt = build_observer_user_prompt( #user prompt helper
+    algorithm="TOPSIS",
+    ranking_results=topsis_results)
+    request_data = build_llm_request(
+    system_prompt,
+    user_prompt)
+
     result = call_llm(request_data)
+    return {
+            "topsis_observer_outputs": [
+                {
+                    "observer": "topsis_observer",
+                    "algorithm": "TOPSIS",
+                    "round": 0,
+                    "response": result,
+                }
+            ]
+           }
+#######################################################################
+#vikor observer node
+def vikor_observer_node(state: A3State) -> A3State:
+    """Interpret the existing VIKOR rankings."""
+
+    vikor_response = state.get("vikor_rankings")
+
+    if not isinstance(vikor_response, dict):
+        raise RuntimeError(
+            "VIKOR rankings are missing from state"
+        )
+
+    vikor_results = vikor_response.get("results")
+
+    if not isinstance(vikor_results, list):
+        raise RuntimeError(
+            "VIKOR response does not contain a results list")
+    system_prompt = build_observer_system_prompt(
+    algorithm="VIKOR",
+    ranking_rule=(
+    "In VIKOR, a lower Q value represents "
+    "a better compromise result."),
+    score_values="Q, S, or R value")
+
+    user_prompt = build_observer_user_prompt(
+    algorithm="VIKOR",
+    ranking_results=vikor_results)
+
+    request_data = build_llm_request(
+    system_prompt,
+    user_prompt)
+
+    result = call_llm(request_data)
+    return {
+        "vikor_observer_outputs": [
+            {
+                "observer": "vikor_observer",
+                "algorithm": "VIKOR",
+                "round": 0,
+                "response": result,
+            }
+        ]
+    }
+#######################################################################
 def vikor_observer_node(state: A3State):
     # Interpret the VIKOR ranking against the user intent.
     pass
@@ -347,7 +438,8 @@ def call_llm(data: dict[str, object]) -> dict[str, object]:
 
 def build_graph():
 
-    graph = StateGraph(A3State)graph.add_edge(START, "load_rankings")
+    graph = StateGraph(A3State)
+    graph.add_edge(START, "load_rankings")
     graph.add_node("load_rankings", load_rankings_node)
     graph.add_node("topsis_observer", topsis_observer_node)
     graph.add_edge(START, "load_rankings")
