@@ -281,9 +281,9 @@ def validate_observations_node(state: A3State):
     # Verify that observer claims match the algorithm evidence.
     pass
 
-def consensus_node(state: A3State):
-    # Apply the consensus rule and recommend an offer.
-    pass
+def consensus_node(state: A3State) -> A3State:
+    print("Hi, I am consensus", flush=True)
+    return {}
 
 def save_record_node(state: A3State):
     # Save the evidence, messages, validation, and final result.
@@ -326,10 +326,12 @@ def build_graph():
     graph.add_node("load_rankings", load_rankings_node)
     graph.add_node("topsis_observer", topsis_observer_node)
     graph.add_node("vikor_observer", vikor_observer_node)
+    graph.add_node("consensus", consensus_node)
     graph.add_edge(START, "load_rankings")
     graph.add_edge("load_rankings", "topsis_observer")
-    graph.add_edge("topsis_observer", "vikor_observer")# i should check how to make it parallel and not sequential for the observers to run at the same time and not wait for each other
-    graph.add_edge("vikor_observer", END)
+    graph.add_edge("load_rankings", "vikor_observer")# i should check how to make it parallel and not sequential for the observers to run at the same time and not wait for each other
+    graph.add_edge(["topsis_observer", "vikor_observer"],"consensus")
+    graph.add_edge("consensus", END)
     return graph.compile()    
 graph_app = build_graph()
 if __name__ == "__main__":
@@ -346,3 +348,91 @@ if __name__ == "__main__":
 #Feedback Loop if needed        
 
 # next TM Forum compliance inve and knowledge base 
+
+
+
+# =============================================================================
+# SEND VERSION OF THE A3 GRAPH — FUTURE EXAMPLE
+# =============================================================================
+#
+# Required import:
+#
+# from langgraph.types import Send
+#
+#
+# def dispatch_observers(state: A3State):
+#     """Dynamically dispatch the two observer nodes."""
+#
+#     round_number = state.get("current_round", 0)
+#
+#     return [
+#         Send(
+#             "topsis_observer",
+#             {
+#                 "topsis_rankings": state["topsis_rankings"],
+#                 "current_round": round_number,
+#             },
+#         ),
+#         Send(
+#             "vikor_observer",
+#             {
+#                 "vikor_rankings": state["vikor_rankings"],
+#                 "current_round": round_number,
+#             },
+#         ),
+#     ]
+#
+#
+# def build_graph_with_send():
+#     graph = StateGraph(A3State)
+#
+#     graph.add_node(
+#         "load_rankings",
+#         load_rankings_node,
+#     )
+#
+#     graph.add_node(
+#         "topsis_observer",
+#         topsis_observer_node,
+#     )
+#
+#     graph.add_node(
+#         "vikor_observer",
+#         vikor_observer_node,
+#     )
+#
+#     graph.add_node(
+#         "consensus",
+#         consensus_node,
+#     )
+#
+#     graph.add_edge(
+#         START,
+#         "load_rankings",
+#     )
+#
+#     graph.add_conditional_edges(
+#         "load_rankings",
+#         dispatch_observers,
+#         [
+#             "topsis_observer",
+#             "vikor_observer",
+#         ],
+#     )
+#
+#     graph.add_edge(
+#         [
+#             "topsis_observer",
+#             "vikor_observer",
+#         ],
+#         "consensus",
+#     )
+#
+#     graph.add_edge(
+#         "consensus",
+#         END,
+#     )
+#
+#     return graph.compile()
+#
+# =============================================================================
