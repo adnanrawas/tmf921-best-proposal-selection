@@ -23,6 +23,7 @@ from helpers.observer_helpers import build_observer_system_prompt,build_observer
 class A3State(TypedDict, total=False):
     intent: dict
     current_round: int
+    saved_record_path: str #saving the path to the record of the experiment for future reference and analysis
     feasible_offers: list[dict[str, object]]
     topsis_rankings: dict[str, object]
     vikor_rankings: dict[str, object]
@@ -276,7 +277,21 @@ def vikor_observer_node(state: A3State) -> A3State:
             }
         ]
     }
-#######################################################################
+#################################################################################
+#saving the results of the observers and the consensus in a record for future reference and analysis
+A3_RESULTS_DIR = Path(
+    "/app/results/storage/experiments/a3"
+)
+
+A3_RESULT_FILENAME = (
+    "a3_rural_macro_28_mcs.json"
+)
+
+A3_RESULT_FILE = (
+    A3_RESULTS_DIR /
+    A3_RESULT_FILENAME
+)
+#################################################################################
 def validate_observations_node(state: A3State):
     # Verify that observer claims match the algorithm evidence.
     pass
@@ -284,10 +299,47 @@ def validate_observations_node(state: A3State):
 def consensus_node(state: A3State) -> A3State:
     print("Hi, I am consensus", flush=True)
     return {}
+#saving the records     
+def save_record_node(state: A3State) -> A3State:
+    """Save the current A3 experiment results."""
 
-def save_record_node(state: A3State):
-    # Save the evidence, messages, validation, and final result.
-    pass
+    record = {
+        "experiment": "A3",
+        "saved_at": datetime.now().isoformat(),
+        "topsis_rankings": state[
+            "topsis_rankings"
+        ],
+        "vikor_rankings": state[
+            "vikor_rankings"
+        ],
+        "topsis_observer_outputs": state[
+            "topsis_observer_outputs"
+        ],
+        "vikor_observer_outputs": state[
+            "vikor_observer_outputs"
+        ],
+    }
+
+    A3_RESULTS_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    A3_RESULT_FILE.write_text(
+        json.dumps(
+            record,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    return {
+        "saved_record_path": str(
+            A3_RESULT_FILE
+        ),
+    }
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "agent running"}), 200
@@ -327,11 +379,13 @@ def build_graph():
     graph.add_node("topsis_observer", topsis_observer_node)
     graph.add_node("vikor_observer", vikor_observer_node)
     graph.add_node("consensus", consensus_node)
+    graph.add_node("save_record", save_record_node)
     graph.add_edge(START, "load_rankings")
     graph.add_edge("load_rankings", "topsis_observer")
     graph.add_edge("load_rankings", "vikor_observer")# i should check how to make it parallel and not sequential for the observers to run at the same time and not wait for each other
     graph.add_edge(["topsis_observer", "vikor_observer"],"consensus")
-    graph.add_edge("consensus", END)
+    graph.add_edge("consensus", "save_record")
+    graph.add_edge("save_record", END)
     return graph.compile()    
 graph_app = build_graph()
 if __name__ == "__main__":

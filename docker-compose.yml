@@ -45,6 +45,7 @@ services:
     build: ./agents
     image: adnanrawas/agent-service:latest
     volumes:
+    - ./results:/app/results/storage
     - ./output:/app/output
     - ./output:/app/storage
     ports:

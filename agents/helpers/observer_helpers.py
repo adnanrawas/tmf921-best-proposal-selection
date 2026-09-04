@@ -32,6 +32,32 @@ def build_observer_user_prompt(
                 "Identify the top-ranked offer for every slice "
                 "and explain its ranking using the supplied evidence."
             ),
+            "required_output": {
+                "algorithm": algorithm,
+                "reports": [
+                    {
+                        "slice": "eMBB",
+                        "use_case": "Media-Flex",
+                        "top_offer_id": "integer",
+                        "rank": 1,
+                        "reason": "explanation",
+                    },
+                    {
+                        "slice": "URLLC",
+                        "use_case": "Factory-Ops",
+                        "top_offer_id": "integer",
+                        "rank": 1,
+                        "reason": "explanation",
+                    },
+                    {
+                        "slice": "mMTC",
+                        "use_case": "IoT-Sense",
+                        "top_offer_id": "integer",
+                        "rank": 1,
+                        "reason": "explanation",
+                    },
+                ],
+            },    
         },
         indent=2,
     )
