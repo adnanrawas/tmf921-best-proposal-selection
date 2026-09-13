@@ -91,7 +91,6 @@ def build_llm_request(
         "stream": False,
     }
 #########################################################################################
-
 def get_latest_report( # get the latest report from the report history
     report_history: list[dict[str, object]],
 ) -> dict[str, object] | None:
@@ -100,57 +99,4 @@ def get_latest_report( # get the latest report from the report history
         return None
 
     return report_history[-1]
-
-# negotiation context for observer Topsis
-def get_topsis_negotiation_context(
-    state: A3State,
-) -> dict:
-    topsis_history = state.get(
-        "topsis_observer_outputs",
-        [],
-    )
-    vikor_history = state.get(
-        "vikor_observer_outputs",
-        [],
-    )
-
-    if not topsis_history or not vikor_history:
-        raise ValueError(
-            "Negotiation requires completed TOPSIS "
-            "and VIKOR reports from the previous round."
-        )
-
-    return {
-        "topsis_report_history": topsis_history,
-        "latest_vikor_report": vikor_history[-1],
-    }
-##############################################################################################
-# negotiation context for observer Vikor
-def get_vikor_negotiation_context(
-    state: A3State,
-) -> dict:
-    vikor_report_history = state.get(
-        "vikor_observer_outputs",
-        [],
-    )
-    topsis_report_history = state.get(
-        "topsis_observer_outputs",
-        [],
-    )
-
-   if not vikor_report_history:
-    raise ValueError(
-        "VIKOR report history is empty."
-    )
-
-    if not topsis_report_history:
-        raise ValueError(
-            "TOPSIS report history is empty; "
-            "the latest peer report is unavailable."
-        )
-
-    return {
-        "vikor_report_history": vikor_report_history,
-        "latest_topsis_report": topsis_report_history[-1],
-    }
-################################################################################################       
+##########################################################################################
