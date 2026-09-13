@@ -18,15 +18,17 @@ from langgraph.graph import END, START, StateGraph
 from tenacity import retry, stop_after_attempt, wait_exponential
 from langchain_core.messages import AIMessage,AnyMessage,HumanMessage,SystemMessage
 from langgraph.graph.message import add_messages
-from helpers.observer_helpers import build_observer_system_prompt,build_observer_user_prompt,build_llm_request
+from helpers.observer_helpers import build_observer_system_prompt,build_observer_user_prompt,build_llm_request,get_latest_report,
 
 class A3State(TypedDict, total=False):
     intent: dict
     current_round: int
+    max_rounds: int # maximum number of rounds for the consensus process
     saved_record_path: str #saving the path to the record of the experiment for future reference and analysis
     feasible_offers: list[dict[str, object]]
     topsis_rankings: dict[str, object]
     vikor_rankings: dict[str, object]
+    previous_round_reports: dict[str, dict[str, object]]
     # saw_rankings: dict[str, list[dict]] # to be implemented
     messages: Annotated[list[AnyMessage], add_messages]
     topsis_observer_outputs: Annotated[list[dict[str, object]], add]
@@ -139,7 +141,9 @@ def load_rankings_node(state: A3State) -> A3State:
     state_update = {
     "topsis_rankings": topsis_rankings,
     "vikor_rankings": vikor_rankings,
-     }    
+    "current_round": 0,
+    "max_rounds": state.get("max_rounds", 3),
+}
     # print(state_update, flush=True)
     return state_update
 
@@ -209,6 +213,10 @@ def topsis_observer_node(state: A3State) -> A3State:
         raise RuntimeError(
             "TOPSIS response does not contain a results list"
         )
+
+    latest_vikor_report = get_latest_report( #get the latest report from the vikor observer outputs in the state
+    state.get("vikor_observer_outputs", [])
+)
     system_prompt = build_observer_system_prompt(
     algorithm="TOPSIS",
     ranking_rule=(
@@ -219,9 +227,10 @@ def topsis_observer_node(state: A3State) -> A3State:
     algorithm="TOPSIS",
     ranking_results=topsis_results)
     request_data = build_llm_request(
-    system_prompt,
-    user_prompt,
-    MODEL_NAME)
+    system_prompt= system_prompt,
+    user_prompt= user_prompt,
+    message_history= state.get("topsis_observer_outputs", [])
+    model_name= MODEL_NAME)
 
     result = call_llm(request_data)
     return {
@@ -231,6 +240,7 @@ def topsis_observer_node(state: A3State) -> A3State:
                     "algorithm": "TOPSIS",
                     "round": round_number, # i should update the round number for each observer output to reflect the current round of evaluation
                     "response": result,
+                    "latest_vikor_report": get_latest_report(state.get("vikor_observer_outputs", []))
                 }
             ]
            }
@@ -261,9 +271,10 @@ def vikor_observer_node(state: A3State) -> A3State:
     ranking_results=vikor_results)
 
     request_data = build_llm_request(
-    system_prompt,
-    user_prompt,
-    MODEL_NAME)
+    system_prompt=system_prompt,
+    user_prompt=user_prompt,
+    message_history=state.get("vikor_observer_outputs", []),
+    model_name=MODEL_NAME)
 
     result = call_llm(request_data)
 
@@ -274,9 +285,16 @@ def vikor_observer_node(state: A3State) -> A3State:
                 "algorithm": "VIKOR",
                 "round": round_number,
                 "response": result,
+                "latest_topsis_report": get_latest_report(state.get("topsis_observer_outputs", [])),
             }
+                 # adding the latest
+
         ]
-    }
+       }
+       
+    
+              
+    
 #################################################################################
 #saving the results of the observers and the consensus in a record for future reference and analysis
 A3_RESULTS_DIR = Path(
@@ -292,13 +310,53 @@ A3_RESULT_FILE = (
     A3_RESULT_FILENAME
 )
 #################################################################################
+def round_controller_node(
+    state: A3State,
+) -> Command[
+    Literal[
+        "topsis_observer",
+        "vikor_observer",
+        "save_record",
+    ]
+]:
+    """RepeatRepeattoon or save after the final round."""
+    current_round = state["current_round"]
+    max_rounds = state["max_rounds"]
+
+    if current_round < max_rounds - 1:
+         observer_history = {
+        "topsis": state.get(
+            "topsis_observer_outputs",
+            [],
+        ),
+        "vikor": state.get(
+            "vikor_observer_outputs",
+            [],
+        ),
+    }
+
+        state_update = {
+            "current_round": current_round + 1,
+        }
+        goto = [
+            "topsis_observer",
+            "vikor_observer",
+        ]
+    else:
+        state_update = {}
+        goto = "save_record"
+
+    return Command(
+        update=state_update,
+        goto=goto,
+    )
+# def consensus_node(state: A3State) -> A3State:
+#     print("Hi, I am consensus", flush=True)
+#     return {}
+
 def validate_observations_node(state: A3State):
     # Verify that observer claims match the algorithm evidence.
     pass
-
-def consensus_node(state: A3State) -> A3State:
-    print("Hi, I am consensus", flush=True)
-    return {}
 #saving the records     
 def save_record_node(state: A3State) -> A3State:
     """Save the current A3 experiment results."""
@@ -306,6 +364,9 @@ def save_record_node(state: A3State) -> A3State:
     record = {
         "experiment": "A3",
         "saved_at": datetime.now().isoformat(),
+        "model_name": MODEL_NAME,
+        "current_round": state["current_round"]+1, # for user-friendly display, increment the round number by 1
+        "max_rounds": state["max_rounds"],
         "topsis_rankings": state[
             "topsis_rankings"
         ],
@@ -378,13 +439,12 @@ def build_graph():
     graph.add_node("load_rankings", load_rankings_node)
     graph.add_node("topsis_observer", topsis_observer_node)
     graph.add_node("vikor_observer", vikor_observer_node)
-    graph.add_node("consensus", consensus_node)
+    graph.add_node("round_controller", round_controller_node)
     graph.add_node("save_record", save_record_node)
     graph.add_edge(START, "load_rankings")
     graph.add_edge("load_rankings", "topsis_observer")
-    graph.add_edge("load_rankings", "vikor_observer")# i should check how to make it parallel and not sequential for the observers to run at the same time and not wait for each other
-    graph.add_edge(["topsis_observer", "vikor_observer"],"consensus")
-    graph.add_edge("consensus", "save_record")
+    graph.add_edge("load_rankings", "vikor_observer")
+    graph.add_edge(["topsis_observer", "vikor_observer"],"round_controller")
     graph.add_edge("save_record", END)
     return graph.compile()    
 graph_app = build_graph()
