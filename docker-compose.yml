@@ -21,7 +21,7 @@ services:
         retries: 3
         start_period: 5m
       environment:
-        - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+        - OPENROUTER_API_KEY_LOCAL=${OPENROUTER_API_KEY_LOCAL:-}
         - POSTGRES_HOST=postgres
         - POSTGRES_PORT=${POSTGRES_CONTAINER_PORT}
         - POSTGRES_DB=${POSTGRES_DB}
@@ -54,10 +54,8 @@ services:
     env_file:
       - .env
     environment:
-      MODEL_NAME: ${MODEL_NAME}
-      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
-      
-  
+      MODEL_NAME: ${MODEL_NAME:-}
+      OPENROUTER_API_KEY_LOCAL: ${OPENROUTER_API_KEY_LOCAL:-}   
    
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/health"]

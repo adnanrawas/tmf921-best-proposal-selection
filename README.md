@@ -99,8 +99,7 @@ curl -sS -X POST "http://localhost:9000/vikor/save-jsons" \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
-## Experiments and Baselines
-
+## Experiments and Baselines 
 The following experiments compare deterministic ranking methods, reasoning-based selection, multi-agent consensus, and counterproposal-based negotiation.
 
 | ID | Input | Decision method | Initial proposal | Counterproposal |
@@ -187,7 +186,6 @@ Where:
 This utility function aggregates throughput, latency, cost, and energy using intent-defined weights to quantify the overall multi-criteria performance of a selected resource-allocation offer.
 
 ## References
-
 Yau, S. S., & Yin, Y. (2011). QoS-based service ranking and selection
 for service-based systems. In *Proceedings of the 2011 IEEE International
 Conference on Services Computing (SCC)* (pp. 56–63). IEEE.

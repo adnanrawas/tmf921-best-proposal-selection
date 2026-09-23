@@ -9,8 +9,8 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from operator import add
 from pathlib import Path
-from typing import Annotated, TypedDict
-
+from typing import Annotated, Literal, TypedDict
+from langgraph.types import Command
 
 import requests
 from flask import Flask, jsonify, request
@@ -18,7 +18,13 @@ from langgraph.graph import END, START, StateGraph
 from tenacity import retry, stop_after_attempt, wait_exponential
 from langchain_core.messages import AIMessage,AnyMessage,HumanMessage,SystemMessage
 from langgraph.graph.message import add_messages
-from helpers.observer_helpers import build_observer_system_prompt,build_observer_user_prompt,build_llm_request,get_latest_report,
+from helpers.observer_helpers import(
+    build_observer_system_prompt,
+    build_observer_user_prompt,
+    build_llm_request,
+    get_latest_report,
+    limit_rankings,
+)
 
 class A3State(TypedDict, total=False):
     intent: dict
@@ -37,7 +43,7 @@ class A3State(TypedDict, total=False):
     validation_results: dict[str, dict] #to be discovered and implemented i should add the metris that i have 
     consensus_results: dict[str, dict[str, object]]
     preference_metrics: dict[str,dict[str, object]] #to be implimaented afterr the consensus and validation i should add the metrics that i have to match in the user preferences
-
+    
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 DEBUG_MODE = os.getenv("DEBUG", "false").lower() == "true"
@@ -56,6 +62,8 @@ LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", 120))
 ######################################################################################################
 MASTER_TOPSIS_URL = os.getenv("MASTER_TOPSIS_URL", "http://master:5000/ranking/topsis")
 MASTER_VIKOR_URL = os.getenv("MASTER_VIKOR_URL", "http://master:5000/ranking/vikor")
+RANKING_LIMIT = os.getenv("RANKING_LIMIT")
+RANKING_LIMIT = int(RANKING_LIMIT) if RANKING_LIMIT else None
 ########################################getting VIKOR rankings from the service##########################################################
 def fetch_vikor_rankings() -> dict[str, object]:
     try:
@@ -126,6 +134,9 @@ def load_rankings_node(state: A3State) -> A3State:
 
     topsis_rankings = fetch_topsis_rankings()
     vikor_rankings = fetch_vikor_rankings()
+    #taking the limit of the rankings to be returned by the observer
+    topsis_rankings = limit_rankings(rankings=topsis_rankings, limit=RANKING_LIMIT)
+    vikor_rankings = limit_rankings(rankings=vikor_rankings, limit=RANKING_LIMIT)
 
     if topsis_rankings.get("status") != "success":
         raise RuntimeError(
@@ -229,7 +240,7 @@ def topsis_observer_node(state: A3State) -> A3State:
     request_data = build_llm_request(
     system_prompt= system_prompt,
     user_prompt= user_prompt,
-    message_history= state.get("topsis_observer_outputs", [])
+    message_history= state.get("topsis_observer_outputs", []),
     model_name= MODEL_NAME)
 
     result = call_llm(request_data)
@@ -301,8 +312,12 @@ A3_RESULTS_DIR = Path(
     "/app/results/storage/experiments/a3"
 )
 
+A3_RUN_TIMESTAMP = datetime.now().strftime(
+    "%Y%m%d_%H%M%S"
+)
 A3_RESULT_FILENAME = (
-    "a3_rural_macro_28_mcs.json"
+    f"a3_rural_macro_28_mcs_"
+    f"{A3_RUN_TIMESTAMP}.json"
 )
 
 A3_RESULT_FILE = (
@@ -335,10 +350,10 @@ def round_controller_node(
         ),
     }
 
-        state_update = {
+         state_update = {
             "current_round": current_round + 1,
         }
-        goto = [
+         goto = [
             "topsis_observer",
             "vikor_observer",
         ]

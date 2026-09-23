@@ -33,9 +33,9 @@ def small_donut(value, total, label, color="#3498db"):
 
 @st.cache_data
 def get_openrouter_generation_stats(generation_id: str) -> dict:
-    api_key = os.getenv("OPENROUTER_API_KEY")
+    api_key = os.getenv("OPENROUTER_API_KEY_LOCAL")
     if not api_key:
-        return {"error": "OPENROUTER_API_KEY is missing"}
+        return {"error": "OPENROUTER_API_KEY_LOCAL is missing"}
 
     try:
         response = requests.get(
@@ -72,12 +72,9 @@ if not FILE_PATH.exists():
     st.stop()
 
 data = json.loads(FILE_PATH.read_text(encoding="utf-8"))
-
 answer = data.get("final_answer", {}).get("answer", {})
 history = data.get("metrics_history", [])
 generation_id = data.get("final_answer", {}).get("raw_result", {}).get("id")
-
-
 best_step = answer.get("best_step")
 best_throughput = answer.get("best_throughput")
 confidence = answer.get("confidence", 0)

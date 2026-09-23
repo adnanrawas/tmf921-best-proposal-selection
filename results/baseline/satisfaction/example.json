@@ -1,0 +1,510 @@
+{
+  "calculation_example": {
+    "selection": "All feasible offers were calculated. Only the first 5 by overall satisfaction are returned for each use case.",
+    "throughput_bounds": "lower = use-case throughput_min; upper = 300",
+    "latency_bounds": "lower = 0; upper = use-case latency_max",
+    "cost_bounds": "lower = 1; upper = use-case cost_max",
+    "energy_bounds": "lower = 3; upper = use-case energy_max",
+    "raw_normalization": "Unclipped value. It can be above 1 and is included for overprovisioning visibility.",
+    "normalized_qos": "Paper Norm1/Norm2 value clipped to [0, 1]; this is the value used by Equation 7.",
+    "satisfaction_function": "Paper Equation 7, using the use-case weights as w-prime.",
+    "overall_satisfaction": "Paper Equation 8: weighted average of the four satisfaction scores.",
+    "ranking_order": "Descending: higher overall_satisfaction is better."
+  },
+  "summary": [
+    {
+      "use_case": "Media-Flex",
+      "top1_offer_id": 18,
+      "top1_overall_satisfaction": 0.9849345225768106
+    },
+    {
+      "use_case": "Factory-Ops",
+      "top1_offer_id": 21,
+      "top1_overall_satisfaction": 0.9231576031746185
+    },
+    {
+      "use_case": "IoT-Sense",
+      "top1_offer_id": 20,
+      "top1_overall_satisfaction": 0.9703429530844364
+    }
+  ],
+  "results": [
+    {
+      "use_case": "Media-Flex",
+      "slice": "eMBB",
+      "normalization_bounds": {
+        "throughput": {
+          "lower": 60,
+          "upper": 300
+        },
+        "latency": {
+          "lower": 0,
+          "upper": 10
+        },
+        "cost": {
+          "lower": 1,
+          "upper": 200
+        },
+        "energy": {
+          "lower": 3,
+          "upper": 100
+        }
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "offer_id": 18,
+          "throughput": 530.7796991100676,
+          "latency": 0.045650599116486335,
+          "cost": 4.658421820283137,
+          "energy": 15.100339057459157,
+          "raw_normalization": {
+            "throughput": 1.9615820796252814,
+            "latency": 0.9954349400883513,
+            "cost": 0.9816159707523461,
+            "energy": 0.8752542365210396
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9954349400883513,
+            "cost": 0.9816159707523461,
+            "energy": 0.8752542365210396
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9963446054683976,
+            "cost": 0.985237889223441,
+            "energy": 0.8861802363844268
+          },
+          "overall_satisfaction": 0.9849345225768106
+        },
+        {
+          "rank": 2,
+          "offer_id": 1,
+          "throughput": 336.45865763176846,
+          "latency": 0.07242366246602726,
+          "cost": 4.658421820283137,
+          "energy": 15.100339057459157,
+          "raw_normalization": {
+            "throughput": 1.1519110734657019,
+            "latency": 0.9927576337533972,
+            "cost": 0.9816159707523461,
+            "energy": 0.8752542365210396
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9927576337533972,
+            "cost": 0.9816159707523461,
+            "energy": 0.8752542365210396
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9941976656886227,
+            "cost": 0.985237889223441,
+            "energy": 0.8861802363844268
+          },
+          "overall_satisfaction": 0.9845051346208554
+        },
+        {
+          "rank": 3,
+          "offer_id": 15,
+          "throughput": 336.45865763176846,
+          "latency": 0.07242366246602726,
+          "cost": 5.094046684564191,
+          "energy": 15.100339057459157,
+          "raw_normalization": {
+            "throughput": 1.1519110734657019,
+            "latency": 0.9927576337533972,
+            "cost": 0.9794269010825919,
+            "energy": 0.8752542365210396
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9927576337533972,
+            "cost": 0.9794269010825919,
+            "energy": 0.8752542365210396
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9941976656886227,
+            "cost": 0.9834726600004674,
+            "energy": 0.8861802363844268
+          },
+          "overall_satisfaction": 0.9841520887762608
+        },
+        {
+          "rank": 4,
+          "offer_id": 9,
+          "throughput": 326.92590445190416,
+          "latency": 0.07456926568793758,
+          "cost": 40.8309264671457,
+          "energy": 36.45646981798241,
+          "raw_normalization": {
+            "throughput": 1.1121912685496007,
+            "latency": 0.9925430734312062,
+            "cost": 0.7998445906173582,
+            "energy": 0.6550879400208
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9925430734312062,
+            "cost": 0.7998445906173582,
+            "energy": 0.6550879400208
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9940255083098488,
+            "cost": 0.8321321948783568,
+            "energy": 0.6743481024942446
+          },
+          "overall_satisfaction": 0.9326663508870656
+        },
+        {
+          "rank": 5,
+          "offer_id": 8,
+          "throughput": 521.7330167047377,
+          "latency": 0.0464499735104197,
+          "cost": 71.79513937837633,
+          "energy": 15.100339057459157,
+          "raw_normalization": {
+            "throughput": 1.9238875696030737,
+            "latency": 0.995355002648958,
+            "cost": 0.6442455307619279,
+            "energy": 0.8752542365210396
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.995355002648958,
+            "cost": 0.6442455307619279,
+            "energy": 0.8752542365210396
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9962805370649463,
+            "cost": 0.6849591810096582,
+            "energy": 0.8861802363844268
+          },
+          "overall_satisfaction": 0.9248659672533638
+        }
+      ]
+    },
+    {
+      "use_case": "Factory-Ops",
+      "slice": "URLLC",
+      "normalization_bounds": {
+        "throughput": {
+          "lower": 5,
+          "upper": 300
+        },
+        "latency": {
+          "lower": 0,
+          "upper": 2
+        },
+        "cost": {
+          "lower": 1,
+          "upper": 200
+        },
+        "energy": {
+          "lower": 3,
+          "upper": 100
+        }
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "offer_id": 21,
+          "throughput": 225.69753686336574,
+          "latency": 0.03264057081355784,
+          "cost": 23.484996077807452,
+          "energy": 15.0036934420739,
+          "raw_normalization": {
+            "throughput": 0.7481272436046297,
+            "latency": 0.9836797145932211,
+            "cost": 0.8870100699607665,
+            "energy": 0.8762505830714031
+          },
+          "normalized_qos": {
+            "throughput": 0.7481272436046297,
+            "latency": 0.9836797145932211,
+            "cost": 0.8870100699607665,
+            "energy": 0.8762505830714031
+          },
+          "satisfaction": {
+            "throughput": 0.7854523099229425,
+            "latency": 0.9917721599446339,
+            "cost": 0.9073538386959469,
+            "energy": 0.8871029347852352
+          },
+          "overall_satisfaction": 0.9231576031746185
+        },
+        {
+          "rank": 2,
+          "offer_id": 27,
+          "throughput": 225.69753686336574,
+          "latency": 0.03264057081355784,
+          "cost": 56.49399505312647,
+          "energy": 15.0036934420739,
+          "raw_normalization": {
+            "throughput": 0.7481272436046297,
+            "latency": 0.9836797145932211,
+            "cost": 0.7211357032506207,
+            "energy": 0.8762505830714031
+          },
+          "normalized_qos": {
+            "throughput": 0.7481272436046297,
+            "latency": 0.9836797145932211,
+            "cost": 0.7211357032506207,
+            "energy": 0.8762505830714031
+          },
+          "satisfaction": {
+            "throughput": 0.7854523099229425,
+            "latency": 0.9917721599446339,
+            "cost": 0.7603281273581571,
+            "energy": 0.8871029347852352
+          },
+          "overall_satisfaction": 0.8937524609070605
+        },
+        {
+          "rank": 3,
+          "offer_id": 3,
+          "throughput": 200.79806665859024,
+          "latency": 0.0367965553296798,
+          "cost": 31.08038878741742,
+          "energy": 22.27185192834739,
+          "raw_normalization": {
+            "throughput": 0.663722259859628,
+            "latency": 0.9816017223351601,
+            "cost": 0.8488422673999125,
+            "energy": 0.8013211141407486
+          },
+          "normalized_qos": {
+            "throughput": 0.663722259859628,
+            "latency": 0.9816017223351601,
+            "cost": 0.8488422673999125,
+            "energy": 0.8013211141407486
+          },
+          "satisfaction": {
+            "throughput": 0.7046822513960493,
+            "latency": 0.9907146433188845,
+            "cost": 0.8748843247370756,
+            "energy": 0.8169739767631838
+          },
+          "overall_satisfaction": 0.8929680345623857
+        },
+        {
+          "rank": 4,
+          "offer_id": 18,
+          "throughput": 126.7227858127465,
+          "latency": 0.05925073994441678,
+          "cost": 7.026867164582723,
+          "energy": 47.817899836275316,
+          "raw_normalization": {
+            "throughput": 0.4126196129245644,
+            "latency": 0.9703746300277916,
+            "cost": 0.9697142353538557,
+            "energy": 0.5379597955023163
+          },
+          "normalized_qos": {
+            "throughput": 0.4126196129245644,
+            "latency": 0.9703746300277916,
+            "cost": 0.9697142353538557,
+            "energy": 0.5379597955023163
+          },
+          "satisfaction": {
+            "throughput": 0.3761416836397284,
+            "latency": 0.9849611479426943,
+            "cost": 0.975620952920796,
+            "energy": 0.549123406781113
+          },
+          "overall_satisfaction": 0.8177454419615635
+        },
+        {
+          "rank": 5,
+          "offer_id": 9,
+          "throughput": 200.79806665859024,
+          "latency": 0.0367965553296798,
+          "cost": 115.80549229137972,
+          "energy": 15.0036934420739,
+          "raw_normalization": {
+            "throughput": 0.663722259859628,
+            "latency": 0.9816017223351601,
+            "cost": 0.4230879784352778,
+            "energy": 0.8762505830714031
+          },
+          "normalized_qos": {
+            "throughput": 0.663722259859628,
+            "latency": 0.9816017223351601,
+            "cost": 0.4230879784352778,
+            "energy": 0.8762505830714031
+          },
+          "satisfaction": {
+            "throughput": 0.7046822513960493,
+            "latency": 0.9907146433188845,
+            "cost": 0.38816200254151234,
+            "energy": 0.8871029347852352
+          },
+          "overall_satisfaction": 0.8026364659254782
+        }
+      ]
+    },
+    {
+      "use_case": "IoT-Sense",
+      "slice": "mMTC",
+      "normalization_bounds": {
+        "throughput": {
+          "lower": 20,
+          "upper": 300
+        },
+        "latency": {
+          "lower": 0,
+          "upper": 10
+        },
+        "cost": {
+          "lower": 1,
+          "upper": 50
+        },
+        "energy": {
+          "lower": 3,
+          "upper": 100
+        }
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "offer_id": 20,
+          "throughput": 375.65684423500875,
+          "latency": 0.12794664925779178,
+          "cost": 1.1182842481724005,
+          "energy": 15.01388256127443,
+          "raw_normalization": {
+            "throughput": 1.2702030151250312,
+            "latency": 0.9872053350742208,
+            "cost": 0.9975860357515837,
+            "energy": 0.8761455406054183
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9872053350742208,
+            "cost": 0.9975860357515837,
+            "energy": 0.8761455406054183
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9897378035711468,
+            "cost": 0.9983089987419252,
+            "energy": 0.9096756424920982
+          },
+          "overall_satisfaction": 0.9703429530844364
+        },
+        {
+          "rank": 2,
+          "offer_id": 9,
+          "throughput": 350.33278406424745,
+          "latency": 0.13720862119402621,
+          "cost": 4.394300171164789,
+          "energy": 15.01388256127443,
+          "raw_normalization": {
+            "throughput": 1.179759943086598,
+            "latency": 0.9862791378805973,
+            "cost": 0.9307285679354125,
+            "energy": 0.8761455406054183
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9862791378805973,
+            "cost": 0.9307285679354125,
+            "energy": 0.8761455406054183
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9889928526565599,
+            "cost": 0.9504365000755057,
+            "energy": 0.9096756424920982
+          },
+          "overall_satisfaction": 0.9558322133015932
+        },
+        {
+          "rank": 3,
+          "offer_id": 19,
+          "throughput": 418.5656202535419,
+          "latency": 0.1148146182001654,
+          "cost": 6.69131974472394,
+          "energy": 15.01388256127443,
+          "raw_normalization": {
+            "throughput": 1.4234486437626497,
+            "latency": 0.9885185381799835,
+            "cost": 0.8838506174546135,
+            "energy": 0.8761455406054183
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9885185381799835,
+            "cost": 0.8838506174546135,
+            "energy": 0.8761455406054183
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9907935424941225,
+            "cost": 0.915532093266952,
+            "energy": 0.9096756424920982
+          },
+          "overall_satisfaction": 0.9457210292265396
+        },
+        {
+          "rank": 4,
+          "offer_id": 3,
+          "throughput": 375.65684423500875,
+          "latency": 0.12794664925779178,
+          "cost": 13.15442963496963,
+          "energy": 15.01388256127443,
+          "raw_normalization": {
+            "throughput": 1.2702030151250312,
+            "latency": 0.9872053350742208,
+            "cost": 0.7519504156128647,
+            "energy": 0.8761455406054183
+          },
+          "normalized_qos": {
+            "throughput": 1.0,
+            "latency": 0.9872053350742208,
+            "cost": 0.7519504156128647,
+            "energy": 0.8761455406054183
+          },
+          "satisfaction": {
+            "throughput": 1.0,
+            "latency": 0.9897378035711468,
+            "cost": 0.8094650132189835,
+            "energy": 0.9096756424920982
+          },
+          "overall_satisfaction": 0.9136897574275539
+        },
+        {
+          "rank": 5,
+          "offer_id": 8,
+          "throughput": 204.88247171720252,
+          "latency": 0.2348550866129299,
+          "cost": 7.0897514535864765,
+          "energy": 15.01388256127443,
+          "raw_normalization": {
+            "throughput": 0.6602945418471519,
+            "latency": 0.976514491338707,
+            "cost": 0.875719358090072,
+            "energy": 0.8761455406054183
+          },
+          "normalized_qos": {
+            "throughput": 0.6602945418471519,
+            "latency": 0.976514491338707,
+            "cost": 0.875719358090072,
+            "energy": 0.9096756424920982
+          },
+          "satisfaction": {
+            "throughput": 0.7012468023489773,
+            "latency": 0.9811216397484923,
+            "cost": 0.9093506661586919,
+            "energy": 0.9096756424920982
+          },
+          "overall_satisfaction": 0.8821815810147309
+        }
+      ]
+    }
+  ]
+}

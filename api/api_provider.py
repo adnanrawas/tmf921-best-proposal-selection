@@ -3,7 +3,7 @@ import os
 class APIProvider:
     @staticmethod
     def openrouter():
-        return os.getenv('OPENROUTER_API_KEY')
+        return os.getenv('OPENROUTER_API_KEY_LOCAL')
     @staticmethod 
     def openai():
         return os.getenv('OPENAI_API_KEY')

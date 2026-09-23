@@ -229,9 +229,9 @@ def agent():
 @app.route("/provider/openrouter", methods=["POST"])
 def openrouter_proxy():
     # getting the openRouter api key using the api Provider class
-    OPENROUTER_API_KEY = APIProvider().openrouter()
-    if not OPENROUTER_API_KEY:
-        return jsonify({"error": "OPENROUTER_API_KEY is not configured"}), 500
+    OPENROUTER_API_KEY_LOCAL = APIProvider().openrouter()
+    if not OPENROUTER_API_KEY_LOCAL:
+        return jsonify({"error": "OPENROUTER_API_KEY_LOCAL is not configured"}), 500
 
     payload = request.json
     if payload is None:
@@ -241,7 +241,7 @@ def openrouter_proxy():
         response = requests.post(
             url="https://openrouter.ai/api/v1/chat/completions",
             headers={
-                "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                "Authorization": f"Bearer {OPENROUTER_API_KEY_LOCAL}",
                 "Content-Type": "application/json",
                 # optional:
                 # "HTTP-Referer": "<YOUR_SITE_URL>",
@@ -463,14 +463,14 @@ def compact_offer(offer):
 ##############################################################################################################################################
 #TEST to be replaced with proxy to openrouter
 def call_openrouter(payload):
-    OPENROUTER_API_KEY = APIProvider().openrouter()
-    if not OPENROUTER_API_KEY:
-        raise RuntimeError("OPENROUTER_API_KEY is not configured")
+    OPENROUTER_API_KEY_LOCAL = APIProvider().openrouter()
+    if not OPENROUTER_API_KEY_LOCAL:
+        raise RuntimeError("OPENROUTER_API_KEY_LOCAL is not configured")
 
     response = requests.post(
         url="https://openrouter.ai/api/v1/chat/completions",
         headers={
-            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Authorization": f"Bearer {OPENROUTER_API_KEY_LOCAL}",
             "Content-Type": "application/json",
         },
         data=json.dumps(payload),
