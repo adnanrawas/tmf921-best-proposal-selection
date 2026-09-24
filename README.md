@@ -98,7 +98,7 @@ curl -sS -X POST "http://localhost:5000/ranking/topsis" \
 curl -sS -X POST "http://localhost:5000/ranking/vikor" \
   -H "Content-Type: application/json" \
   -d '{"save": true}'
-```
+
 ## Experiments and Baselines 
 The following experiments compare deterministic ranking methods, reasoning-based selection, multi-agent consensus, and counterproposal-based negotiation.
 
