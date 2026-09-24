@@ -89,15 +89,15 @@ The following figures show preliminary NSGA-II results based on global resource 
 <!-- - PowerPoint presentation: [NSGA-II_Baseline.pptx](slides/NSGA-II_Baseline.pptx) -->
 
 ## Multi-Criteria Decision Service
-Run the TOPSIS-based ranking and VIKOR service from the host terminal:
-```bash
-curl -sS -X POST "http://localhost:9000/topsis/save-jsons" \
+# Run TOPSIS and save the generated ranking files
+curl -sS -X POST "http://localhost:5000/ranking/topsis" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{"save": true}'
 
-curl -sS -X POST "http://localhost:9000/vikor/save-jsons" \
+# Run VIKOR and save the generated ranking files
+curl -sS -X POST "http://localhost:5000/ranking/vikor" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{"save": true}'
 ```
 ## Experiments and Baselines 
 The following experiments compare deterministic ranking methods, reasoning-based selection, multi-agent consensus, and counterproposal-based negotiation.
