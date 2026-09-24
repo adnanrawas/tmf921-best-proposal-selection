@@ -89,7 +89,6 @@ The following figures show preliminary NSGA-II results based on global resource 
 <!-- - PowerPoint presentation: [NSGA-II_Baseline.pptx](slides/NSGA-II_Baseline.pptx) -->
 
 ## Multi-Criteria Decision Service
-## Run and save the generated ranking files
 ## Run TOPSIS and VIKOR and save the generated ranking files
 
 ### Ubuntu / Bash
