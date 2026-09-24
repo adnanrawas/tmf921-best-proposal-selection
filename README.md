@@ -89,12 +89,12 @@ The following figures show preliminary NSGA-II results based on global resource 
 <!-- - PowerPoint presentation: [NSGA-II_Baseline.pptx](slides/NSGA-II_Baseline.pptx) -->
 
 ## Multi-Criteria Decision Service
-# Run TOPSIS and save the generated ranking files
+## Run TOPSIS and save the generated ranking files
 curl -sS -X POST "http://localhost:5000/ranking/topsis" \
   -H "Content-Type: application/json" \
   -d '{"save": true}'
 
-# Run VIKOR and save the generated ranking files
+## Run VIKOR and save the generated ranking files
 curl -sS -X POST "http://localhost:5000/ranking/vikor" \
   -H "Content-Type: application/json" \
   -d '{"save": true}'
