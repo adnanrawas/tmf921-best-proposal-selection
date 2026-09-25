@@ -9,6 +9,11 @@ from db_connection import get_db_connection
 from non_dominated_sorting_algorithm import  run_optimizer
 import traceback
 from pathlib import Path
+from experiment_config import (
+    NSGA2_FILENAME,
+    TOPSIS_FILENAME,
+    VIKOR_FILENAME,
+)
 # Import the TOPSIS helpers used to rank and persist baseline results.
 from algo_mcdm.topsis import (
     DEFAULT_USE_CASES as TOPSIS_DEFAULT_USE_CASES,
@@ -33,9 +38,7 @@ AGENT_URL = "http://agent:9000/select-best-offer"
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT",120))  # default = 120
 #it can change depends on the model used 
 #env  mcs 28
-NSGA2_FILENAME = "nsga2_rural_macro_28_mcs.json"
-TOPSIS_FILENAME = "topsis_rural_macro_28_mcs.json"
-VIKOR_FILENAME = "vikor_rural_macro_28_mcs.json"
+
 MODEL_NAME = os.getenv("MODEL_NAME", "nvidia/llama-3.1-nemotron-70b-instruct") 
 NSGA2_FILE = Path("/app/results/storage/baseline/") / NSGA2_FILENAME
 ########################################################################servise endpoints for the results of the ranking algorithms

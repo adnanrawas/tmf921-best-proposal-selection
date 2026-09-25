@@ -5,40 +5,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from pyDecision.algorithm import vikor_method
+from algo_mcdm.intent_config import load_use_cases
 
-
-DEFAULT_USE_CASES = [
-    {
-        "name": "Media-Flex",
-        "slice": "eMBB",
-        "throughput_min": 60.0,
-        "latency_max": 10.0,
-        "cost_max": 200.0,
-        "energy_max": 100.0,
-        "weights": [0.5, 0.2, 0.2, 0.1],
-    },
-    {
-        "name": "Factory-Ops",
-        "slice": "URLLC",
-        "throughput_min": 5.0,
-        "latency_max": 2.0,
-        "cost_max": 200.0,
-        "energy_max": 100.0,
-        "weights": [0.2, 0.5, 0.2, 0.1],
-    },
-    {
-        "name": "IoT-Sense",
-        "slice": "mMTC",
-        "throughput_min": 20.0,
-        "latency_max": 10.0,
-        "cost_max": 50.0,
-        "energy_max": 100.0,
-        "weights": [0.2, 0.2, 0.3, 0.3],
-    },
-]
+DEFAULT_USE_CASES  = load_use_cases()
 
 CRITERION_TYPE = ["max", "min", "min", "min"]
-VIKOR_RESULT_FILENAME = "vikor_rural_macro_28_mcs.json" # name of the output file for VIKOR results
+VIKOR_RESULT_FILENAME = "vikor_rural_macro_18_mcs.json" # name of the output file for VIKOR results
 
 def _safe_name(value: str) -> str:
     return "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in value)

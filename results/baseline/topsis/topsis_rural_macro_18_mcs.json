@@ -1,8 +1,8 @@
 {
   "source_json": "/app/results/storage/baseline/nsga2_rural_macro_18_mcs.json",
   "output_dir": "/app/results/storage/baseline/topsis",
-  "run_id": "2026-06-15_11-58-06_041525",
-  "run_output_dir": "/app/results/storage/baseline/topsis/runs/2026-06-15_11-58-06_041525",
+  "run_id": "2026-09-24_12-11-51_615968",
+  "run_output_dir": "/app/results/storage/baseline/topsis/runs/2026-09-24_12-11-51_615968",
   "summary": [
     {
       "use_case": "Media-Flex",
@@ -35,7 +35,7 @@
       "slice": "mMTC",
       "feasible_only_mode": true,
       "top1_offer_id": 19,
-      "top1_score": 0.9787477758845867,
+      "top1_score": 0.9613478204564762,
       "weights": [
         0.2,
         0.2,
@@ -290,14 +290,14 @@
         "throughput_min": 20.0,
         "latency_max": 10.0,
         "cost_max": 50.0,
-        "energy_max": 100.0
+        "energy_max": 30.0
       },
       "fallback_to_all_offers": false,
       "ranking": [
         {
           "rank": 1,
           "offer_id": 19,
-          "topsis_score": 0.9787477758845867,
+          "topsis_score": 0.9613478204564762,
           "throughput": 212.89028033320832,
           "latency": 0.22600018124463997,
           "cost": 5.19848752844647,
@@ -307,7 +307,7 @@
         {
           "rank": 2,
           "offer_id": 18,
-          "topsis_score": 0.9597108923229865,
+          "topsis_score": 0.9396092846502755,
           "throughput": 200.89045536571965,
           "latency": 0.23953373710305526,
           "cost": 5.5936396555548225,
@@ -317,7 +317,7 @@
         {
           "rank": 3,
           "offer_id": 2,
-          "topsis_score": 0.8091219535815934,
+          "topsis_score": 0.7634538768165715,
           "throughput": 212.89028033320832,
           "latency": 0.22600018124463997,
           "cost": 10.654698888837075,
@@ -327,7 +327,7 @@
         {
           "rank": 4,
           "offer_id": 4,
-          "topsis_score": 0.8031659960697385,
+          "topsis_score": 0.7606091648755569,
           "throughput": 139.04848828154303,
           "latency": 0.3464534437195824,
           "cost": 8.794849051207434,
@@ -337,7 +337,7 @@
         {
           "rank": 5,
           "offer_id": 1,
-          "topsis_score": 0.7051273498912133,
+          "topsis_score": 0.6382159019206844,
           "throughput": 211.82376631747502,
           "latency": 0.2271407772887934,
           "cost": 14.482580459828354,
@@ -347,7 +347,7 @@
         {
           "rank": 6,
           "offer_id": 14,
-          "topsis_score": 0.5838124315178255,
+          "topsis_score": 0.47976268664589117,
           "throughput": 114.60451712893148,
           "latency": 0.42067482145248397,
           "cost": 17.89286395080619,
@@ -357,7 +357,7 @@
         {
           "rank": 7,
           "offer_id": 22,
-          "topsis_score": 0.5320826839600964,
+          "topsis_score": 0.37838969993455424,
           "throughput": 35.79900594998231,
           "latency": 1.360083839796755,
           "cost": 11.320256248258637,
@@ -367,31 +367,11 @@
         {
           "rank": 8,
           "offer_id": 11,
-          "topsis_score": 0.45322971519412636,
+          "topsis_score": 0.2740766554633835,
           "throughput": 35.79900594998231,
           "latency": 1.360083839796755,
           "cost": 11.395767909000746,
           "energy": 25.3863987100657,
-          "feasible": true
-        },
-        {
-          "rank": 9,
-          "offer_id": 15,
-          "topsis_score": 0.40379780432255985,
-          "throughput": 100.43354223644845,
-          "latency": 0.4803309898674049,
-          "cost": 9.643439384163807,
-          "energy": 51.982198741759206,
-          "feasible": true
-        },
-        {
-          "rank": 10,
-          "offer_id": 13,
-          "topsis_score": 0.20515825889630626,
-          "throughput": 35.79900594998231,
-          "latency": 1.360083839796755,
-          "cost": 14.996610528452695,
-          "energy": 41.664775487820364,
           "feasible": true
         }
       ],

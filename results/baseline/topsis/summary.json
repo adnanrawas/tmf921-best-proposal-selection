@@ -3,8 +3,8 @@
     "use_case":"Media-Flex",
     "slice":"eMBB",
     "feasible_only_mode":true,
-    "top1_offer_id":5,
-    "top1_score":0.7739063057,
+    "top1_offer_id":13,
+    "top1_score":0.8745660075,
     "weights":[
       0.5,
       0.2,
@@ -16,8 +16,8 @@
     "use_case":"Factory-Ops",
     "slice":"URLLC",
     "feasible_only_mode":true,
-    "top1_offer_id":21,
-    "top1_score":0.9118443396,
+    "top1_offer_id":14,
+    "top1_score":0.9915914129,
     "weights":[
       0.2,
       0.5,
@@ -29,8 +29,8 @@
     "use_case":"IoT-Sense",
     "slice":"mMTC",
     "feasible_only_mode":true,
-    "top1_offer_id":20,
-    "top1_score":0.9540784376,
+    "top1_offer_id":19,
+    "top1_score":0.9613478205,
     "weights":[
       0.2,
       0.2,

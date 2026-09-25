@@ -416,6 +416,106 @@ def save_record_node(state: A3State) -> A3State:
         ),
     }
 
+####################################################################
+# READ intent bounds and weights from state["intent"]
+
+# CREATE an empty validation_results dictionary
+
+# FOR each algorithm report:
+#     - state["topsis_rankings"]
+#     - state["vikor_rankings"]
+
+#     COPY the report so the original is preserved
+
+#     FOR each use_case_report IN report["results"]:
+
+#         FIND the matching intent using:
+#             use_case_report["use_case"]
+#             use_case_report["slice"]
+
+#         BUILD the QoS bounds for that use case
+
+#         READ the use-case weights
+
+#         FOR each offer IN use_case_report["ranking"]:
+
+#             CALCULATE normalized throughput using Norm1
+#             CALCULATE normalized latency using Norm2
+#             CALCULATE normalized cost using Norm2
+#             CALCULATE normalized energy using Norm2
+
+#             CALCULATE per-metric satisfaction using Equation 7
+
+#             CALCULATE overall satisfaction using Equation 8
+
+#             ATTACH normalized_qos
+#             ATTACH satisfaction
+#             ATTACH overall_satisfaction
+
+#             KEEP rank, offer_id, scores, and all QoS values unchanged
+
+#     STORE the enriched report in validation_results
+
+# RETURN:
+# {
+#     "validation_results": {
+#         "topsis": enriched_topsis_report,
+#         "vikor": enriched_vikor_report
+#     }
+# }
+
+#################################################################################################
+
+
+# READ intent bounds and weights from state["intent"]
+
+# CREATE an empty validation_results dictionary
+
+# FOR each algorithm report:
+#     - state["topsis_rankings"]
+#     - state["vikor_rankings"]
+
+#     COPY the report so the original is preserved
+
+#     FOR each use_case_report IN report["results"]:
+
+#         FIND the matching intent using:
+#             use_case_report["use_case"]
+#             use_case_report["slice"]
+
+#         BUILD the QoS bounds for that use case
+
+#         READ the use-case weights
+
+#         FOR each offer IN use_case_report["ranking"]:
+
+#             CALCULATE normalized throughput using Norm1
+#             CALCULATE normalized latency using Norm2
+#             CALCULATE normalized cost using Norm2
+#             CALCULATE normalized energy using Norm2
+
+#             CALCULATE per-metric satisfaction using Equation 7
+
+#             CALCULATE overall satisfaction using Equation 8
+
+#             ATTACH normalized_qos
+#             ATTACH satisfaction
+#             ATTACH overall_satisfaction
+
+#             KEEP rank, offer_id, scores, and all QoS values unchanged
+
+#     STORE the enriched report in validation_results
+
+# RETURN:
+# {
+#     "validation_results": {
+#         "topsis": enriched_topsis_report,
+#         "vikor": enriched_vikor_report
+#     }
+# }
+
+###################################################################
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "agent running"}), 200

@@ -1,8 +1,8 @@
 {
   "source_json": "/app/results/storage/baseline/nsga2_rural_macro_28_mcs.json",
   "output_dir": "/app/results/storage/baseline/topsis",
-  "run_id": "2026-06-15_12-08-48_827997",
-  "run_output_dir": "/app/results/storage/baseline/topsis/runs/2026-06-15_12-08-48_827997",
+  "run_id": "2026-09-24_11-20-43_185748",
+  "run_output_dir": "/app/results/storage/baseline/topsis/runs/2026-09-24_11-20-43_185748",
   "summary": [
     {
       "use_case": "Media-Flex",
@@ -330,7 +330,7 @@
         "throughput_min": 20.0,
         "latency_max": 10.0,
         "cost_max": 50.0,
-        "energy_max": 100.0
+        "energy_max": 30.0
       },
       "fallback_to_all_offers": false,
       "ranking": [

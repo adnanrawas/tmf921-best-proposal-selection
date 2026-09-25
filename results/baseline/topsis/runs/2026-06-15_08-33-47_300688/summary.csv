@@ -1,4 +1,0 @@
-use_case,slice,feasible_only_mode,top1_offer_id,top1_score,weights
-Media-Flex,eMBB,True,12,0.8247178316984556,"[0.5, 0.2, 0.2, 0.1]"
-Factory-Ops,URLLC,True,1,0.9682611939550835,"[0.2, 0.5, 0.2, 0.1]"
-IoT-Sense,mMTC,True,10,1.0,"[0.2, 0.2, 0.3, 0.3]"
