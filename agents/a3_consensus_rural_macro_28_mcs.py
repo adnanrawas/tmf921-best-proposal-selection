@@ -11,7 +11,10 @@ from operator import add
 from pathlib import Path
 from typing import Annotated, Literal, TypedDict
 from langgraph.types import Command
-
+from helpers.evaluator_helpers import (
+    fetch_intents,
+    get_intent,
+)
 import requests
 from flask import Flask, jsonify, request
 from langgraph.graph import END, START, StateGraph
@@ -51,6 +54,10 @@ DEBUG_MODE = os.getenv("DEBUG", "false").lower() == "true"
 #variables     
 MASTER_URL = "http://master:5000/provider/openrouter"
 # MODEL_NAME = "deepseek/deepseek-r1"
+MASTER_INTENT_URL = os.getenv(
+    "MASTER_INTENT_URL",
+    "http://master:5000/intent-owner/intents",
+)
 MODEL_NAME = os.getenv("MODEL_NAME", "nvidia/llama-3.1-nemotron-70b-instruct") 
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT",120))  
 JOBS_DIR=Path("/app/output/agent_jobs")
@@ -60,11 +67,26 @@ LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", 120))
 ####################################################
 #endpoints
 ######################################################################################################
+#later to add the endpoint to the env 
 MASTER_TOPSIS_URL = os.getenv("MASTER_TOPSIS_URL", "http://master:5000/ranking/topsis")
 MASTER_VIKOR_URL = os.getenv("MASTER_VIKOR_URL", "http://master:5000/ranking/vikor")
+ #get the intent from the master orchastrator
+MASTER_INTENT_URL = os.getenv(
+"MASTER_INTENT_URL","http://master:5000/intent-owner/intents",)
 RANKING_LIMIT = os.getenv("RANKING_LIMIT")
 RANKING_LIMIT = int(RANKING_LIMIT) if RANKING_LIMIT else None
 ########################################getting VIKOR rankings from the service##########################################################
+# first we need to load the intent and the rankings from the master service, then we can run the observers and the consensus process.
+def load_intent_node(state: A3State) -> A3State:
+    intents = fetch_intents(
+        intent_url=MASTER_INTENT_URL,
+        timeout=LLM_TIMEOUT,
+    )
+
+    return {
+        "intent": intents
+    }
+################################################################################################################
 def fetch_vikor_rankings() -> dict[str, object]:
     try:
         response = requests.get(
@@ -301,11 +323,31 @@ def vikor_observer_node(state: A3State) -> A3State:
                  # adding the latest
 
         ]
-       }
-       
-    
-              
-    
+       }              
+#################################################################################
+#evaluate the verifier reports against the intent and return a score for each use case
+
+def evaluator_node(state: A3State) -> A3State:
+    """Evaluate the TOPSIS and VIKOR reports."""
+
+    intents = state["intent"]
+
+    evaluated_topsis = evaluate_topsis_report(
+        topsis_report=state["topsis_rankings"],
+        intents=intents,
+    )
+
+    evaluated_vikor = evaluate_vikor_report(
+        vikor_report=state["vikor_rankings"],
+        intents=intents,
+    )
+
+    return {
+        "validation_results": {
+            "topsis": evaluated_topsis,
+            "vikor": evaluated_vikor,
+        }
+    }
 #################################################################################
 #saving the results of the observers and the consensus in a record for future reference and analysis
 A3_RESULTS_DIR = Path(

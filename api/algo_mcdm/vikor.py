@@ -42,6 +42,7 @@ def rank_use_cases(data, use_cases=None, weights=None, strategy_coefficient=0.5)
     for case in use_cases:
         slice_name = case["slice"]
         case_name = case["name"]
+        # weights for the current use case, fallback to default weights if not specified
         case_weights = case.get("weights", weights)
 
         rows = []

@@ -101,6 +101,8 @@ curl -sS -X POST "http://localhost:5000/ranking/topsis" \
 curl -sS -X POST "http://localhost:5000/ranking/vikor" \
   -H "Content-Type: application/json" \
   -d '{"save": true}'
+
+curl -sS "http://localhost:5000/intent-owner/intents"
 ```
 
 ### Windows PowerShell
@@ -109,6 +111,9 @@ curl -sS -X POST "http://localhost:5000/ranking/vikor" \
 Invoke-RestMethod "http://localhost:5000/ranking/topsis?save=true"
 
 Invoke-RestMethod "http://localhost:5000/ranking/vikor?save=true"
+
+Invoke-RestMethod "http://localhost:5000/intent-owner/intents"
+
 ```
 
 ## Experiments and Baselines 

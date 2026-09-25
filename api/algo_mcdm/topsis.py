@@ -9,8 +9,8 @@ from algo_mcdm.intent_config import load_use_cases
 
 CRITERION_TYPE = ["max", "min", "min", "min"]
 TOPSIS_FILENAME = "topsis_rural_macro_18_mcs.json" #` name of the output file for TOPSIS results`
-
-DEFAULT_USE_CASES = load_use_cases()
+# get intent from the intent config
+DEFAULT_USE_CASES = load_use_cases() 
 
 def _safe_name(value: str) -> str:
     return "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in value)

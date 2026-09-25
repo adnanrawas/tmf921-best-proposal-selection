@@ -8,6 +8,7 @@ from api_provider import APIProvider # Import the APIProvider class from the api
 from db_connection import get_db_connection
 from non_dominated_sorting_algorithm import  run_optimizer
 import traceback
+from algo_mcdm.intent_config import load_use_cases
 from pathlib import Path
 from experiment_config import (
     NSGA2_FILENAME,
@@ -493,6 +494,16 @@ def optimizer_offers_status(job_id):
             "error": "Job not found"
         }), 404
     return jsonify(data), 200
+
+#################################################################################################################
+# intent end point to get the intent for a specific use case and slice
+ 
+@app.route("/intent-owner/intents", methods=["GET"])
+def load_intent():
+    return jsonify({
+        "use_cases": load_use_cases()
+    }), 200
+
 
 ###########################################################################################################################
 if __name__ == "__main__":
