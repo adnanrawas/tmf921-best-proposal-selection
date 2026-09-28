@@ -1,0 +1,2077 @@
+{
+  "experiment": "A3",
+  "saved_at": "2026-09-28T13:40:36.277074",
+  "model_name": "deepseek/deepseek-v4-pro",
+  "current_round": 3,
+  "max_rounds": 3,
+  "topsis_rankings": {
+    "criterion_type": [
+      "max",
+      "min",
+      "min",
+      "min"
+    ],
+    "output_dir": "/app/results/storage/baseline/topsis",
+    "results": [
+      {
+        "constraints": {
+          "cost_max": 200.0,
+          "energy_max": 100.0,
+          "latency_max": 10.0,
+          "throughput_min": 60.0
+        },
+        "fallback_to_all_offers": false,
+        "ranking": [
+          {
+            "cost": 86.95337453180726,
+            "energy": 15.100339057459157,
+            "feasible": true,
+            "latency": 0.026523184170582012,
+            "offer_id": 5,
+            "rank": 1,
+            "throughput": 909.8958984032843,
+            "topsis_score": 0.7739063057291105,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.6459807169611014,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.686737007427713,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9373474014855426
+          },
+          {
+            "cost": 126.12223069369053,
+            "energy": 15.845969530399714,
+            "feasible": true,
+            "latency": 0.03233556074777987,
+            "offer_id": 21,
+            "rank": 2,
+            "throughput": 747.2502132661346,
+            "topsis_score": 0.626286743425058,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.4221586817503399,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.3870822679994359,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.8774164535998872
+          },
+          {
+            "cost": 4.658421820283137,
+            "energy": 15.100339057459157,
+            "feasible": true,
+            "latency": 0.045650599116486335,
+            "offer_id": 18,
+            "rank": 3,
+            "throughput": 530.7796991100676,
+            "topsis_score": 0.5941943399453298,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 1.0
+          },
+          {
+            "cost": 40.582494367898306,
+            "energy": 47.45226217023012,
+            "feasible": true,
+            "latency": 0.0464499735104197,
+            "offer_id": 3,
+            "rank": 4,
+            "throughput": 521.7330167047377,
+            "topsis_score": 0.533067665976951,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.9109571750405812,
+              "energy": 0.6568467228721235
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.9273967887284997,
+              "energy": 0.6761265810021285
+            },
+            "overall_satisfaction": 0.9530920158459129
+          },
+          {
+            "cost": 71.79513937837633,
+            "energy": 15.100339057459157,
+            "feasible": true,
+            "latency": 0.0464499735104197,
+            "offer_id": 8,
+            "rank": 5,
+            "throughput": 521.7330167047377,
+            "topsis_score": 0.5133873943025031,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.7325992035521351,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.7710694530765616,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9542138906153124
+          }
+        ],
+        "slice": "eMBB",
+        "use_case": "Media-Flex",
+        "weights": [
+          0.5,
+          0.2,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "constraints": {
+          "cost_max": 200.0,
+          "energy_max": 100.0,
+          "latency_max": 2.0,
+          "throughput_min": 5.0
+        },
+        "fallback_to_all_offers": false,
+        "ranking": [
+          {
+            "cost": 23.484996077807452,
+            "energy": 15.0036934420739,
+            "feasible": true,
+            "latency": 0.03264057081355784,
+            "offer_id": 21,
+            "rank": 1,
+            "throughput": 225.69753686336574,
+            "topsis_score": 0.9118443395966802,
+            "normalized_qos": {
+              "throughput": 0.7481272436046297,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 0.7854523099229425,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9570904619845886
+          },
+          {
+            "cost": 31.08038878741742,
+            "energy": 22.27185192834739,
+            "feasible": true,
+            "latency": 0.0367965553296798,
+            "offer_id": 3,
+            "rank": 2,
+            "throughput": 200.79806665859024,
+            "topsis_score": 0.8560090291320477,
+            "normalized_qos": {
+              "throughput": 0.663722259859628,
+              "latency": 1.0,
+              "cost": 0.9652549212147576,
+              "energy": 0.9716018508956576
+            },
+            "satisfaction": {
+              "throughput": 0.7046822513960493,
+              "latency": 1.0,
+              "cost": 0.9720051979421012,
+              "energy": 0.9743675266250971
+            },
+            "overall_satisfaction": 0.93277424253014
+          },
+          {
+            "cost": 56.49399505312647,
+            "energy": 15.0036934420739,
+            "feasible": true,
+            "latency": 0.03264057081355784,
+            "offer_id": 27,
+            "rank": 3,
+            "throughput": 225.69753686336574,
+            "topsis_score": 0.7578770331466268,
+            "normalized_qos": {
+              "throughput": 0.7481272436046297,
+              "latency": 1.0,
+              "cost": 0.8200343139821344,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 0.7854523099229425,
+              "latency": 1.0,
+              "cost": 0.8499058774253556,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9270716374696597
+          },
+          {
+            "cost": 7.026867164582723,
+            "energy": 47.817899836275316,
+            "feasible": true,
+            "latency": 0.05925073994441678,
+            "offer_id": 18,
+            "rank": 4,
+            "throughput": 126.7227858127465,
+            "topsis_score": 0.734274147909601,
+            "normalized_qos": {
+              "throughput": 0.4126196129245644,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.6522762520465586
+            },
+            "satisfaction": {
+              "throughput": 0.3761416836397284,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.6715007254982291
+            },
+            "overall_satisfaction": 0.8423784092777687
+          },
+          {
+            "cost": 115.80549229137972,
+            "energy": 15.0036934420739,
+            "feasible": true,
+            "latency": 0.0367965553296798,
+            "offer_id": 9,
+            "rank": 5,
+            "throughput": 200.79806665859024,
+            "topsis_score": 0.5525699851629692,
+            "normalized_qos": {
+              "throughput": 0.663722259859628,
+              "latency": 1.0,
+              "cost": 0.4811114726206873,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 0.7046822513960493,
+              "latency": 1.0,
+              "cost": 0.4636292312276762,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.8336622965247452
+          }
+        ],
+        "slice": "URLLC",
+        "use_case": "Factory-Ops",
+        "weights": [
+          0.2,
+          0.5,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "constraints": {
+          "cost_max": 50.0,
+          "energy_max": 30.0,
+          "latency_max": 10.0,
+          "throughput_min": 20.0
+        },
+        "fallback_to_all_offers": false,
+        "ranking": [
+          {
+            "cost": 1.1182842481724005,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.12794664925779178,
+            "offer_id": 20,
+            "rank": 1,
+            "throughput": 375.65684423500875,
+            "topsis_score": 0.9540784376226552,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9998055901356857
+          },
+          {
+            "cost": 4.394300171164789,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.13720862119402621,
+            "offer_id": 9,
+            "rank": 2,
+            "throughput": 350.33278406424745,
+            "topsis_score": 0.8242692158510166,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9998055901356857
+          },
+          {
+            "cost": 6.69131974472394,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.1148146182001654,
+            "offer_id": 19,
+            "rank": 3,
+            "throughput": 418.5656202535419,
+            "topsis_score": 0.7475807970399247,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9998055901356857
+          },
+          {
+            "cost": 6.408451833615004,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.27956162179713806,
+            "offer_id": 21,
+            "rank": 4,
+            "throughput": 172.1987565512273,
+            "topsis_score": 0.6520714240936961,
+            "normalized_qos": {
+              "throughput": 0.5435669876829546,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 0.5709773903069955,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9140010681970849
+          },
+          {
+            "cost": 7.0897514535864765,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.2348550866129299,
+            "offer_id": 8,
+            "rank": 5,
+            "throughput": 204.88247171720252,
+            "topsis_score": 0.6515719218250386,
+            "normalized_qos": {
+              "throughput": 0.6602945418471519,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 0.7012468023489773,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9400549506054812
+          }
+        ],
+        "slice": "mMTC",
+        "use_case": "IoT-Sense",
+        "weights": [
+          0.2,
+          0.2,
+          0.3,
+          0.3
+        ]
+      }
+    ],
+    "run_id": "2026-09-24_11-20-43_185748",
+    "run_output_dir": "/app/results/storage/baseline/topsis/runs/2026-09-24_11-20-43_185748",
+    "saved": true,
+    "source_json": "/app/results/storage/baseline/nsga2_rural_macro_28_mcs.json",
+    "status": "success",
+    "summary": [
+      {
+        "feasible_only_mode": true,
+        "slice": "eMBB",
+        "top1_offer_id": 5,
+        "top1_score": 0.7739063057291105,
+        "use_case": "Media-Flex",
+        "weights": [
+          0.5,
+          0.2,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "feasible_only_mode": true,
+        "slice": "URLLC",
+        "top1_offer_id": 21,
+        "top1_score": 0.9118443395966802,
+        "use_case": "Factory-Ops",
+        "weights": [
+          0.2,
+          0.5,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "feasible_only_mode": true,
+        "slice": "mMTC",
+        "top1_offer_id": 20,
+        "top1_score": 0.9540784376226552,
+        "use_case": "IoT-Sense",
+        "weights": [
+          0.2,
+          0.2,
+          0.3,
+          0.3
+        ]
+      }
+    ],
+    "weights": [
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "vikor_rankings": {
+    "criterion_type": [
+      "max",
+      "min",
+      "min",
+      "min"
+    ],
+    "output_dir": "/app/results/storage/baseline/vikor",
+    "results": [
+      {
+        "compromise_solution": [
+          [
+            3.0,
+            0.0
+          ],
+          [
+            11.0,
+            0.23368394401337678
+          ],
+          [
+            8.0,
+            0.29806273972046504
+          ],
+          [
+            4.0,
+            0.39714413445246566
+          ],
+          [
+            2.0,
+            0.4215857099912956
+          ],
+          [
+            1.0,
+            0.6237879263692403
+          ],
+          [
+            7.0,
+            0.624336628578056
+          ],
+          [
+            5.0,
+            0.7286192901598566
+          ],
+          [
+            9.0,
+            0.7420786295763125
+          ],
+          [
+            12.0,
+            0.7703679003796218
+          ],
+          [
+            10.0,
+            0.8018028917862433
+          ],
+          [
+            6.0,
+            1.0
+          ]
+        ],
+        "constraints": {
+          "cost_max": 200.0,
+          "energy_max": 100.0,
+          "latency_max": 10.0,
+          "throughput_min": 60.0
+        },
+        "fallback_to_all_offers": false,
+        "ranking": [
+          {
+            "cost": 86.95337453180726,
+            "energy": 15.100339057459157,
+            "feasible": true,
+            "latency": 0.026523184170582012,
+            "offer_id": 5,
+            "rank": 1,
+            "throughput": 909.8958984032843,
+            "vikor_q": 0.0,
+            "vikor_r": 0.13550530561295665,
+            "vikor_s": 0.13550530561295665,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.6459807169611014,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.686737007427713,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9373474014855426
+          },
+          {
+            "cost": 126.12223069369053,
+            "energy": 15.845969530399714,
+            "feasible": true,
+            "latency": 0.03233556074777987,
+            "offer_id": 21,
+            "rank": 2,
+            "throughput": 747.2502132661346,
+            "vikor_q": 0.23368394401337678,
+            "vikor_r": 0.2,
+            "vikor_s": 0.3253346103768358,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.4221586817503399,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.3870822679994359,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.8774164535998872
+          },
+          {
+            "cost": 4.658421820283137,
+            "energy": 15.100339057459157,
+            "feasible": true,
+            "latency": 0.045650599116486335,
+            "offer_id": 18,
+            "rank": 3,
+            "throughput": 530.7796991100676,
+            "vikor_q": 0.29806273972046504,
+            "vikor_r": 0.26205324440329403,
+            "vikor_s": 0.29821765555942303,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 1.0
+          },
+          {
+            "cost": 71.79513937837633,
+            "energy": 15.100339057459157,
+            "feasible": true,
+            "latency": 0.0464499735104197,
+            "offer_id": 8,
+            "rank": 4,
+            "throughput": 521.7330167047377,
+            "vikor_q": 0.39714413445246566,
+            "vikor_r": 0.26830650522365096,
+            "vikor_s": 0.4165283458279855,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.7325992035521351,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.7710694530765616,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9542138906153124
+          },
+          {
+            "cost": 40.582494367898306,
+            "energy": 47.45226217023012,
+            "feasible": true,
+            "latency": 0.0464499735104197,
+            "offer_id": 3,
+            "rank": 5,
+            "throughput": 521.7330167047377,
+            "vikor_q": 0.4215857099912956,
+            "vikor_r": 0.26830650522365096,
+            "vikor_s": 0.44847962496680865,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.9109571750405812,
+              "energy": 0.6568467228721235
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 0.9273967887284997,
+              "energy": 0.6761265810021285
+            },
+            "overall_satisfaction": 0.9530920158459129
+          }
+        ],
+        "slice": "eMBB",
+        "strategy_coefficient": 0.5,
+        "use_case": "Media-Flex",
+        "weights": [
+          0.5,
+          0.2,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "compromise_solution": [
+          [
+            11.0,
+            0.0
+          ],
+          [
+            2.0,
+            0.06384337876355839
+          ]
+        ],
+        "constraints": {
+          "cost_max": 200.0,
+          "energy_max": 100.0,
+          "latency_max": 2.0,
+          "throughput_min": 5.0
+        },
+        "fallback_to_all_offers": false,
+        "ranking": [
+          {
+            "cost": 23.484996077807452,
+            "energy": 15.0036934420739,
+            "feasible": true,
+            "latency": 0.03264057081355784,
+            "offer_id": 21,
+            "rank": 1,
+            "throughput": 225.69753686336574,
+            "vikor_q": 0.0,
+            "vikor_r": 0.03025985830219942,
+            "vikor_s": 0.03025985830219942,
+            "normalized_qos": {
+              "throughput": 0.7481272436046297,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 0.7854523099229425,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9570904619845886
+          },
+          {
+            "cost": 31.08038878741742,
+            "energy": 22.27185192834739,
+            "feasible": true,
+            "latency": 0.0367965553296798,
+            "offer_id": 3,
+            "rank": 2,
+            "throughput": 200.79806665859024,
+            "vikor_q": 0.06384337876355839,
+            "vikor_r": 0.04422472079380832,
+            "vikor_s": 0.11206911486118752,
+            "normalized_qos": {
+              "throughput": 0.663722259859628,
+              "latency": 1.0,
+              "cost": 0.9652549212147576,
+              "energy": 0.9716018508956576
+            },
+            "satisfaction": {
+              "throughput": 0.7046822513960493,
+              "latency": 1.0,
+              "cost": 0.9720051979421012,
+              "energy": 0.9743675266250971
+            },
+            "overall_satisfaction": 0.93277424253014
+          },
+          {
+            "cost": 56.49399505312647,
+            "energy": 15.0036934420739,
+            "feasible": true,
+            "latency": 0.03264057081355784,
+            "offer_id": 27,
+            "rank": 3,
+            "throughput": 225.69753686336574,
+            "vikor_q": 0.10093482559572818,
+            "vikor_r": 0.09095008845879925,
+            "vikor_s": 0.09095008845879925,
+            "normalized_qos": {
+              "throughput": 0.7481272436046297,
+              "latency": 1.0,
+              "cost": 0.8200343139821344,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 0.7854523099229425,
+              "latency": 1.0,
+              "cost": 0.8499058774253556,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.9270716374696597
+          },
+          {
+            "cost": 7.026867164582723,
+            "energy": 47.817899836275316,
+            "feasible": true,
+            "latency": 0.05925073994441678,
+            "offer_id": 18,
+            "rank": 4,
+            "throughput": 126.7227858127465,
+            "vikor_q": 0.27718097736511255,
+            "vikor_r": 0.12382115027212287,
+            "vikor_s": 0.3268919536795153,
+            "normalized_qos": {
+              "throughput": 0.4126196129245644,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.6522762520465586
+            },
+            "satisfaction": {
+              "throughput": 0.3761416836397284,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.6715007254982291
+            },
+            "overall_satisfaction": 0.8423784092777687
+          },
+          {
+            "cost": 115.80549229137972,
+            "energy": 15.0036934420739,
+            "feasible": true,
+            "latency": 0.0367965553296798,
+            "offer_id": 9,
+            "rank": 5,
+            "throughput": 200.79806665859024,
+            "vikor_q": 0.31153551748912445,
+            "vikor_r": 0.2,
+            "vikor_s": 0.24883635559125583,
+            "normalized_qos": {
+              "throughput": 0.663722259859628,
+              "latency": 1.0,
+              "cost": 0.4811114726206873,
+              "energy": 1.0
+            },
+            "satisfaction": {
+              "throughput": 0.7046822513960493,
+              "latency": 1.0,
+              "cost": 0.4636292312276762,
+              "energy": 1.0
+            },
+            "overall_satisfaction": 0.8336622965247452
+          }
+        ],
+        "slice": "URLLC",
+        "strategy_coefficient": 0.5,
+        "use_case": "Factory-Ops",
+        "weights": [
+          0.2,
+          0.5,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "compromise_solution": [
+          [
+            10.0,
+            0.0
+          ],
+          [
+            5.0,
+            0.17869552051436122
+          ],
+          [
+            9.0,
+            0.2970166224379418
+          ],
+          [
+            11.0,
+            0.3826718664879722
+          ],
+          [
+            4.0,
+            0.41050032156125554
+          ],
+          [
+            6.0,
+            0.5106074413969777
+          ],
+          [
+            8.0,
+            0.5533944219589055
+          ],
+          [
+            3.0,
+            0.6654477043446124
+          ],
+          [
+            1.0,
+            0.6769059856433921
+          ],
+          [
+            2.0,
+            0.7231409168004886
+          ],
+          [
+            12.0,
+            0.7819120188596262
+          ],
+          [
+            7.0,
+            1.0
+          ]
+        ],
+        "constraints": {
+          "cost_max": 50.0,
+          "energy_max": 30.0,
+          "latency_max": 10.0,
+          "throughput_min": 20.0
+        },
+        "fallback_to_all_offers": false,
+        "ranking": [
+          {
+            "cost": 1.1182842481724005,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.12794664925779178,
+            "offer_id": 20,
+            "rank": 1,
+            "throughput": 375.65684423500875,
+            "vikor_q": 0.0,
+            "vikor_r": 0.021611475717804987,
+            "vikor_s": 0.02281894619638227,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9998055901356857
+          },
+          {
+            "cost": 4.394300171164789,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.13720862119402621,
+            "offer_id": 9,
+            "rank": 2,
+            "throughput": 350.33278406424745,
+            "vikor_q": 0.17869552051436122,
+            "vikor_r": 0.0816544454486053,
+            "vikor_s": 0.11807975670610857,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9998055901356857
+          },
+          {
+            "cost": 6.69131974472394,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.1148146182001654,
+            "offer_id": 19,
+            "rank": 3,
+            "throughput": 418.5656202535419,
+            "vikor_q": 0.2970166224379418,
+            "vikor_r": 0.13890748202488695,
+            "vikor_s": 0.13890748202488695,
+            "normalized_qos": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 1.0,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9998055901356857
+          },
+          {
+            "cost": 6.408451833615004,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.27956162179713806,
+            "offer_id": 21,
+            "rank": 4,
+            "throughput": 172.1987565512273,
+            "vikor_q": 0.3826718664879722,
+            "vikor_r": 0.13185702105041527,
+            "vikor_s": 0.2710906332755264,
+            "normalized_qos": {
+              "throughput": 0.5435669876829546,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 0.5709773903069955,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9140010681970849
+          },
+          {
+            "cost": 7.0897514535864765,
+            "energy": 15.01388256127443,
+            "feasible": true,
+            "latency": 0.2348550866129299,
+            "offer_id": 8,
+            "rank": 5,
+            "throughput": 204.88247171720252,
+            "vikor_q": 0.41050032156125554,
+            "vikor_r": 0.14883836178892468,
+            "vikor_s": 0.2674997637746138,
+            "normalized_qos": {
+              "throughput": 0.6602945418471519,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9990744959150379
+            },
+            "satisfaction": {
+              "throughput": 0.7012468023489773,
+              "latency": 1.0,
+              "cost": 1.0,
+              "energy": 0.9993519671189524
+            },
+            "overall_satisfaction": 0.9400549506054812
+          }
+        ],
+        "slice": "mMTC",
+        "strategy_coefficient": 0.5,
+        "use_case": "IoT-Sense",
+        "weights": [
+          0.2,
+          0.2,
+          0.3,
+          0.3
+        ]
+      }
+    ],
+    "run_id": "2026-09-24_11-31-11_743065",
+    "run_output_dir": "/app/results/storage/baseline/vikor/runs/2026-09-24_11-31-11_743065",
+    "saved": true,
+    "source_json": "/app/results/storage/baseline/nsga2_rural_macro_28_mcs.json",
+    "status": "success",
+    "strategy_coefficient": 0.5,
+    "summary": [
+      {
+        "feasible_only_mode": true,
+        "slice": "eMBB",
+        "strategy_coefficient": 0.5,
+        "top1_offer_id": 5,
+        "top1_q": 0.0,
+        "use_case": "Media-Flex",
+        "weights": [
+          0.5,
+          0.2,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "feasible_only_mode": true,
+        "slice": "URLLC",
+        "strategy_coefficient": 0.5,
+        "top1_offer_id": 21,
+        "top1_q": 0.0,
+        "use_case": "Factory-Ops",
+        "weights": [
+          0.2,
+          0.5,
+          0.2,
+          0.1
+        ]
+      },
+      {
+        "feasible_only_mode": true,
+        "slice": "mMTC",
+        "strategy_coefficient": 0.5,
+        "top1_offer_id": 20,
+        "top1_q": 0.0,
+        "use_case": "IoT-Sense",
+        "weights": [
+          0.2,
+          0.2,
+          0.3,
+          0.3
+        ]
+      }
+    ],
+    "weights": [
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "topsis_observer_outputs": [
+    {
+      "observer": "topsis_observer",
+      "algorithm": "TOPSIS",
+      "round": 0,
+      "response": {
+        "algorithm": "TOPSIS",
+        "reports": [
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 5,
+            "rank": 1,
+            "reason": "Highest TOPSIS score (0.7739) with full satisfaction on throughput, latency, and energy, and the best overall satisfaction (0.9373) among feasible offers. Excellent cost (86.95) and throughput (909.9) performance."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 21,
+            "rank": 1,
+            "reason": "Highest TOPSIS score (0.9118) driven by superior latency (0.0326), 100% cost and energy satisfaction, and strong throughput satisfaction (0.7855). Offers the best overall satisfaction (0.9571) in the URLLC slice."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 20,
+            "rank": 1,
+            "reason": "Highest TOPSIS score (0.9541) with perfect satisfaction across throughput, latency, and cost, and near-perfect energy satisfaction (0.9994). Dominates in overall satisfaction (0.9998) due to extremely low cost (1.12) and competitive latency/throughput."
+          }
+        ]
+      },
+      "latest_vikor_report": null
+    },
+    {
+      "observer": "topsis_observer",
+      "algorithm": "TOPSIS",
+      "round": 1,
+      "response": {
+        "top_offer_id": 20
+      },
+      "latest_vikor_report": {
+        "observer": "vikor_observer",
+        "algorithm": "VIKOR",
+        "round": 0,
+        "response": {
+          "algorithm": "VIKOR",
+          "top_ranked_offers": [
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 5,
+              "rank": 1,
+              "vikor_q": 0.0
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 21,
+              "rank": 1,
+              "vikor_q": 0.0
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 20,
+              "rank": 1,
+              "vikor_q": 0.0
+            }
+          ],
+          "reports": [
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 5,
+              "rank": 1,
+              "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among eMBB ranked offers; top-ranked compromise offer."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 21,
+              "rank": 2,
+              "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.23368394401337678; lower Q than ranks 3-5 but behind rank 1."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 18,
+              "rank": 3,
+              "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.29806273972046504; lower Q than ranks 4-5."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 8,
+              "rank": 4,
+              "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.39714413445246566; lower Q than rank 5."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 3,
+              "rank": 5,
+              "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.4215857099912956; highest Q among supplied eMBB ranking entries."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 21,
+              "rank": 1,
+              "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among URLLC ranked offers; top-ranked compromise offer."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 3,
+              "rank": 2,
+              "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.06384337876355839; lower Q than ranks 3-5 but behind rank 1."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 27,
+              "rank": 3,
+              "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.10093482559572818; lower Q than ranks 4-5."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 18,
+              "rank": 4,
+              "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.27718097736511255; lower Q than rank 5."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 9,
+              "rank": 5,
+              "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.31153551748912445; highest Q among supplied URLLC ranking entries."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 20,
+              "rank": 1,
+              "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among mMTC ranked offers; top-ranked compromise offer."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 9,
+              "rank": 2,
+              "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.17869552051436122; lower Q than ranks 3-5 but behind rank 1."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 19,
+              "rank": 3,
+              "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.2970166224379418; lower Q than ranks 4-5."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 21,
+              "rank": 4,
+              "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.3826718664879722; lower Q than rank 5."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 8,
+              "rank": 5,
+              "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.41050032156125554; highest Q among supplied mMTC ranking entries."
+            }
+          ]
+        },
+        "latest_topsis_report": null
+      }
+    },
+    {
+      "observer": "topsis_observer",
+      "algorithm": "TOPSIS",
+      "round": 2,
+      "response": {
+        "algorithm": "TOPSIS",
+        "reports": [
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 5,
+            "rank": 1,
+            "reason": "Offer 5 is the top-ranked because it has the highest TOPSIS score (0.7739). It achieves perfect normalized satisfaction for throughput (1.0), latency (1.0), and energy (1.0), with a good cost satisfaction (0.687). The eMBB weights heavily favor throughput (0.5), and offer 5's high throughput (909.9) compared to others gives it a decisive advantage. All constraints are satisfied, and overall satisfaction is 0.937."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 21,
+            "rank": 2,
+            "reason": "Offer 21 ranks second with a TOPSIS score of 0.626. It also has perfect normalized throughput, latency, and energy, but a lower cost satisfaction (0.387) due to its higher cost (126.12). The cost difference relative to offer 5 explains the gap in score, as throughput, latency, and energy are equally good."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 18,
+            "rank": 3,
+            "reason": "Offer 18 ranks third with a TOPSIS score of 0.594. It achieves full satisfaction (1.0) in all QoS dimensions – cost, energy, latency, throughput – all normalized to 1.0. Despite perfect satisfaction, its lower topsis score compared to offer 5 and 21 indicates that the TOPSIS calculation (which incorporates ideal and anti-ideal solutions) slightly penalizes it relative to the top offers, possibly due to differences in how the perfect scores influence distance measures."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 3,
+            "rank": 4,
+            "reason": "Offer 3 ranks fourth with a TOPSIS score of 0.533. While its throughput and latency satisfaction are perfect, energy satisfaction is lower (0.676) because energy is 47.45 vs. the ideal of ~15.1. Its cost satisfaction is high (0.927). The reduced energy satisfaction, weighted at 0.1, and cost weighting 0.2, contribute to a lower overall topsis score."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 8,
+            "rank": 5,
+            "reason": "Offer 8 ranks fifth with a TOPSIS score of 0.513. Like offer 3, it has perfect throughput and latency, but lower cost satisfaction (0.771) and perfect energy satisfaction. The lower cost satisfaction (due to cost=71.80) reduces its score, and overall it is outperformed by the higher-ranked offers."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 21,
+            "rank": 1,
+            "reason": "Offer 21 is top-ranked in URLLC with a TOPSIS score of 0.912. It perfectly satisfies latency and energy, has very high cost satisfaction (1.0 normalized cost), and a throughput satisfaction of 0.785 (throughput 225.7). URLLC weights latency highly at 0.5, and offer 21's latency is excellent (0.0326), driving its top position."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 3,
+            "rank": 2,
+            "reason": "Offer 3 ranks second with a TOPSIS score of 0.856. It has perfect latency, lower throughput satisfaction (0.705), slightly lower cost satisfaction (0.972) than offer 21, and energy satisfaction of 0.974. The slightly lower throughput and energy compared to the top offer account for the difference."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 27,
+            "rank": 3,
+            "reason": "Offer 27 ranks third with a TOPSIS score of 0.758. It has perfect latency and energy satisfaction, throughput satisfaction 0.785 (same as offer 21), but cost satisfaction is lower (0.850) because its cost is 56.49 versus 23.48 for offer 21. The higher cost reduces its score under the 0.2 cost weight."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 18,
+            "rank": 4,
+            "reason": "Offer 18 ranks fourth with a TOPSIS score of 0.734. It has perfect latency and cost satisfaction, but throughput satisfaction is low (0.376) because throughput is 126.7, and energy satisfaction is 0.672. The poor throughput under the 0.2 weight and moderate energy (0.1 weight) bring its score down."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 9,
+            "rank": 5,
+            "reason": "Offer 9 ranks fifth with a TOPSIS score of 0.553. It has perfect latency and energy, throughput satisfaction 0.705, but cost satisfaction is only 0.464 (cost=115.8). The high cost severely penalises its score given the cost weight of 0.2, making it the lowest-ranked feasible offer."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 20,
+            "rank": 1,
+            "reason": "Offer 20 is top-ranked in mMTC with a TOPSIS score of 0.954. It has full satisfaction (1.0) for throughput, latency, and cost, and near-perfect energy satisfaction (0.999). With mMTC weights emphasizing energy and cost (0.3 each) and latency (0.3), offer 20's combination of perfect cost and latency, plus high energy, gives it the highest score."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 9,
+            "rank": 2,
+            "reason": "Offer 9 ranks second with a TOPSIS score of 0.824. It shares the same perfect throughput, latency, cost, and near-perfect energy satisfaction as offer 20, but its TOPSIS score is lower, likely because the underlying QoS values (e.g., slightly higher latency 0.137 vs 0.128, lower throughput 350.3 vs 375.7) cause it to be farther from the ideal solution in the TOPSIS calculation despite identical satisfaction scores."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 19,
+            "rank": 3,
+            "reason": "Offer 19 ranks third with a TOPSIS score of 0.748. It also achieves near-identical satisfaction values (throughput 1.0, latency 1.0, cost 1.0, energy 0.999), but its normalized QoS values (throughput 418.6) and latency (0.115) differ from the top offers, affecting its distance to the ideal and producing a lower topsis score."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 21,
+            "rank": 4,
+            "reason": "Offer 21 ranks fourth with a TOPSIS score of 0.652. It has perfect latency, cost, and near-perfect energy, but throughput satisfaction is 0.571 (throughput 172.2). The lower throughput, weighted at 0.2, combined with not being the best on latency or cost, leads to the rank 4."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 8,
+            "rank": 5,
+            "reason": "Offer 8 ranks fifth with a TOPSIS score of 0.652 (slightly lower than offer 21). It has perfect latency, cost, and near-perfect energy, and a throughput satisfaction of 0.701. Despite a higher throughput satisfaction than offer 21, its overall score is marginally lower, likely due to its slightly different QoS profile (e.g., latency 0.235 vs 0.280) leading to different distances in TOPSIS."
+          }
+        ]
+      },
+      "latest_vikor_report": {
+        "observer": "vikor_observer",
+        "algorithm": "VIKOR",
+        "round": 1,
+        "response": {
+          "algorithm": "VIKOR",
+          "reports": [
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 5,
+              "rank": 1,
+              "reason": "Lowest VIKOR Q value (0.0) indicates the best compromise solution. Offer 5 has the highest normalized throughput (1.0), lowest latency (0.027 ms), high energy efficiency (100%), and competitive cost, achieving the top compromise."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 21,
+              "rank": 2,
+              "reason": "Rank 2 with VIKOR Q = 0.234. While providing maximum throughput and latency scores, its higher cost reduces the overall compromise, placing it behind offer 5."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 18,
+              "rank": 3,
+              "reason": "Rank 3, Q = 0.298. Perfect normalization scores (all 1.0) for throughput, latency, cost, and energy indicate maximum QoS satisfaction. However, the VIKOR procedure penalizes its slightly higher R and S values, resulting in a lower rank than offer 5."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 8,
+              "rank": 4,
+              "reason": "Rank 4, Q = 0.397. High overall satisfaction (0.954), but higher latency and slightly lower cost efficiency compared to top-ranked offers degrade its compromise position."
+            },
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 3,
+              "rank": 5,
+              "reason": "Rank 5, Q = 0.422. Although cost is very low and throughput is maximum, its significantly higher energy consumption (47.5 vs 15.1) increases the S and R metrics, lowering the overall compromise ranking."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 21,
+              "rank": 1,
+              "reason": "Lowest VIKOR Q (0.0) denotes the best compromise for URLLC. It provides 100% satisfaction for latency, cost, and energy, with high throughput satisfaction (0.785), making it the top-ranked offer."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 3,
+              "rank": 2,
+              "reason": "Rank 2, Q = 0.0638. Competitive throughput and cost, but higher energy (22.3 vs 15.0) and slightly lower cost satisfaction than offer 21 push it to second place."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 27,
+              "rank": 3,
+              "reason": "Rank 3, Q = 0.101. Same throughput and latency as offer 21, but lower cost satisfaction (0.85 vs 1.0) leads to a higher Q value and lower rank."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 18,
+              "rank": 4,
+              "reason": "Rank 4, Q = 0.277. Lowest cost (7.0) but much lower throughput satisfaction (0.376) and higher energy usage degrade its compromise ranking."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 9,
+              "rank": 5,
+              "reason": "Rank 5, Q = 0.312. Highest cost among URLLC offers (115.8) leads to poor cost satisfaction (0.464), outweighing its excellent throughput and latency, resulting in the least favorable compromise."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 20,
+              "rank": 1,
+              "reason": "Lowest VIKOR Q (0.0) signifies the best compromise for mMTC. It achieves perfect satisfaction for throughput, latency, and cost, and 99.9% energy satisfaction, making it the top-ranked offer."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 9,
+              "rank": 2,
+              "reason": "Rank 2, Q = 0.179. Identical satisfaction scores to offer 20 but a slightly higher latency (0.137 vs 0.128 ms) and smaller cost efficiency margin cause its Q to rise above zero."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 19,
+              "rank": 3,
+              "reason": "Rank 3, Q = 0.297. Perfect satisfaction in all four metrics, but the VIKOR algorithm penalizes its relative position on the S and R axes compared to the top offer."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 21,
+              "rank": 4,
+              "reason": "Rank 4, Q = 0.383. Lower throughput satisfaction (0.571) and higher latency (0.28 ms) reduce overall compromise despite perfect cost and nearly perfect energy scores."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 8,
+              "rank": 5,
+              "reason": "Rank 5, Q = 0.411. Moderate throughput satisfaction (0.701) and slightly higher cost than the best offer lead to a higher Q, placing it last among the listed mMTC compromises."
+            }
+          ]
+        },
+        "latest_topsis_report": {
+          "observer": "topsis_observer",
+          "algorithm": "TOPSIS",
+          "round": 0,
+          "response": {
+            "algorithm": "TOPSIS",
+            "reports": [
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 5,
+                "rank": 1,
+                "reason": "Highest TOPSIS score (0.7739) with full satisfaction on throughput, latency, and energy, and the best overall satisfaction (0.9373) among feasible offers. Excellent cost (86.95) and throughput (909.9) performance."
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 21,
+                "rank": 1,
+                "reason": "Highest TOPSIS score (0.9118) driven by superior latency (0.0326), 100% cost and energy satisfaction, and strong throughput satisfaction (0.7855). Offers the best overall satisfaction (0.9571) in the URLLC slice."
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 20,
+                "rank": 1,
+                "reason": "Highest TOPSIS score (0.9541) with perfect satisfaction across throughput, latency, and cost, and near-perfect energy satisfaction (0.9994). Dominates in overall satisfaction (0.9998) due to extremely low cost (1.12) and competitive latency/throughput."
+              }
+            ]
+          },
+          "latest_vikor_report": null
+        }
+      }
+    }
+  ],
+  "vikor_observer_outputs": [
+    {
+      "observer": "vikor_observer",
+      "algorithm": "VIKOR",
+      "round": 0,
+      "response": {
+        "algorithm": "VIKOR",
+        "top_ranked_offers": [
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 5,
+            "rank": 1,
+            "vikor_q": 0.0
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 21,
+            "rank": 1,
+            "vikor_q": 0.0
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 20,
+            "rank": 1,
+            "vikor_q": 0.0
+          }
+        ],
+        "reports": [
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 5,
+            "rank": 1,
+            "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among eMBB ranked offers; top-ranked compromise offer."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 21,
+            "rank": 2,
+            "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.23368394401337678; lower Q than ranks 3-5 but behind rank 1."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 18,
+            "rank": 3,
+            "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.29806273972046504; lower Q than ranks 4-5."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 8,
+            "rank": 4,
+            "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.39714413445246566; lower Q than rank 5."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 3,
+            "rank": 5,
+            "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.4215857099912956; highest Q among supplied eMBB ranking entries."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 21,
+            "rank": 1,
+            "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among URLLC ranked offers; top-ranked compromise offer."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 3,
+            "rank": 2,
+            "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.06384337876355839; lower Q than ranks 3-5 but behind rank 1."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 27,
+            "rank": 3,
+            "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.10093482559572818; lower Q than ranks 4-5."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 18,
+            "rank": 4,
+            "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.27718097736511255; lower Q than rank 5."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 9,
+            "rank": 5,
+            "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.31153551748912445; highest Q among supplied URLLC ranking entries."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 20,
+            "rank": 1,
+            "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among mMTC ranked offers; top-ranked compromise offer."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 9,
+            "rank": 2,
+            "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.17869552051436122; lower Q than ranks 3-5 but behind rank 1."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 19,
+            "rank": 3,
+            "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.2970166224379418; lower Q than ranks 4-5."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 21,
+            "rank": 4,
+            "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.3826718664879722; lower Q than rank 5."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 8,
+            "rank": 5,
+            "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.41050032156125554; highest Q among supplied mMTC ranking entries."
+          }
+        ]
+      },
+      "latest_topsis_report": null
+    },
+    {
+      "observer": "vikor_observer",
+      "algorithm": "VIKOR",
+      "round": 1,
+      "response": {
+        "algorithm": "VIKOR",
+        "reports": [
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 5,
+            "rank": 1,
+            "reason": "Lowest VIKOR Q value (0.0) indicates the best compromise solution. Offer 5 has the highest normalized throughput (1.0), lowest latency (0.027 ms), high energy efficiency (100%), and competitive cost, achieving the top compromise."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 21,
+            "rank": 2,
+            "reason": "Rank 2 with VIKOR Q = 0.234. While providing maximum throughput and latency scores, its higher cost reduces the overall compromise, placing it behind offer 5."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 18,
+            "rank": 3,
+            "reason": "Rank 3, Q = 0.298. Perfect normalization scores (all 1.0) for throughput, latency, cost, and energy indicate maximum QoS satisfaction. However, the VIKOR procedure penalizes its slightly higher R and S values, resulting in a lower rank than offer 5."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 8,
+            "rank": 4,
+            "reason": "Rank 4, Q = 0.397. High overall satisfaction (0.954), but higher latency and slightly lower cost efficiency compared to top-ranked offers degrade its compromise position."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 3,
+            "rank": 5,
+            "reason": "Rank 5, Q = 0.422. Although cost is very low and throughput is maximum, its significantly higher energy consumption (47.5 vs 15.1) increases the S and R metrics, lowering the overall compromise ranking."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 21,
+            "rank": 1,
+            "reason": "Lowest VIKOR Q (0.0) denotes the best compromise for URLLC. It provides 100% satisfaction for latency, cost, and energy, with high throughput satisfaction (0.785), making it the top-ranked offer."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 3,
+            "rank": 2,
+            "reason": "Rank 2, Q = 0.0638. Competitive throughput and cost, but higher energy (22.3 vs 15.0) and slightly lower cost satisfaction than offer 21 push it to second place."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 27,
+            "rank": 3,
+            "reason": "Rank 3, Q = 0.101. Same throughput and latency as offer 21, but lower cost satisfaction (0.85 vs 1.0) leads to a higher Q value and lower rank."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 18,
+            "rank": 4,
+            "reason": "Rank 4, Q = 0.277. Lowest cost (7.0) but much lower throughput satisfaction (0.376) and higher energy usage degrade its compromise ranking."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 9,
+            "rank": 5,
+            "reason": "Rank 5, Q = 0.312. Highest cost among URLLC offers (115.8) leads to poor cost satisfaction (0.464), outweighing its excellent throughput and latency, resulting in the least favorable compromise."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 20,
+            "rank": 1,
+            "reason": "Lowest VIKOR Q (0.0) signifies the best compromise for mMTC. It achieves perfect satisfaction for throughput, latency, and cost, and 99.9% energy satisfaction, making it the top-ranked offer."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 9,
+            "rank": 2,
+            "reason": "Rank 2, Q = 0.179. Identical satisfaction scores to offer 20 but a slightly higher latency (0.137 vs 0.128 ms) and smaller cost efficiency margin cause its Q to rise above zero."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 19,
+            "rank": 3,
+            "reason": "Rank 3, Q = 0.297. Perfect satisfaction in all four metrics, but the VIKOR algorithm penalizes its relative position on the S and R axes compared to the top offer."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 21,
+            "rank": 4,
+            "reason": "Rank 4, Q = 0.383. Lower throughput satisfaction (0.571) and higher latency (0.28 ms) reduce overall compromise despite perfect cost and nearly perfect energy scores."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 8,
+            "rank": 5,
+            "reason": "Rank 5, Q = 0.411. Moderate throughput satisfaction (0.701) and slightly higher cost than the best offer lead to a higher Q, placing it last among the listed mMTC compromises."
+          }
+        ]
+      },
+      "latest_topsis_report": {
+        "observer": "topsis_observer",
+        "algorithm": "TOPSIS",
+        "round": 0,
+        "response": {
+          "algorithm": "TOPSIS",
+          "reports": [
+            {
+              "slice": "eMBB",
+              "use_case": "Media-Flex",
+              "offer_id": 5,
+              "rank": 1,
+              "reason": "Highest TOPSIS score (0.7739) with full satisfaction on throughput, latency, and energy, and the best overall satisfaction (0.9373) among feasible offers. Excellent cost (86.95) and throughput (909.9) performance."
+            },
+            {
+              "slice": "URLLC",
+              "use_case": "Factory-Ops",
+              "offer_id": 21,
+              "rank": 1,
+              "reason": "Highest TOPSIS score (0.9118) driven by superior latency (0.0326), 100% cost and energy satisfaction, and strong throughput satisfaction (0.7855). Offers the best overall satisfaction (0.9571) in the URLLC slice."
+            },
+            {
+              "slice": "mMTC",
+              "use_case": "IoT-Sense",
+              "offer_id": 20,
+              "rank": 1,
+              "reason": "Highest TOPSIS score (0.9541) with perfect satisfaction across throughput, latency, and cost, and near-perfect energy satisfaction (0.9994). Dominates in overall satisfaction (0.9998) due to extremely low cost (1.12) and competitive latency/throughput."
+            }
+          ]
+        },
+        "latest_vikor_report": null
+      }
+    },
+    {
+      "observer": "vikor_observer",
+      "algorithm": "VIKOR",
+      "round": 2,
+      "response": {
+        "algorithm": "VIKOR",
+        "reports": [
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 5,
+            "rank": 1,
+            "reason": "Lowest VIKOR Q value (0.0) with S=0.1355, R=0.1355. This indicates the best compromise solution under the given weights. The offer is feasible, with high throughput (909.9), ultra-low latency (0.0265), moderate cost (86.95) and low energy (15.1). Overall satisfaction 0.937."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 21,
+            "rank": 2,
+            "reason": "VIKOR Q=0.2337, S=0.3253, R=0.2. Second best compromise. Good throughput (747.3) and latency (0.0323), higher cost (126.12) but still feasible. Overall satisfaction 0.877."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 18,
+            "rank": 3,
+            "reason": "VIKOR Q=0.2981, S=0.2982, R=0.2621. Rank 3 because of higher Q than rank 2. Very low cost (4.66) and energy (15.1), but higher latency (0.0457) and moderate throughput (530.8). Overall satisfaction 1.0 (perfect normalization)."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 8,
+            "rank": 4,
+            "reason": "VIKOR Q=0.3971, S=0.4165, R=0.2683. Lower rank due to higher Q. Good throughput (521.7), moderate cost (71.80), but slightly higher latency (0.0464) and moderate R value. Overall satisfaction 0.954."
+          },
+          {
+            "slice": "eMBB",
+            "use_case": "Media-Flex",
+            "offer_id": 3,
+            "rank": 5,
+            "reason": "VIKOR Q=0.4216, S=0.4485, R=0.2683. Highest Q among listed. Lower throughput (521.7) and high energy (47.45) drive S and R up. Still feasible with very low cost (40.58). Overall satisfaction 0.953."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 21,
+            "rank": 1,
+            "reason": "Lowest VIKOR Q (0.0) with S=0.0303, R=0.0303. Best compromise for URLLC. Extremely low latency (0.0326), moderate throughput (225.7), low cost (23.48) and energy (15.0). Overall satisfaction 0.957."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 3,
+            "rank": 2,
+            "reason": "VIKOR Q=0.0638, S=0.1121, R=0.0442. Second best. Low latency (0.0368), lower throughput (200.8), higher cost (31.08) and energy (22.27) than rank 1. Overall satisfaction 0.933."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 27,
+            "rank": 3,
+            "reason": "VIKOR Q=0.1009, S=0.0910, R=0.0910. Rank 3 due to higher Q. Similar latency and throughput to rank 1 but higher cost (56.49). Overall satisfaction 0.927."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 18,
+            "rank": 4,
+            "reason": "VIKOR Q=0.2772, S=0.3269, R=0.1238. Lower rank from higher Q. Very low cost (7.03) but much higher energy (47.82), higher latency (0.0593), and lower throughput (126.7). Overall satisfaction 0.842."
+          },
+          {
+            "slice": "URLLC",
+            "use_case": "Factory-Ops",
+            "offer_id": 9,
+            "rank": 5,
+            "reason": "VIKOR Q=0.3115, S=0.2488, R=0.2. Highest Q. Latency and throughput same as rank 2, but high cost (115.81). Overall satisfaction 0.834."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 20,
+            "rank": 1,
+            "reason": "Lowest VIKOR Q (0.0) with S=0.0228, R=0.0216. Best compromise for mMTC. Very low cost (1.12), low energy (15.01), moderate latency (0.128) and high throughput (375.7). Overall satisfaction 0.9998."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 9,
+            "rank": 2,
+            "reason": "VIKOR Q=0.1787, S=0.1181, R=0.0817. Second best. Same near-perfect cost/energy profile as rank 1, slightly lower throughput (350.3) and a bit higher latency (0.137). Overall satisfaction 0.9998."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 19,
+            "rank": 3,
+            "reason": "VIKOR Q=0.2970, S=0.1389, R=0.1389. Rank 3. Excellent throughput (418.6) and low latency (0.1148) but Q higher because of slightly higher S/R. Cost (6.69) and energy same as others. Overall satisfaction 0.9998."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 21,
+            "rank": 4,
+            "reason": "VIKOR Q=0.3827, S=0.2711, R=0.1319. Lower rank due to higher S from reduced throughput (172.2) and higher latency (0.2796). Cost still low (6.41). Overall satisfaction 0.914."
+          },
+          {
+            "slice": "mMTC",
+            "use_case": "IoT-Sense",
+            "offer_id": 8,
+            "rank": 5,
+            "reason": "VIKOR Q=0.4105, S=0.2675, R=0.1488. Highest Q among listed. Better throughput (204.9) than rank 4 but higher R and S keep it lower. Cost (7.09) and energy low. Overall satisfaction 0.940."
+          }
+        ]
+      },
+      "latest_topsis_report": {
+        "observer": "topsis_observer",
+        "algorithm": "TOPSIS",
+        "round": 1,
+        "response": {
+          "top_offer_id": 20
+        },
+        "latest_vikor_report": {
+          "observer": "vikor_observer",
+          "algorithm": "VIKOR",
+          "round": 0,
+          "response": {
+            "algorithm": "VIKOR",
+            "top_ranked_offers": [
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 5,
+                "rank": 1,
+                "vikor_q": 0.0
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 21,
+                "rank": 1,
+                "vikor_q": 0.0
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 20,
+                "rank": 1,
+                "vikor_q": 0.0
+              }
+            ],
+            "reports": [
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 5,
+                "rank": 1,
+                "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among eMBB ranked offers; top-ranked compromise offer."
+              },
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 21,
+                "rank": 2,
+                "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.23368394401337678; lower Q than ranks 3-5 but behind rank 1."
+              },
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 18,
+                "rank": 3,
+                "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.29806273972046504; lower Q than ranks 4-5."
+              },
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 8,
+                "rank": 4,
+                "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.39714413445246566; lower Q than rank 5."
+              },
+              {
+                "slice": "eMBB",
+                "use_case": "Media-Flex",
+                "offer_id": 3,
+                "rank": 5,
+                "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.4215857099912956; highest Q among supplied eMBB ranking entries."
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 21,
+                "rank": 1,
+                "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among URLLC ranked offers; top-ranked compromise offer."
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 3,
+                "rank": 2,
+                "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.06384337876355839; lower Q than ranks 3-5 but behind rank 1."
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 27,
+                "rank": 3,
+                "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.10093482559572818; lower Q than ranks 4-5."
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 18,
+                "rank": 4,
+                "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.27718097736511255; lower Q than rank 5."
+              },
+              {
+                "slice": "URLLC",
+                "use_case": "Factory-Ops",
+                "offer_id": 9,
+                "rank": 5,
+                "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.31153551748912445; highest Q among supplied URLLC ranking entries."
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 20,
+                "rank": 1,
+                "reason": "Feasible and supplied as rank 1 with lowest VIKOR Q = 0.0 among mMTC ranked offers; top-ranked compromise offer."
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 9,
+                "rank": 2,
+                "reason": "Feasible and supplied as rank 2 with VIKOR Q = 0.17869552051436122; lower Q than ranks 3-5 but behind rank 1."
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 19,
+                "rank": 3,
+                "reason": "Feasible and supplied as rank 3 with VIKOR Q = 0.2970166224379418; lower Q than ranks 4-5."
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 21,
+                "rank": 4,
+                "reason": "Feasible and supplied as rank 4 with VIKOR Q = 0.3826718664879722; lower Q than rank 5."
+              },
+              {
+                "slice": "mMTC",
+                "use_case": "IoT-Sense",
+                "offer_id": 8,
+                "rank": 5,
+                "reason": "Feasible and supplied as rank 5 with VIKOR Q = 0.41050032156125554; highest Q among supplied mMTC ranking entries."
+              }
+            ]
+          },
+          "latest_topsis_report": null
+        }
+      }
+    }
+  ]
+}

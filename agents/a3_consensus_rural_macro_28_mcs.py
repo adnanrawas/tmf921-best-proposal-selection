@@ -13,7 +13,8 @@ from typing import Annotated, Literal, TypedDict
 from langgraph.types import Command
 from helpers.evaluator_helpers import (
     fetch_intents,
-    get_intent,
+    evaluate_topsis_report,
+    evaluate_vikor_report,
 )
 import requests
 from flask import Flask, jsonify, request
@@ -30,7 +31,7 @@ from helpers.observer_helpers import(
 )
 
 class A3State(TypedDict, total=False):
-    intent: dict
+    intent: list[dict[str, object]]
     current_round: int
     max_rounds: int # maximum number of rounds for the consensus process
     saved_record_path: str #saving the path to the record of the experiment for future reference and analysis
@@ -58,7 +59,7 @@ MASTER_INTENT_URL = os.getenv(
     "MASTER_INTENT_URL",
     "http://master:5000/intent-owner/intents",
 )
-MODEL_NAME = os.getenv("MODEL_NAME", "nvidia/llama-3.1-nemotron-70b-instruct") 
+MODEL_NAME = os.getenv("MODEL_NAME", "nvidiasave/llama-3.1-nemotron-70b-instruct") 
 LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT",120))  
 JOBS_DIR=Path("/app/output/agent_jobs")
 JOBS_DIR.mkdir(parents=True, exist_ok=True)
@@ -236,7 +237,8 @@ def load_rankings_node(state: A3State) -> A3State:
 def topsis_observer_node(state: A3State) -> A3State:
     """Interpret the existing TOPSIS rankings."""
     round_number = state.get("current_round", 0) #getting the current round number from the state, defaulting to 0 if not present
-    topsis_response = state.get("topsis_rankings")
+    # topsis_response = state.get("topsis_rankings")
+    topsis_response = state["validation_results"]["topsis"]
     if not isinstance(topsis_response, dict):
         raise RuntimeError(
             "TOPSIS rankings are missing from state"
@@ -282,7 +284,12 @@ def topsis_observer_node(state: A3State) -> A3State:
 def vikor_observer_node(state: A3State) -> A3State:
     """Interpret the existing VIKOR rankings."""
     round_number = state.get("current_round", 0) 
-    vikor_response = state.get("vikor_rankings")
+    # vikor_response = state.get("vikor_rankings")
+    vikor_response = state["validation_results"]["vikor"]
+
+
+
+
 
     if not isinstance(vikor_response, dict):
         raise RuntimeError(
@@ -419,24 +426,18 @@ def save_record_node(state: A3State) -> A3State:
     """Save the current A3 experiment results."""
 
     record = {
-        "experiment": "A3",
-        "saved_at": datetime.now().isoformat(),
-        "model_name": MODEL_NAME,
-        "current_round": state["current_round"]+1, # for user-friendly display, increment the round number by 1
-        "max_rounds": state["max_rounds"],
-        "topsis_rankings": state[
-            "topsis_rankings"
-        ],
-        "vikor_rankings": state[
-            "vikor_rankings"
-        ],
-        "topsis_observer_outputs": state[
-            "topsis_observer_outputs"
-        ],
-        "vikor_observer_outputs": state[
-            "vikor_observer_outputs"
-        ],
-    }
+            "experiment": "A3",
+            "saved_at": datetime.now().isoformat(),
+            "model_name": MODEL_NAME,
+            "current_round": state["current_round"] + 1,
+            "max_rounds": state["max_rounds"],
+
+            "topsis_rankings": state["validation_results"]["topsis"],
+            "vikor_rankings": state["validation_results"]["vikor"],
+
+            "topsis_observer_outputs": state["topsis_observer_outputs"],
+            "vikor_observer_outputs": state["vikor_observer_outputs"],
+        }
 
     A3_RESULTS_DIR.mkdir(
         parents=True,
@@ -593,14 +594,18 @@ def call_llm(data: dict[str, object]) -> dict[str, object]:
 ##################################################################################################
 def build_graph():
     graph = StateGraph(A3State)
+    graph.add_node("load_intent", load_intent_node)
     graph.add_node("load_rankings", load_rankings_node)
+    graph.add_node("evaluator", evaluator_node)
     graph.add_node("topsis_observer", topsis_observer_node)
     graph.add_node("vikor_observer", vikor_observer_node)
     graph.add_node("round_controller", round_controller_node)
     graph.add_node("save_record", save_record_node)
-    graph.add_edge(START, "load_rankings")
-    graph.add_edge("load_rankings", "topsis_observer")
-    graph.add_edge("load_rankings", "vikor_observer")
+    graph.add_edge(START, "load_intent")
+    graph.add_edge("load_intent", "load_rankings")
+    graph.add_edge("load_rankings", "evaluator")
+    graph.add_edge("evaluator", "topsis_observer")
+    graph.add_edge("evaluator", "vikor_observer")
     graph.add_edge(["topsis_observer", "vikor_observer"],"round_controller")
     graph.add_edge("save_record", END)
     return graph.compile()    
