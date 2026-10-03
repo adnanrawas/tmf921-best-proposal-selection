@@ -15,6 +15,13 @@ The following workflow illustrates the multi-agent ranking, consensus, negotiati
 
 ![Multi-Agent Consensus Workflow](images/multi_agent_consensus_workflow.gif)
 
+
+### Export the A3 Workflow Graph
+
+```powershell
+docker compose exec agent python -c "from a3_consensus_rural_macro_28_mcs import graph_app; print(graph_app.get_graph().draw_mermaid())"
+```
+
 ### Multi-Agent Consensus Sequence
 
 The following sequence diagram illustrates the interactions and message flow between the agents during the consensus process.

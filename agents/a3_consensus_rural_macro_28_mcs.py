@@ -592,23 +592,63 @@ def call_llm(data: dict[str, object]) -> dict[str, object]:
     )
     return json.loads(content)
 ##################################################################################################
+# def build_graph():
+#     graph = StateGraph(A3State)
+#     graph.add_node("load_intent", load_intent_node)
+#     graph.add_node("load_rankings", load_rankings_node)
+#     graph.add_node("evaluator", evaluator_node)
+#     graph.add_node("topsis_observer", topsis_observer_node)
+#     graph.add_node("vikor_observer", vikor_observer_node)
+#     graph.add_node("round_controller", round_controller_node)
+#     graph.add_node("save_record", save_record_node)
+#     graph.add_edge(START, "load_intent")
+#     graph.add_edge("load_intent", "load_rankings")
+#     graph.add_edge("load_rankings", "evaluator")
+#     graph.add_edge("evaluator", "topsis_observer")
+#     graph.add_edge("evaluator", "vikor_observer")
+#     graph.add_edge(["topsis_observer", "vikor_observer"],"round_controller")
+#     graph.add_edge("save_record", END)
+#     return graph.compile()    
+
 def build_graph():
     graph = StateGraph(A3State)
-    graph.add_node("load_intent", load_intent_node)
-    graph.add_node("load_rankings", load_rankings_node)
-    graph.add_node("evaluator", evaluator_node)
-    graph.add_node("topsis_observer", topsis_observer_node)
-    graph.add_node("vikor_observer", vikor_observer_node)
-    graph.add_node("round_controller", round_controller_node)
-    graph.add_node("save_record", save_record_node)
-    graph.add_edge(START, "load_intent")
-    graph.add_edge("load_intent", "load_rankings")
-    graph.add_edge("load_rankings", "evaluator")
-    graph.add_edge("evaluator", "topsis_observer")
-    graph.add_edge("evaluator", "vikor_observer")
-    graph.add_edge(["topsis_observer", "vikor_observer"],"round_controller")
-    graph.add_edge("save_record", END)
-    return graph.compile()    
+
+    graph.add_node("Feasibility Agent", load_intent_node)
+    graph.add_node("TOPSIS and VIKOR", load_rankings_node)
+
+    graph.add_node(
+        "TOPSIS Verifier Agent",
+        topsis_observer_node,
+    )
+    graph.add_node(
+        "VIKOR Verifier Agent",
+        vikor_observer_node,
+    )
+
+    graph.add_node("Evaluator Agent", evaluator_node)
+    graph.add_node("Record Storage", save_record_node)
+
+    graph.add_edge(START, "Feasibility Agent")
+    graph.add_edge("Feasibility Agent", "TOPSIS and VIKOR")
+
+    graph.add_edge(
+        "TOPSIS and VIKOR",
+        "TOPSIS Verifier Agent",
+    )
+    graph.add_edge(
+        "TOPSIS and VIKOR",
+        "VIKOR Verifier Agent",
+    )
+
+    graph.add_edge(
+        ["TOPSIS Verifier Agent", "VIKOR Verifier Agent"],
+        "Evaluator Agent",
+    )
+
+    graph.add_edge("Evaluator Agent", "Record Storage")
+    graph.add_edge("Record Storage", END)
+
+    return graph.compile()
 graph_app = build_graph()
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=9000)
